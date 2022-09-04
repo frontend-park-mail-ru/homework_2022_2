@@ -33,4 +33,12 @@ QUnit.module('Тестируем функцию inverse', function () {
 		assert.deepEqual(inverse([ 1, 2, 3, 4, 5 ], -5), [ 1, 2, 3, 4, 5 ]);
 		assert.deepEqual(inverse([ 1, 2, 3, 4, 5 ], -15), [ 1, 2, 3, 4, 5 ]);
 	});
+
+	QUnit.test('Если второй аргумент не число функция возвращает false', function (assert) {
+		assert.deepEqual(inverse([ 1, 2, 3, 4, 5 ], "null"), false);
+		assert.deepEqual(inverse([ 1, 2, 3, 4, 5 ], true), false);
+		assert.deepEqual(inverse([ 1, 2, 3, 4, 5 ], NaN), false);
+		assert.deepEqual(inverse([ 1, 2, 3, 4, 5 ], 5.4), false);
+	});
+
 });
