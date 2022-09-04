@@ -9,4 +9,8 @@
 * @return {array} новый массив
 */
 
-const inverse = (ar, order = 0) => Number.isSafeInteger(order) && order > 0 ? ar.slice(0, order).concat(ar.slice(order, ar.length).reverse()) : Number.isSafeInteger(order) && ar.slice(0, ar.length + order).reverse().concat(ar.slice(ar.length + order, ar.length));
+const inverse = (ar, order = 0) => {
+    if (Number.isSafeInteger(order) && order > 0)
+     return ar.slice(0, order).concat(ar.slice(order, ar.length).reverse());
+    else return Number.isSafeInteger(order) && ar.slice(0, ar.length + order).reverse().concat(ar.slice(ar.length + order, ar.length));
+}
