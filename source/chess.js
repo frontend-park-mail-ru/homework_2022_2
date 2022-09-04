@@ -1,6 +1,6 @@
 'use strict';
 
-function chess (n) {
+const chess = (n) => {
   if(!(parseInt(n) >= 0 || parseInt(n) <= 0)){ //проверка на то, что n - число
     return null;
   }
