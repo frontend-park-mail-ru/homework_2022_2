@@ -1,5 +1,12 @@
 'use strict'
 
+
+/**
+* Находит наибольший общий делитель для набора чисел
+*
+* @param {array} numbers - массив целых натуральных чисел
+* @return {number} наибольший общий делитель
+*/
 function euclid(...numbers) {
     { // Error cases
         if (numbers.length == 0) {
@@ -32,7 +39,16 @@ function euclid(...numbers) {
     return result;
 }
 
+
+/**
+* Находит наибольший общий делитель для двух натуральных чисел
+*
+* @param {number} greaterNum - большее целое число
+* @param {number} smallerNum - меньшее целое число
+* @return {number} наибольший общий делитель
+*/
 euclid.forPair = function euclidForPair(greaterNum = 1, smallerNum = 1) {
+
     if (greaterNum == 1 || smallerNum == 1) return 1;
 
     if (smallerNum > greaterNum) return euclidForPair(smallerNum, greaterNum);
@@ -42,4 +58,11 @@ euclid.forPair = function euclidForPair(greaterNum = 1, smallerNum = 1) {
     else return euclidForPair(smallerNum, residual);
 };
 
+
+/**
+* Создаёт копию массива, отсортированного по убыванию
+*
+* @param {array} arr - исходный массив
+* @return {array} result - новый отсортированный массив
+*/
 euclid.copySortedArgs = arr => [...arr].sort( (a, b) => b - a );
