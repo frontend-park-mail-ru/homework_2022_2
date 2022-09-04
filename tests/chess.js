@@ -36,5 +36,25 @@ QUnit.module('Тестируем функцию chess', function () {
 		assert.strictEqual(chess(8), expected);
 		assert.strictEqual(chess('8'), expected);
 	});
-
+	
+	QUnit.test('Аргумент должен быть натуральным числом', function (assert) {
+		assert.strictEqual(chess(-5), null);
+		assert.strictEqual(chess(0), null);
+		assert.strictEqual(chess("abc"), null);
+	});
+	QUnit.test('Дробный аргумент должен приводиться к целому значению', function (assert) {
+		const expected =
+		'* *\n' +
+		' * \n' +
+		'* *\n';
+		assert.strictEqual(chess(1.5), null);
+		assert.strictEqual(chess(3.2), expected);
+	});
+	QUnit.test('Функция должна игнорировать все аргументы, кроме первого', function (assert) {
+		const expected =
+		'* *\n' +
+		' * \n' +
+		'* *\n';
+		assert.strictEqual(chess(3, 5, 7), expected);
+	});
 });
