@@ -6,7 +6,9 @@ function zip() {
     for (let i = 0, length = arguments.length; i < length; i++) {
         for (let key in arguments[i]) {
 
-            result[key] = arguments[i][key]
+            if (!result.hasOwnProperty(key)) {
+                result[key] = arguments[i][key]
+            }
         }
     }
 
