@@ -1,8 +1,6 @@
 'use strict';
 
 const zip = (...objects) => {
-    let result = {};
-
     let getUniqFields = function (res, cur) {
         if (!(cur instanceof Object)) {
             throw new TypeError("Arguments must be objects - custom data types");
@@ -17,7 +15,5 @@ const zip = (...objects) => {
         return res
     }
 
-    result = objects.reduce(getUniqFields)
-
-    return result;
+    return objects.reduce(getUniqFields);
 };
