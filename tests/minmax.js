@@ -32,4 +32,9 @@ QUnit.module('Тестируем функцию minmax', function () {
 	QUnit.test('minmax игнорирует обычный текст', function (assert) {
 		assert.deepEqual(minmax('1, -5.8 или 10, хотя 34 + -5.3 и 73'), [ -5.8, 73 ]);
 	});
+	
+	QUnit.test('Парочка дополнительных тестов :)', function (assert) {
+		assert.deepEqual(minmax('1 2 3 4 5'), [ 1, 5]);
+		assert.deepEqual(minmax('A5B1C4D28G-100'), [ -100, 28 ]);
+	});
 });
