@@ -5,13 +5,15 @@
  * @returns {string} 
  */
 const chess = n => {
+  if(n === null) {
+    throw new Error("Пустое значение аргумента функции chess");
+  }
+  if(!isFinite(n)){
+    throw new Error("Некорректный входной параметр функции chess");
+  }
 
   if(n<1 || n>100){
     throw new Error("Функция chess принимает на вход натуральные числа от 2 до 100");
-  }
-
-  if(!isFinite(n)){
-    throw new Error("Некорректный входной параметр функции chess");
   }
 
   if(!Number.isInteger(Number(n))){
@@ -35,24 +37,4 @@ const chess = n => {
   }
 
   return result;
-}
-/**
- * 
- * @param {*} n 
- * @throws исключения невалидных аргументов: отсутствие агрументов, неправильные типы, 
- * аргумент не натурален, аргумент не входит в интервал допустимых значений 
- */
-const validNumber = n => {
-
-  if(n<1 || n>100){
-    throw new Error("Функция chess принимает на вход натуральные числа от 2 до 100");
-  }
-
-  if(!isFinite(n)){
-    throw new Error("Некорректный входной параметр функции chess");
-  }
-
-  if(!Number.isInteger(n)){
-    throw new Error("Входной параметр не является целым числом");
-  }
 }
