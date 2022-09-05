@@ -5,9 +5,9 @@
 *  Если в функцию вторым аргументом передаётся число — то переставляются все элементы массива кроме нескольких первых (количество зависит от числа).
 *  Если число отрицательное — то на месте остаются элементы в конце массива.
 *
-* @param {array} ar - массив
+* @param {array} aray - массив
 * @param {number} order - число отвечающее за нетронутые элементы массива
-* @throw wrong arguments
+* @throw {TypeError} wrong arguments
 * @return {array} новый массив
 * @example
 * // returns [3,2,1]
@@ -20,15 +20,15 @@
 * inverse([1,2,3],-1);
 */
 
-const inverse = (ar, order = 0) => {
-    if (!Number.isInteger(order) || !Array.isArray(ar)) {
-        throw new Error('wrong arguments');
+const inverse = (aray, order = 0) => {
+    if (!Number.isInteger(order) || !Array.isArray(aray)) {
+        throw new TypeError('wrong arguments');
     }
 
-    const localAr = [...ar];
+    const localAray = [...aray];
     const start = order > 0 ? order : 0;
-    const numElements = localAr.length - Math.abs(order);
+    const numElements = localAray.length - Math.abs(order);
 
-    localAr.splice(order, 0, ...localAr.splice(start, numElements).reverse());
-    return localAr;
+    localAray.splice(order, 0, ...localAray.splice(start, numElements).reverse());
+    return localAray;
 }
