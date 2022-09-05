@@ -25,33 +25,20 @@ const chess = n => {
   if(n==1){
     return null;
   }
-
+  n = Number(n);
   let result = "";
-  let helping = "* "
+  // let firstStr = "* ";
+  // firstStr = firstStr.repeat(n/2).padEnd(n, "*");
+  // let secondStr = firstStr.substring(1, firstStr.length) + firstStr[firstStr.length-2];
   // for(let i=0; i<n; i++) {
-  //   for(let j=0; j<n; j++){
-  //     if((i+j)%2==0){
-  //       result+="*";
-  //     } else {
-  //       result+=" ";
-  //     }
-  //   }
-  //   result+="\n";
+  //   i % 2 ==0 ? result+=firstStr : result+=secondStr
+  //   result+='\n'
   // }
-  helping = helping.repeat(n/2);
-  if(n%2 == 0){ 
-  helping += helping[helping.length-2];
-  } else {
-  helping += "* ";
-  }
-  result += helping.substring(0, helping.length - 1);
-  result += '\n';
-  result += helping.substring(1, helping.length);
-  result += '\n';
-  result = result.repeat(n/2);
-  if(result.split("\n").length - 1 < n){
-    result += helping.substring(0, helping.length - 1);
-    result += '\n';
+  let firstStr = "* ";
+  firstStr = firstStr.repeat(Math.ceil(n/2) - 1).padEnd(n-1, "*");
+  for(let i=0; i<n; i++) {
+    i % 2 ==0 ? result+=firstStr.padEnd(n, firstStr[length-((n+1)%2)]) : result+=firstStr.padStart(n, firstStr[1])
+    result+='\n'
   }
   return result;
 }
