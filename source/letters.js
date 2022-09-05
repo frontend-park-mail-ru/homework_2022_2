@@ -14,7 +14,6 @@ const letters = (str, flag) => {
      */
     const isStrConsistsOfOneChar = (str) => {
         const temp = str[0];
-
         if (str.some((elem) => elem !== temp)) return false;
         return true;
     };
@@ -28,7 +27,6 @@ const letters = (str, flag) => {
         const res = str.split('').filter((value, index, self) => {
             return self.indexOf(value) === index;
         });
-
         return res.join('');
     };
 
@@ -41,20 +39,18 @@ const letters = (str, flag) => {
         const res = str.split('').filter((value, index, self) => {
             return self.lastIndexOf(value) === index;
         });
-
         return res.join('');
     };
 
     /**
      * Удалит все повторяющиеся символы
      * @param {string} str - исходная строка
-     * @returns {string}
+     * @returns {string} - строка без повторяющихся символов
      */
     const saveOnlyUniqueLetters = (str) => {
         const res = str.split('').filter((value, index, self) => {
             return self.lastIndexOf(value) === self.indexOf(value);
         });
-
         return res.join('');
     };
 
