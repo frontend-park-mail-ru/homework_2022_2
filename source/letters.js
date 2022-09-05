@@ -5,7 +5,7 @@
  * @param {string} str - Исходная строка
  * @param {boolean} flag
  * @returns {string} - Результат операции удаления повторяющихся символов
- * @throws {Error} - Неправильный тип аргумента str
+ * @throws {TypeError} - Неправильный тип аргумента str
  */
 const letters = (str, flag) => {
     /**
@@ -51,7 +51,7 @@ const letters = (str, flag) => {
         }).join('');
     };
 
-    if (typeof str !== 'string') throw new Error('Некорректный тип данных');
+    if (typeof str !== 'string') throw new TypeError('Некорректный тип str');
     if (str === '' || isStrConsistsOfOneChar(str.split(''))) return '';
     if (flag === undefined) return saveOnlyUniqueLetters(str);
 

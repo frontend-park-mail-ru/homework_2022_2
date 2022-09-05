@@ -61,9 +61,9 @@ QUnit.module('Тестируем функцию letters', function () {
 	});
 
 	QUnit.test('Проверка на некорректные данные', function (assert) {
-		assert.throws(letters.bind(2), Error("Некорректный тип данных"))
-		assert.throws(letters.bind(new Date()), Error("Некорректный тип данных"))
-		assert.throws(letters.bind([1, 2, 3]), Error("Некорректный тип данных"))
-		assert.throws(letters.bind(["test"]), Error("Некорректный тип данных"))
+		assert.throws(letters.bind(2), TypeError("Некорректный тип str"))
+		assert.throws(letters.bind(new Date()), TypeError("Некорректный тип str"))
+		assert.throws(letters.bind([1, 2, 3]), TypeError("Некорректный тип str"))
+		assert.throws(letters.bind(["test"]), TypeError("Некорректный тип str"))
 	})
 });
