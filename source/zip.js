@@ -6,7 +6,7 @@
  *
  * @param {Object[]} Objects - массив сложных объектов
  * @return {Object} - объект со всеми полями из аргументов
- * @throws {TypeError} исключения невалидных аргументов: Неправильные типы
+ * @throws {TypeError, SyntaxError} исключения невалидных аргументов: Неправильные типы, отсутствие аргументов
  * @example
  * zip({question: "What is ?"}, {}, {id: 22}, {question: "how are you}) returns {question: "What is ?", id: 22}
  */
