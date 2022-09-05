@@ -38,9 +38,7 @@ const saveFirstLetters = (str) => {
     let res = []
 
     for (let i in str) {
-        if (!isNextValueInStr(i, str) && !res.includes(str[i])) {
-            res.push(str[i])
-        } else if (isNextValueInStr(i, str) && !res.includes(str[i])) {
+        if (!res.includes(str[i])) {
             res.push(str[i])
         }
     }
