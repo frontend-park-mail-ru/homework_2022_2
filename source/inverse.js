@@ -7,6 +7,7 @@
 *
 * @param {array} ar - массив
 * @param {number} order - число отвечающее за нетронутые элементы массива
+* @throw wrong arguments
 * @return {array} новый массив
 * @example
 * // returns [3,2,1]
@@ -21,9 +22,13 @@
 
 const inverse = (ar, order = 0) => {
     if (!Number.isInteger(order) || !Array.isArray(ar)) {
-        return false;
+        throw new Error('wrong arguments');
     }
-    let localAr = [...ar];
-    localAr.splice(order, 0, ...localAr.splice(order > 0 ? order : 0, localAr.length - Math.abs(order)).reverse());
+
+    const localAr = [...ar];
+    const start = order > 0 ? order : 0;
+    const numElements = localAr.length - Math.abs(order);
+
+    localAr.splice(order, 0, ...localAr.splice(start, numElements).reverse());
     return localAr;
 }
