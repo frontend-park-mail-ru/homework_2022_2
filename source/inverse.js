@@ -20,8 +20,9 @@
 */
 
 const inverse = (ar, order = 0) => {
-    if (!Number.isInteger(order) || !Array.isArray(ar)) 
+    if (!Number.isInteger(order) || !Array.isArray(ar)) {
         return false;
+    }
     let localAr = [...ar];
     localAr.splice(order, 0, ...localAr.splice(order > 0 ? order : 0, localAr.length - Math.abs(order)).reverse());
     return localAr;
