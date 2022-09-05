@@ -1,8 +1,20 @@
 'use strict';
 
+/**
+ * Возвращает единственный объект, содержащий все поля из объектов-параметров
+ *
+ * @param {Object[]} Object массив сложных объектов
+ * @return {Object}
+ * @throws исключения невалидных аргументов: Неправильный тип
+ */
+
+const isComplexData = (value) => {
+    return Object.prototype.toString.call(value) == '[object Object]'
+}
+
 const zip = (...objects) => {
-    let getUniqFields = function (res, cur) {
-        if (!(cur instanceof Object)) {
+    return objects.reduce((res, cur) => {
+        if (!isComplexData(cur)) {
             throw new TypeError("Arguments must be objects - custom data types");
         }
 
@@ -12,8 +24,6 @@ const zip = (...objects) => {
             }
         }
 
-        return res
-    }
-
-    return objects.reduce(getUniqFields);
+        return res;
+    }, {});
 };
