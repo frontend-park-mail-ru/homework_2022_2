@@ -171,5 +171,4 @@ QUnit.module('Тестируем функцию zip', function () {
 			'Error thrown'
 		);
 	});
-
 });
