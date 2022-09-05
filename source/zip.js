@@ -1,16 +1,16 @@
 'use strict';
 
-function zip() {
+const zip = (...objects) => {
     let result = {};
 
-    for (let i = 0, length = arguments.length; i < length; i++) {
-        for (let key in arguments[i]) {
+    for (let i = 0, length = objects.length; i < length; ++i) {
+        for (let key in objects[i]) {
 
             if (!result.hasOwnProperty(key)) {
-                result[key] = arguments[i][key]
+                result[key] = objects[i][key];
             }
         }
     }
 
-    return result
+    return result;
 };
