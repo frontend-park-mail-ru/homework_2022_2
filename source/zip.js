@@ -7,7 +7,7 @@
  * @param {Object[]} Object массив сложных объектов
  * @return {Object}
  * @throws исключения невалидных аргументов: Неправильный тип
- * @example zip({question: "123123"}, {}, {id: 22}) = {question: "fvasdga", id: 22}
+ * @example zip({question: "123123"}, {}, {id: 22}, {question: "fvasdga}) = {question: "123123", id: 22}
  */
 
 const isComplexData = (value) => {
