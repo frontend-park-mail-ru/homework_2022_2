@@ -1,5 +1,10 @@
 'use strict';
 
+/**
+ * Проверка, состоит ли строка из одного повторяющегося символа
+ * @param {string} str - строка
+ * @returns {boolean}
+ */
 const isStrConsistsOfOneChar = (str) => {
     let temp = str[0]
 
@@ -10,6 +15,12 @@ const isStrConsistsOfOneChar = (str) => {
     return true;
 }
 
+/**
+ * Проверка, встретится ли символ на месте valueIndex еще раз в строке
+ * @param {number} valueIndex 
+ * @param {string} str 
+ * @returns {boolean} 
+ */
 const isNextValueInStr = (valueIndex, str) => {
     if (str.lastIndexOf(str[valueIndex]) != valueIndex) {
         return true;
@@ -18,6 +29,11 @@ const isNextValueInStr = (valueIndex, str) => {
     return false;
 }
 
+/**
+ * Удалит все повторяющиеся символы кроме первого
+ * @param {string} str 
+ * @returns {string}
+ */
 const saveFirstLetters = (str) => {
     let res = []
 
@@ -32,6 +48,11 @@ const saveFirstLetters = (str) => {
     return res.join('')
 }
 
+/**
+ * Удалит все повторяющиеся символы кроме последнего
+ * @param {string} str 
+ * @returns {string}
+ */
 const saveLastLetters = (str) => {
     let res = []
 
@@ -46,7 +67,12 @@ const saveLastLetters = (str) => {
     return res.join('')
 }
 
-const deleteAllReapeatedSymbolsInStr = (str) => {
+/**
+ * Удалит все повторяющиеся символы
+ * @param {string} str - исходная строка
+ * @returns {string}
+ */
+const deleteAllRepeatedSymbols = (str) => {
     let res = []
 
     for (let i in str) {
@@ -58,28 +84,22 @@ const deleteAllReapeatedSymbolsInStr = (str) => {
     return res.join('')
 }
 
+/**
+ * 
+ * @param {string} str - Исходная строка 
+ * @param {boolean} flag
+ * @returns {string} - Результат операции удаления повторяющихся символов
+ */
 const letters = (str, flag) => { 
     if (str === '' || isStrConsistsOfOneChar(str.split(''))) return ''
 
     if (flag === undefined) {
-        return deleteAllReapeatedSymbolsInStr(str.split(''))
+        return deleteAllRepeatedSymbols(str.split(''))
     }
-    
+
     if (flag) {
         return saveFirstLetters(str.split(''))
     }
 
     return saveLastLetters(str.split(''));
 }
-
-// const lettersArr = str.split(' ')
-//     let temp = []
-
-//     for (let i of lettersArr) {
-//         if (flag) {
-//             temp.push(saveFirstLetters(i.split('')))
-//         } else {
-//             temp.push(saveLastLetters(i.split('')))
-//         }
-//     }
-//     return temp.join(' ')
