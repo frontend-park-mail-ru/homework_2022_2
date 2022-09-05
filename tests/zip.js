@@ -74,4 +74,39 @@ QUnit.module('Тестируем функцию zip', function () {
 		};
 		assert.deepEqual(zip({name: 'age'}, {value: 42}, {name: 'cost'}, {value: -6}), obj);
 	});
+
+	QUnit.test('Функция выбрасывает ошибку в случае вызова без аргументов', function (assert) {
+		assert.throws(
+			function () { zip(); },
+			function (err) { return err.toString() === 'SyntaxError: Function was called without arguments' },
+			'Error thrown'
+		);
+	});
+
+	QUnit.test('Функция выбрасывает ошибку в случае вызова с некорректными типами данных', function (assert) {
+		assert.throws(
+			function () { zip(12, "str", "24"); },
+			function (err) { return err.toString() === 'TypeError: Arguments must be objects - custom data types' },
+			'Error thrown'
+		);
+
+		assert.throws(
+			function () { zip({name: 'age'}, "str", "24"); },
+			function (err) { return err.toString() === 'TypeError: Arguments must be objects - custom data types' },
+			'Error thrown'
+		);
+
+		assert.throws(
+			function () { zip({name: 'age', person: {address: 'Moscow'}}); },
+			function (err) { return err.toString() === 'TypeError: Objects must consist of primitive types' },
+			'Error thrown'
+		);
+
+		assert.throws(
+			function () { zip({name: 'age'}, {address: 'Moscow'}, {person: {address: 'Moscow'}}); },
+			function (err) { return err.toString() === 'TypeError: Objects must consist of primitive types' },
+			'Error thrown'
+		);
+	});
+
 });
