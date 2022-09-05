@@ -53,4 +53,17 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters('от топота копыт', false), 'а копыт');
 		assert.strictEqual(letters('hello world', false), 'he world');
 	});
+
+	QUnit.test('Оставляет один пробел, остальные удаляет. Если нет флага, то удаляет все повторяющиеся символы', function (assert) {
+		assert.strictEqual(letters('пп рр оо лл дд'), '');
+		assert.strictEqual(letters('пп рр оо лл дд', true), 'п ролд');
+		assert.strictEqual(letters('пп рр оо лл дд', false), 'прол д');
+	});
+
+	QUnit.test('Проверка на некорректные данные', function (assert) {
+		assert.throws(letters.bind(2), Error("Некорректный тип данных"))
+		assert.throws(letters.bind(new Date()), Error("Некорректный тип данных"))
+		assert.throws(letters.bind([1, 2, 3]), Error("Некорректный тип данных"))
+		assert.throws(letters.bind(["test"]), Error("Некорректный тип данных"))
+	})
 });
