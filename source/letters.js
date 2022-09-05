@@ -91,6 +91,8 @@ const deleteAllRepeatedSymbols = (str) => {
  * @returns {string} - Результат операции удаления повторяющихся символов
  */
 const letters = (str, flag) => { 
+    if (typeof str !== "string") throw new Error("Некорректный тип данных")
+
     if (str === '' || isStrConsistsOfOneChar(str.split(''))) return ''
 
     if (flag === undefined) {
