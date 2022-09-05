@@ -5,6 +5,9 @@
  * @returns {string} 
  */
 const chess = n => {
+  if(n === null) {
+    throw new Error("Пустое значение аргумента функции chess");
+  }
   if(!isFinite(n)){
     throw new Error("Некорректный входной параметр функции chess");
   }
