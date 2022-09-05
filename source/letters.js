@@ -5,6 +5,7 @@
  * @param {string} str - Исходная строка
  * @param {boolean} flag
  * @returns {string} - Результат операции удаления повторяющихся символов
+ * @throws {Error} - Неправильный тип аргумента str
  */
 const letters = (str, flag) => {
     /**
@@ -14,8 +15,7 @@ const letters = (str, flag) => {
      */
     const isStrConsistsOfOneChar = (str) => {
         const temp = str[0];
-        if (str.some((elem) => elem !== temp)) return false;
-        return true;
+        return !str.some((elem) => elem !== temp);
     };
 
     /**
@@ -24,10 +24,9 @@ const letters = (str, flag) => {
      * @returns {string}
      */
     const saveFirstLetters = (str) => {
-        const res = str.split('').filter((value, index, self) => {
+        return str.split('').filter((value, index, self) => {
             return self.indexOf(value) === index;
-        });
-        return res.join('');
+        }).join('');
     };
 
     /**
@@ -36,10 +35,9 @@ const letters = (str, flag) => {
      * @returns {string}
      */
     const saveLastLetters = (str) => {
-        const res = str.split('').filter((value, index, self) => {
+        return str.split('').filter((value, index, self) => {
             return self.lastIndexOf(value) === index;
-        });
-        return res.join('');
+        }).join('');
     };
 
     /**
@@ -48,19 +46,14 @@ const letters = (str, flag) => {
      * @returns {string} - строка без повторяющихся символов
      */
     const saveOnlyUniqueLetters = (str) => {
-        const res = str.split('').filter((value, index, self) => {
+        return str.split('').filter((value, index, self) => {
             return self.lastIndexOf(value) === self.indexOf(value);
-        });
-        return res.join('');
+        }).join('');
     };
 
     if (typeof str !== 'string') throw new Error('Некорректный тип данных');
     if (str === '' || isStrConsistsOfOneChar(str.split(''))) return '';
     if (flag === undefined) return saveOnlyUniqueLetters(str);
 
-    let res = '';
-
-    flag ? (res = saveFirstLetters(str)) : (res = saveLastLetters(str));
-
-    return res;
+    return flag ? saveFirstLetters(str) : saveLastLetters(str);
 };
