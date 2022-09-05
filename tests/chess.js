@@ -37,17 +37,28 @@ QUnit.module('Тестируем функцию chess', function () {
 		assert.strictEqual(chess('8'), expected);
 	});
 	
-	QUnit.test('Аргумент должен быть положительным числом', function (assert) {
-		assert.strictEqual(chess(-5), null);
-		assert.strictEqual(chess(0), null);
-		assert.strictEqual(chess("abc"), null);
+	QUnit.test('Аргумент должен быть целым числом', function (assert) {
+		assert.throws(chess.bind("abc"), Error("Некорректный входной параметр функции chess"));
 	});
-	QUnit.test('Дробный аргумент должен приводиться к целому значению', function (assert) {
-		const expected =
-		'* *\n' +
-		' * \n' +
-		'* *\n';
-		assert.strictEqual(chess(1.5), null);
-		assert.strictEqual(chess(3.2), expected);
+
+	QUnit.test('Дробный аргумент недопустим', function (assert) {
+		assert.throws(chess.bind(3.5), Error("Входной параметр не является целым числом"));
 	});
+
+	QUnit.test('Аргумент должен находится в интервале [2;100]', function (assert) {
+		assert.throws(chess(120), Error("Функция chess принимает на вход натуральные числа от 2 до 100"));
+		assert.throws(chess.bind(-5), Error("Функция chess принимает на вход натуральные числа от 2 до 100"));
+		assert.throws(chess.bind(0), Error("Функция chess принимает на вход натуральные числа от 2 до 100"));
+	});
+
+	QUnit.test('Аргументы +Infinity, -Infinity должны корректно обрабатываться', function (assert) {
+		assert.throws(chess.bind(+Infinity), Error("Некорректный входной параметр функции chess"));
+		assert.throws(chess.bind(-Infinity), Error("Некорректный входной параметр функции chess"));
+	});
+
+	QUnit.test('Аргументы NaN, null, undefined должны корректно обрабатываться', function (assert) {
+		assert.throws(chess.bind(null), Error("Некорректный входной параметр функции chess"));
+		assert.throws(chess.bind(undefined), Error("Некорректный входной параметр функции chess"));
+	});
+
 });
