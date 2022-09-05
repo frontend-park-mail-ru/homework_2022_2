@@ -75,10 +75,85 @@ QUnit.module('Тестируем функцию zip', function () {
 		assert.deepEqual(zip({name: 'age'}, {value: 42}, {name: 'cost'}, {value: -6}), obj);
 	});
 
+	QUnit.test('Функция работает с большим уровнем вложенности', function (assert) {
+		const obj = {
+			a: 1,
+			b: 2,
+			c: null,
+			d: 4,
+			e: {
+				data: "some data",
+				question: {
+					author: "Oleg",
+					name: {
+						title: "How JS perfect"
+					}
+				}
+			}
+		};
+
+		const obj2 = {
+			a: 1,
+			b: 22222,
+			c: null,
+			d: 4,
+			e: {
+				data: "some data123",
+				question: {
+					author: "Oleg123",
+					name: {
+						title: "How JS perfect123"
+					}
+				}
+			}
+		};
+
+		const obj3 = {
+			fra: 22222,
+			da: {
+				fra: "some data123",
+				fra__: {
+					fra____: "Oleg123",
+					fra______: {
+						fra_______: "How JS perfect123"
+					}
+				}
+			}
+		};
+
+		const res = {
+			a: 1,
+			b: 2,
+			c: null,
+			d: 4,
+			e: {
+				data: "some data",
+				question: {
+					author: "Oleg",
+					name: {
+						title: "How JS perfect"
+					}
+				},
+			},
+			fra: 22222,
+			da: {
+				fra: "some data123",
+				fra__: {
+					fra____: "Oleg123",
+					fra______: {
+						fra_______: "How JS perfect123"
+					}
+				}
+			}
+		};
+
+		assert.deepEqual(zip(obj, obj2, obj3), res);
+	});
+
 	QUnit.test('Функция выбрасывает ошибку в случае вызова без аргументов', function (assert) {
 		assert.throws(
 			function () { zip(); },
-			function (err) { return err.toString() === 'SyntaxError: Function was called without arguments' },
+			function (err) { return err.toString() === 'Error: Function was called without arguments' },
 			'Error thrown'
 		);
 	});
@@ -93,18 +168,6 @@ QUnit.module('Тестируем функцию zip', function () {
 		assert.throws(
 			function () { zip({name: 'age'}, "str", "24"); },
 			function (err) { return err.toString() === 'TypeError: Arguments must be objects - custom data types' },
-			'Error thrown'
-		);
-
-		assert.throws(
-			function () { zip({name: 'age', person: {address: 'Moscow'}}); },
-			function (err) { return err.toString() === 'TypeError: Objects must consist of primitive types' },
-			'Error thrown'
-		);
-
-		assert.throws(
-			function () { zip({name: 'age'}, {address: 'Moscow'}, {person: {address: 'Moscow'}}); },
-			function (err) { return err.toString() === 'TypeError: Objects must consist of primitive types' },
 			'Error thrown'
 		);
 	});

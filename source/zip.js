@@ -1,39 +1,39 @@
 'use strict';
 
 /**
- * Возвращает единственный объект, содержащий все поля из объектов-параметров,
- * объекты сами состоят из примитивных типов
+ * Функция проверят что аргумент имеет тип object - сложный пользовательский тип
  *
- * @param {Object[]} Objects - массив сложных объектов
- * @return {Object} - объект со всеми полями из аргументов
- * @throws {TypeError, SyntaxError} исключения невалидных аргументов: Неправильные типы, отсутствие аргументов
+ * @return {Boolean} - если тип это сложный пользовательский то true
  * @example
- * zip({question: "What is ?"}, {}, {id: 22}, {question: "how are you}) returns {question: "What is ?", id: 22}
+ * isComplexData("What is ?") returns false
+ * isComplexData({data: "What is ?"}) returns true
  */
 
 const isComplexData = (value) => {
     return Object.prototype.toString.call(value) == '[object Object]'
 }
 
+/**
+ * Возвращает единственный объект, содержащий все поля из объектов-параметров,
+ * объекты сами состоят из примитивных типов
+ *
+ * @param {Object[]} Objects - массив сложных объектов
+ * @return {Object} - объект со всеми полями из аргументов
+ * @throws {Error, TypeError} исключения невалидных аргументов: Неправильные типы, отсутствие аргументов
+ * @example
+ * zip({question: "What is ?"}, {}, {id: 22}, {question: "how are you}) returns {question: "What is ?", id: 22}
+ */
+
 const zip = (...objects) => {
     if (objects.length === 0) {
-        throw new SyntaxError('Function was called without arguments');
+        throw new Error('Function was called without arguments');
     }
 
-    return objects.reduce((res, cur) => {
-        if (!isComplexData(cur)) {
+    return objects.reduce((acc, item) => {
+        if (!isComplexData(item)) {
             throw new TypeError("Arguments must be objects - custom data types");
         }
 
-        for (let key in cur) {
-            if (!res.hasOwnProperty(key)) {
-                if (isComplexData(cur[key])) {
-                    throw new TypeError("Objects must consist of primitive types");
-                }
-                res[key] = cur[key];
-            }
-        }
-
-        return res;
+        return {...item, ...acc}
     }, {});
 };
