@@ -36,50 +36,50 @@ QUnit.module('Тестируем функцию inverse', function () {
 
 	QUnit.test('Если второй аргумент не число функция возвращает "Wrong arguments"', function (assert) {
 		assert.throws(function () {
-			inverse([1, 2, 3, 4, 5], null)
-		},
-		new TypeError("wrong arguments")
+				inverse([1, 2, 3, 4, 5], null)
+			},
+			new TypeError("wrong arguments")
 		);
 		assert.throws(function () {
-			inverse([1, 2, 3, 4, 5], NaN)
-		},
-		new TypeError("wrong arguments")
+				inverse([1, 2, 3, 4, 5], NaN)
+			},
+			new TypeError("wrong arguments")
 		);
 		assert.throws(function () {
-			inverse([1, 2, 3, 4, 5], true)
-		},
-		new TypeError("wrong arguments")
+				inverse([1, 2, 3, 4, 5], true)
+			},
+			new TypeError("wrong arguments")
 		);
 	});
 
 	QUnit.test('Если второй аргумент не целое число функция возвращает "Wrong arguments"', function (assert) {
 		assert.throws(function () {
-			inverse([1, 2, 3, 4, 5], 5.4)
-		},
-		new TypeError("wrong arguments")
+				inverse([1, 2, 3, 4, 5], 5.4)
+			},
+			new TypeError("wrong arguments")
 		);
 		assert.throws(function () {
-			inverse([1, 2, 3, 4, 5], 0.1)
-		},
-		new TypeError("wrong arguments")
+				inverse([1, 2, 3, 4, 5], 0.1)
+			},
+			new TypeError("wrong arguments")
 		);
 	});
 	
 	QUnit.test('Если первый аргумент не массив функция возвращает "Wrong arguments"', function (assert) {
 		assert.throws(function () {
-			inverse({})
-		},
-		new TypeError("wrong arguments")
+				inverse({})
+			},
+			new TypeError("wrong arguments")
 		);
 		assert.throws(function () {
-			inverse(1)
-		},
-		new TypeError("wrong arguments")
+				inverse(1)
+			},
+			new TypeError("wrong arguments")
 		);
 		assert.throws(function () {
-			inverse(NaN)
-		},
-		new TypeError("wrong arguments")
+				inverse(NaN)
+			},
+			new TypeError("wrong arguments")
 		);
 	});
 });

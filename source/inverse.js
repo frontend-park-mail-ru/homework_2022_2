@@ -20,15 +20,15 @@
 * inverse([1,2,3],-1);
 */
 
-const inverse = (aray, order = 0) => {
-    if (!Number.isInteger(order) || !Array.isArray(aray)) {
+const inverse = (array, order = 0) => {
+    if (!Number.isInteger(order) || !Array.isArray(array)) {
         throw new TypeError('wrong arguments');
     }
 
-    const localAray = [...aray];
+    const localArray = [...array];
     const start = order > 0 ? order : 0;
-    const numElements = localAray.length - Math.abs(order);
+    const numElements = localArray.length - Math.abs(order);
 
-    localAray.splice(order, 0, ...localAray.splice(start, numElements).reverse());
-    return localAray;
+    localArray.splice(order, 0, ...localArray.splice(start, numElements).reverse());
+    return localArray;
 }
