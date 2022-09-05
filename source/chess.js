@@ -2,7 +2,9 @@
 /**
  * 
  * @param {number} n - размер шахматной доски
- * @returns {string} 
+ * @returns {string}
+ * @throws исключения в случае невалидного аргумента: пустого, не являющегося натуральным числом, 
+ * бесконечного
  */
 const chess = n => {
   if(n === null) {
@@ -25,16 +27,31 @@ const chess = n => {
   }
 
   let result = "";
-  for(let i=0; i<n; i++) {
-    for(let j=0; j<n; j++){
-      if((i+j)%2==0){
-        result+="*";
-      } else {
-        result+=" ";
-      }
-    }
-    result+="\n";
+  let helping = "* "
+  // for(let i=0; i<n; i++) {
+  //   for(let j=0; j<n; j++){
+  //     if((i+j)%2==0){
+  //       result+="*";
+  //     } else {
+  //       result+=" ";
+  //     }
+  //   }
+  //   result+="\n";
+  // }
+  helping = helping.repeat(n/2);
+  if(n%2 == 0){ 
+  helping += helping[helping.length-2];
+  } else {
+  helping += "* ";
   }
-
+  result += helping.substring(0, helping.length - 1);
+  result += '\n';
+  result += helping.substring(1, helping.length);
+  result += '\n';
+  result = result.repeat(n/2);
+  if(result.split("\n").length - 1 < n){
+    result += helping.substring(0, helping.length - 1);
+    result += '\n';
+  }
   return result;
 }
