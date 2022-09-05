@@ -52,31 +52,31 @@ QUnit.module('Тестируем функцию euclid', function () {
 	QUnit.test('Функция выбрасывает ошибку в случае вызова с некорретными типами данных', function (assert) {
 		assert.throws(
 			function () { euclid("12", "42", "24"); },
-			function (err) { return err.toString() === 'SyntaxError: Invalid data were passed to the function <euclid>' },
+			function (err) { return err.toString() === 'TypeError: Invalid data were passed to the function <euclid>' },
 			'Error thrown'
 		);
 
 		assert.throws(
 			function () { euclid("0"); },
-			function (err) { return err.toString() === 'SyntaxError: Invalid data were passed to the function <euclid>' },
+			function (err) { return err.toString() === 'TypeError: Invalid data were passed to the function <euclid>' },
 			'Error thrown'
 		);
 
 		assert.throws(
 			function () { euclid("www", "qwerty", "abc"); },
-			function (err) { return err.toString() === 'SyntaxError: Invalid data were passed to the function <euclid>' },
+			function (err) { return err.toString() === 'TypeError: Invalid data were passed to the function <euclid>' },
 			'Error thrown'
 		);
 
 		assert.throws(
 			function () { euclid(""); },
-			function (err) { return err.toString() === 'SyntaxError: Invalid data were passed to the function <euclid>' },
+			function (err) { return err.toString() === 'TypeError: Invalid data were passed to the function <euclid>' },
 			'Error thrown'
 		);
 
 		assert.throws(
 			function () { euclid(2, 4, 8, "", 24); },
-			function (err) { return err.toString() === 'SyntaxError: Invalid data were passed to the function <euclid>' },
+			function (err) { return err.toString() === 'TypeError: Invalid data were passed to the function <euclid>' },
 			'Error thrown'
 		);
 	});
@@ -84,25 +84,25 @@ QUnit.module('Тестируем функцию euclid', function () {
 	QUnit.test('Функция выбрасывает ошибку в случае вызова с ненатуральными числами', function (assert) {
 		assert.throws(
 			function () { euclid(5, 6, 9, -1); },
-			function (err) { return err.toString() === 'SyntaxError: Function <euclid> works only with natural numbers' },
+			function (err) { return err.toString() === 'TypeError: Function <euclid> works only with natural numbers' },
 			'Error thrown'
 		);
 
 		assert.throws(
 			function () { euclid(5, 6, 9, 0, 23); },
-			function (err) { return err.toString() === 'SyntaxError: Function <euclid> works only with natural numbers' },
+			function (err) { return err.toString() === 'TypeError: Function <euclid> works only with natural numbers' },
 			'Error thrown'
 		);
 
 		assert.throws(
 			function () { euclid(5, 6, 9, -0, 23); },
-			function (err) { return err.toString() === 'SyntaxError: Function <euclid> works only with natural numbers' },
+			function (err) { return err.toString() === 'TypeError: Function <euclid> works only with natural numbers' },
 			'Error thrown'
 		);
 
 		assert.throws(
 			function () { euclid(5, 6, 9.34); },
-			function (err) { return err.toString() === 'SyntaxError: Function <euclid> works only with natural numbers' },
+			function (err) { return err.toString() === 'TypeError: Function <euclid> works only with natural numbers' },
 			'Error thrown'
 		);
 	});
