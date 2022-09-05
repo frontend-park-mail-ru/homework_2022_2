@@ -52,7 +52,7 @@ QUnit.module('Тестируем функцию chess', function () {
 	});
 
 	QUnit.test('Функция без аргументов должна выбрасывать соответствующую ошибку', function (assert) {
-		assert.throws(() => chess(), Error("Пустое значение аргумента функции chess"));
+		assert.throws(() => chess(), Error("Некорректный входной параметр функции chess"));
 	});
 
 	QUnit.test('Аргументы +Infinity, -Infinity должны корректно обрабатываться', function (assert) {
