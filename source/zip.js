@@ -6,7 +6,7 @@
  *
  * @param {Object[]} Object массив сложных объектов
  * @return {Object}
- * @throws исключения невалидных аргументов: Неправильный тип
+ * @throws исключения невалидных аргументов: Неправильные типы
  * @example zip({question: "123123"}, {}, {id: 22}, {question: "fvasdga}) = {question: "123123", id: 22}
  */
 
@@ -22,6 +22,9 @@ const zip = (...objects) => {
 
         for (let key in cur) {
             if (!res.hasOwnProperty(key)) {
+                if (isComplexData(cur[key])) {
+                    throw new TypeError("Objects must consist of primitive types");
+                }
                 res[key] = cur[key];
             }
         }
