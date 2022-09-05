@@ -26,7 +26,10 @@ QUnit.module('Тестируем функцию plain', function () {
 		assert.deepEqual(plain([ [ 42 ], [ 42 ] ]), [ 42, 42 ]);
 		assert.deepEqual(plain([ [ 42, 42 ], [ 42 ] ]), [ 42, 42, 42 ]);
 		assert.deepEqual(plain([ [ 1 ], [ 2 ], [ 3 ], [ 4, 5, 6 ] ]), [ 1, 2, 3, 4, 5, 6 ]);
-		assert.deepEqual(plain([ [ 1, 2, 4 ], [ 8, 16, 32 ], [ 64 ], [ 128, 256 ], [ 512, 1024, 2048, 4096 ] ]), [ 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096 ]);
+		assert.deepEqual(
+			plain([ [ 1, 2, 4 ], [ 8, 16, 32 ], [ 64 ], [ 128, 256 ], [ 512, 1024, 2048, 4096 ] ]), 
+			[ 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096 ]
+		);
 	});
 
 	QUnit.test('Работает с вложенными массивами', function (assert) {
@@ -39,7 +42,9 @@ QUnit.module('Тестируем функцию plain', function () {
 
 	QUnit.test('Работает с элементами разных типов', function (assert) {
 		assert.deepEqual(plain([ [ 'abcde' ], [ [ 'f' ], [ null, false ], [ NaN, NaN ], NaN ], -Infinity ]), [ 'abcde', 'f', null, false, NaN, NaN, NaN, -Infinity ]);
-		assert.deepEqual(plain([ ['test_string', 1238 ], [ [ 3.14159265358, 2.71828182, 'constants' ], NaN ], 'infinity', Infinity ]),
-		 [ 'test_string', 1238, 3.14159265358, 2.71828182, 'constants', NaN, 'infinity', Infinity ]);
+		assert.deepEqual(
+			plain([ ['test_string', 1238 ], [ [ 3.14159265358, 2.71828182, 'constants' ], NaN ], 'infinity', Infinity ]),
+			[ 'test_string', 1238, 3.14159265358, 2.71828182, 'constants', NaN, 'infinity', Infinity ]
+		);
 	});
 });
