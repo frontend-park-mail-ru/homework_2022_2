@@ -31,7 +31,7 @@ const chess = n => {
   firstStr = firstStr.repeat(Math.ceil(n/2) - 1).padEnd(n-1, "*");
   for(let i=0; i<n; i++) {
     i % 2 ==0 ? result+=firstStr.padEnd(n, firstStr[length-((n+1)%2)]) : result+=firstStr.padStart(n, firstStr[1])
-    result+='\n'
+    result+='\n';
   }
   return result;
 }
