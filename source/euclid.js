@@ -21,12 +21,12 @@ function makeIsNatureNumber(checkNatNum) {
   return function (num) {
     let numLocal = +num;
     if (!Number.isFinite(numLocal)) {
-      throw TypeError(`${num}` + errStrNum)
+      throw TypeError(`${num}` + errStrNum);
     }
     if (!checkNatNum(numLocal)) {
-      throw RangeError(`${num}` + errStrNatNum)
+      throw RangeError(`${num}` + errStrNatNum);
     }
-    return numLocal
+    return numLocal;
   }
 }
 
