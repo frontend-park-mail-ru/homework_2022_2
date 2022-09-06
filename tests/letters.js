@@ -64,6 +64,9 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters('п'), 'п');
 		assert.strictEqual(letters('п', true), 'п');
 		assert.strictEqual(letters('п', false), 'п');
+		assert.strictEqual(letters('пппппппппппппппп'), '');
+		assert.strictEqual(letters('пппппппппппппппп', true), 'п');
+		assert.strictEqual(letters('пппппппппппппппп', false), 'п');
 	});
 
 	QUnit.test('Проверка на некорректные данные', function (assert) {
