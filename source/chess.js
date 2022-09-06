@@ -31,11 +31,13 @@ const chess = n => {
   }
   n = Number(n);
   let result = "";
-  let firstStr = "* ";
-  firstStr = firstStr.repeat(Math.ceil(n/2) - 1).padEnd(n-1, "*");
+  // let firstStr = "* ";
+  // firstStr = firstStr.repeat(Math.ceil(n/2) - 1).padEnd(n-1, "*");
+
   for(let i=0; i<n; i++) {
-    i % 2 ==0 ? result+=firstStr.padEnd(n, firstStr[length-((n+1)%2)]) : result+=firstStr.padStart(n, firstStr[1])
+    result+="* ".repeat(n/2 + 1).substring(i%2, n + i%2);  
     result+='\n';
   }
+
   return result;
 }
