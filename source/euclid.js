@@ -8,7 +8,7 @@
 * @example
 * euclid(30, 6, 18) returns 6
 */
-function euclid(...numbers) {
+const euclid = (...numbers) => {
     if (numbers.length === 0) {
         throw new Error('Function <euclid> was called without arguments');
     }
@@ -45,7 +45,7 @@ function euclid(...numbers) {
 * @example
 * euclid(30, 18) returns 6
 */
-function euclidForPair(greaterNum = 1, smallerNum = 1) {
+const euclidForPair = (greaterNum = 1, smallerNum = 1) => {
     if (greaterNum === 1 || smallerNum === 1) {
         return 1;
     }
