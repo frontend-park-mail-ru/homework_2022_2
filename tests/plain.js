@@ -59,22 +59,22 @@ QUnit.module('Тестируем функцию plain', function () {
 	QUnit.test('Выкидывает ошибку в случае некорректных входных данных', function (assert) {
 		assert.throws(
 			function () { plain('not an array'); },
-			function (err) { return err.toString() === 'Error: Incorrect argument' },
+			function (err) { return err.toString() === 'TypeError: Incorrect argument' },
 			'Error thrown'
 		);
 		assert.throws(
 			function () { plain( 1, 2, 3, 4, 5, 6, 7, 8 ); },
-			function (err) { return err.toString() === 'Error: Incorrect argument' },
+			function (err) { return err.toString() === 'TypeError: Incorrect argument' },
 			'Error thrown'
 		);
 		assert.throws(
 			function () { plain(undefined); },
-			function (err) { return err.toString() === 'Error: Incorrect argument' },
+			function (err) { return err.toString() === 'TypeError: Incorrect argument' },
 			'Error thrown'
 		);
 		assert.throws(
 			function () { plain(null); },
-			function (err) { return err.toString() === 'Error: Incorrect argument' },
+			function (err) { return err.toString() === 'TypeError: Incorrect argument' },
 			'Error thrown'
 		);
 	});
