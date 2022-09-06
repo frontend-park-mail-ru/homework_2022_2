@@ -5,40 +5,27 @@
  * @param {string} str - Исходная строка
  * @param {boolean} flag
  * @returns {string} - Результат операции удаления повторяющихся символов
- * @throws {TypeError} - Неправильный тип аргумента str
+ * @throws {TypeError} - Неправильный тип аргуметов
  */
 const letters = (str, flag) => {
-    /**
-     * Проверка, состоит ли строка из одного повторяющегося символа
-     * @param {string} str - исходная строка
-     * @returns {boolean} - результат проверки
-     */
-    const isStrConsistsOfOneChar = (str) => {
-        const temp = str[0];
-        return !str.some((elem) => elem !== temp);
-    };
+    if (typeof str !== 'string') throw new TypeError('Некорректный тип str');
+    if (typeof flag !== 'boolean' && flag != undefined) throw new TypeError('Некорректный тип flag');
+
+    if (str === '') return '';
 
     /**
-     * Удалит все повторяющиеся символы кроме первого
-     * @param {string} str - исходная строка
-     * @returns {string}
+     * 
+     * @param {string} str - изначальная строка
+     * @param {boolean} flag - флаг. Если true, то сохраняем первую встречающуюся букву, иначе - последнюю
+     * @returns {string} - Строка с одним повторяющимся символом
      */
-    const saveFirstLetters = (str) => {
+    const saveOneRepeatedLetter = (str, flag) => {
         return str.split('').filter((value, index, self) => {
-            return self.indexOf(value) === index;
+            return flag
+                ? self.indexOf(value) === index
+                : self.lastIndexOf(value) === index;
         }).join('');
-    };
-
-    /**
-     * Удалит все повторяющиеся символы кроме последнего
-     * @param {string} str - исходная строка
-     * @returns {string}
-     */
-    const saveLastLetters = (str) => {
-        return str.split('').filter((value, index, self) => {
-            return self.lastIndexOf(value) === index;
-        }).join('');
-    };
+    }
 
     /**
      * Удалит все повторяющиеся символы
@@ -51,9 +38,6 @@ const letters = (str, flag) => {
         }).join('');
     };
 
-    if (typeof str !== 'string') throw new TypeError('Некорректный тип str');
-    if (str === '' || isStrConsistsOfOneChar(str.split(''))) return '';
     if (flag === undefined) return saveOnlyUniqueLetters(str);
-
-    return flag ? saveFirstLetters(str) : saveLastLetters(str);
+    return saveOneRepeatedLetter(str, flag);
 };

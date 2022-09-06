@@ -60,10 +60,18 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters('пп рр оо лл дд', false), 'прол д');
 	});
 
+	QUnit.test('Проверка на строку состояющую из одного символа', function (assert) {
+		assert.strictEqual(letters('п'), 'п');
+		assert.strictEqual(letters('п', true), 'п');
+		assert.strictEqual(letters('п', false), 'п');
+	});
+
 	QUnit.test('Проверка на некорректные данные', function (assert) {
-		assert.throws(letters.bind(2), TypeError("Некорректный тип str"))
-		assert.throws(letters.bind(new Date()), TypeError("Некорректный тип str"))
-		assert.throws(letters.bind([1, 2, 3]), TypeError("Некорректный тип str"))
-		assert.throws(letters.bind(["test"]), TypeError("Некорректный тип str"))
+		assert.throws(() => letters(2), TypeError("Некорректный тип str"))
+		assert.throws(() => letters(new Date()), TypeError("Некорректный тип str"))
+		assert.throws(() => letters([1, 2, 3]), TypeError("Некорректный тип str"))
+		assert.throws(() => letters(["test"]), TypeError("Некорректный тип str"))
+		assert.throws(() => letters("sdf", [1, 2 ,3]), TypeError("Некорректный тип flag"))
+		assert.throws(() => letters("sdf", 1), TypeError("Некорректный тип flag"))
 	})
 });
