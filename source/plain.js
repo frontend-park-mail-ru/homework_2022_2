@@ -6,11 +6,7 @@
  * @returns {Array} Результирующий массив, в котором все элементы на одном уровне вложенности
  * @throws {Error} Исключение при некорретных входных данных (не массив, вызов без аргументов, слишком много аргументов)
  */
-const plain = (array, ...args) => {
-    if (args.length) {
-        throw new Error('Too much arguments');
-    }
-
+const plain = (array) => {
     if (!Array.isArray(array)) {
         throw new Error('Incorrect argument');
     }
@@ -18,9 +14,8 @@ const plain = (array, ...args) => {
     return flatArray(array, Infinity);
 }
 
-const flatArray = (array, depth) => {
-    return depth > 0 ? array.reduce(
-        (acc, val) => acc.concat(Array.isArray(val) ? flatArray(val, depth - 1) : val),
-        []
-    ) : array.slice();
-}
+const flatArray = (array, depth) => 
+    depth > 0 ? 
+        array.reduce((acc, val) => 
+            acc.concat(Array.isArray(val) ? flatArray(val, depth - 1) : val), []) 
+        : array.slice();    

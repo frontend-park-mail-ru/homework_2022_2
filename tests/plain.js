@@ -64,7 +64,7 @@ QUnit.module('Тестируем функцию plain', function () {
 		);
 		assert.throws(
 			function () { plain( 1, 2, 3, 4, 5, 6, 7, 8 ); },
-			function (err) { return err.toString() === 'Error: Too much arguments' },
+			function (err) { return err.toString() === 'Error: Incorrect argument' },
 			'Error thrown'
 		);
 		assert.throws(
@@ -75,11 +75,6 @@ QUnit.module('Тестируем функцию plain', function () {
 		assert.throws(
 			function () { plain(null); },
 			function (err) { return err.toString() === 'Error: Incorrect argument' },
-			'Error thrown'
-		);
-		assert.throws(
-			function () { plain([ 1, 2, 3 ], 'not an array'); },
-			function (err) { return err.toString() === 'Error: Too much arguments' },
 			'Error thrown'
 		);
 	});
