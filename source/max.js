@@ -1,1 +1,3 @@
-const max = (numbers) => Math.max(...numbers);
+'use strict';
+
+const max = numbers => Math.max(...numbers);

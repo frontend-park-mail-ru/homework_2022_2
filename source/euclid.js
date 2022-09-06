@@ -3,13 +3,14 @@
 *
 * @param {number []} numbers - массив целых натуральных чисел
 * @return {number} наибольший общий делитель
-* @throws исключения невалидных аргументов: отсутствие агрументов или неправильные типы
+* @throws {Error} в случае вызова функции без аргументов
+* @throws {TypeError} в случае использования неверных типов аргументов
 * @example
 * euclid(30, 6, 18) returns 6
 */
 function euclid(...numbers) {
     if (numbers.length === 0) {
-        throw new SyntaxError('Function <euclid> was called without arguments');
+        throw new Error('Function <euclid> was called without arguments');
     }
 
     numbers.forEach((value) => {
@@ -38,7 +39,6 @@ function euclid(...numbers) {
 /**
 * Находит наибольший общий делитель для двух натуральных чисел
 *
-* @inner
 * @param {number} greaterNum - большее целое число
 * @param {number} smallerNum - меньшее целое число
 * @return {number} наибольший общий делитель
@@ -46,7 +46,9 @@ function euclid(...numbers) {
 * euclid(30, 18) returns 6
 */
 function euclidForPair(greaterNum = 1, smallerNum = 1) {
-    if (greaterNum === 1 || smallerNum === 1) return 1;
+    if (greaterNum === 1 || smallerNum === 1) {
+        return 1;
+    }
 
     if (smallerNum > greaterNum) {
         [smallerNum, greaterNum] = [greaterNum, smallerNum];
@@ -54,10 +56,12 @@ function euclidForPair(greaterNum = 1, smallerNum = 1) {
 
     let residual = greaterNum % smallerNum;
     let tmp = smallerNum;
+
     while (residual !== 0) {
         smallerNum = residual;
         residual = tmp % smallerNum;
         tmp = smallerNum;
     }
+
     return smallerNum;
 }
