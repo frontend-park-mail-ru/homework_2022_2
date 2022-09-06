@@ -12,17 +12,17 @@ const plain = (array) => {
     }
 
     const stack = [...array];
-    const result_array = [];
+    const resultArray = [];
 
     while (stack.length) {
-        const current_element = stack.pop();
+        const currentElement = stack.pop();
 
-        if (Array.isArray(current_element)) {
-            stack.push(...current_element);
+        if (Array.isArray(currentElement)) {
+            stack.push(...currentElement);
         } else {
-            result_array.push(current_element);
+            resultArray.push(currentElement);
         }
     }
 
-    return result_array.reverse();
+    return resultArray.reverse();
 }
