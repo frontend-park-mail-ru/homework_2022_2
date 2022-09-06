@@ -1,25 +1,29 @@
 'use strict';
 /**
- * 
+ * Функция, рисующая квадратную ASCII шахматную доску
  * @param {number} n - размер шахматной доски
  * @returns {string}
+ * @returns {null}
  * @throws исключения в случае невалидного аргумента: пустого, не являющегося натуральным числом, 
  * бесконечного
+ * @example
+ * chess(4) return '* * 
+ *                   * *
+ *                  * *
+ *                   * *'
  */
 const chess = n => {
-  if(n === null) {
-    throw new Error("Пустое значение аргумента функции chess");
-  }
-  if(!isFinite(n)){
-    throw new Error("Некорректный входной параметр функции chess");
-  }
 
-  if(n<1 || n>100){
-    throw new Error("Функция chess принимает на вход натуральные числа от 2 до 100");
+  if(!isFinite(n) || n===null){
+    throw new TypeError("Некорректный входной параметр функции chess");
   }
 
   if(!Number.isInteger(Number(n))){
-    throw new Error("Входной параметр не является целым числом");
+    throw new TypeError("Входной параметр не является целым числом");
+  }
+
+  if(n<1 || n>100){
+    throw new RangeError("Функция chess принимает на вход натуральные числа от 2 до 100");
   }
 
   if(n==1){
