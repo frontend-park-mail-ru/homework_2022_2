@@ -20,18 +20,22 @@ QUnit.module('Тестируем функцию inverse', function () {
 
 	QUnit.test('Функция не переставляет первые элементы массива', function (assert) {
 		assert.deepEqual(inverse([1, 2, 3, 4, 5], 0), [5, 4, 3, 2, 1]);
-		assert.deepEqual(inverse([1, 2, 5], 1), [1, 5, 2]);
+		assert.deepEqual(inverse([1, 2, 3, 4, 5], 1), [1, 5, 4, 3, 2]);
 		assert.deepEqual(inverse([1, 2, 3, 4, 5], 2), [1, 2, 5, 4, 3]);
 		assert.deepEqual(inverse([1, 2, 3, 4, 5], 5), [1, 2, 3, 4, 5]);
-		assert.deepEqual(inverse([1, 2, 3, 4, 5, 6, 7, 8], 15), [1, 2, 3, 4, 5, 6, 7, 8]);
+		assert.deepEqual(inverse([1, 2, 3, 4, 5], 15), [1, 2, 3, 4, 5]);
+		assert.deepEqual(inverse([1, 2, 3], 1), [1, 3, 2]);
+		assert.deepEqual(inverse(['d', 'c', 'b'], 2), ['d', 'c', 'b']);
 	});
 
 	QUnit.test('Функция не переставляет последние элементы массива', function (assert) {
 		assert.deepEqual(inverse([1, 2, 3, 4, 5], 0), [5, 4, 3, 2, 1]);
-		assert.deepEqual(inverse([1, 2, 5], -1), [2, 1, 5]);
+		assert.deepEqual(inverse([1, 2, 3, 4, 5], -1), [1, 2, 3, 4, 5]);
 		assert.deepEqual(inverse([1, 2, 3, 4, 5], -2), [3, 2, 1, 4, 5]);
 		assert.deepEqual(inverse([1, 2, 3, 4, 5], -5), [1, 2, 3, 4, 5]);
-		assert.deepEqual(inverse([1, 2, 3, 4, 5, 6, 7, 8], -15), [1, 2, 3, 4, 5, 6, 7, 8]);
+		assert.deepEqual(inverse([1, 2, 3, 4, 5], -15), [1, 2, 3, 4, 5]);
+		assert.deepEqual(inverse(['d', 'c', 'b', 'a'], -2), ['c', 'd', 'b', 'a']);
+		assert.deepEqual(inverse([1, 2, 3, 4, 5, 6, 7], -6), [1, 2, 3, 4, 5, 6, 7]);
 	});
 
 	QUnit.test('Если второй аргумент не число функция возвращает "Wrong arguments"', function (assert) {
