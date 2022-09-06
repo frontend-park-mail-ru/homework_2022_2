@@ -11,7 +11,7 @@
  */
 
 const isComplexData = (value) => {
-    return value.toString() === '[object Object]'
+    return value.toString() === '[object Object]';
 }
 
 /**
