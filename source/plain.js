@@ -7,7 +7,7 @@
  * @throws {Error} Исключение при некорретных входных данных (не массив, вызов без аргументов, слишком много аргументов)
  */
 const plain = (array, ...args) => {
-    if (args.length > 0) {
+    if (args.length) {
         throw new Error('Too much arguments');
     }
 
@@ -19,5 +19,8 @@ const plain = (array, ...args) => {
 }
 
 const flatArray = (array, depth) => {
-    return depth > 0 ? array.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatArray(val, depth - 1) : val), []) : array.slice();
+    return depth > 0 ? array.reduce(
+        (acc, val) => acc.concat(Array.isArray(val) ? flatArray(val, depth - 1) : val),
+        []
+    ) : array.slice();
 }
