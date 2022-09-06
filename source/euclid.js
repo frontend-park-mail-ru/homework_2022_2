@@ -9,42 +9,42 @@ const isNaturalNumber = num => (num > 0) && (Math.trunc(num) === num);
 
 /**
  * Find greatest common divisor using Euclid`s algorithm
- * @param {number} num_1  - first natural number
- * @param {number} num_2 - second natural number
+ * @param {number} num1  - first natural number
+ * @param {number} num2 - second natural number
  * @returns {number} greatest common divisor
  * @throws {TypeError} Arguments is not a number
  * @throws {RangeError} Arguments is not a natural number
  */
-function euclidRaw(num_1, num_2) {
-  let local_num_1 = +num_1;
-  let local_num_2_ = +num_2;
-  if (!Number.isFinite(local_num_1)) {
-    throw TypeError(`${num_1} is not a number`);
+function euclidRaw(num1, num2) {
+  let localNum1 = +num1;
+  let localNum2 = +num2;
+  if (!Number.isFinite(localNum1)) {
+    throw TypeError(`${num1} is not a number`);
   }
-  if (!Number.isFinite(local_num_2_)) {
-    throw TypeError(`${num_2} is not a number`);
+  if (!Number.isFinite(localNum2)) {
+    throw TypeError(`${num2} is not a number`);
   }
-  if (!isNaturalNumber(local_num_1)) {
-    throw RangeError(`${num_1} is not a natural number`);
+  if (!isNaturalNumber(localNum1)) {
+    throw RangeError(`${num1} is not a natural number`);
   }
-  if (!isNaturalNumber(local_num_2_)) {
-    throw RangeError(`${num_2} is not a natural number`);
+  if (!isNaturalNumber(localNum2)) {
+    throw RangeError(`${num2} is not a natural number`);
   }
 
-  while (local_num_1 !== 0 && local_num_2_ !== 0) {
-    if (local_num_1 > local_num_2_) {
-      local_num_1 %= local_num_2_;
+  while (localNum1 !== 0 && localNum2 !== 0) {
+    if (localNum1 > localNum2) {
+      localNum1 %= localNum2;
     } else {
-      local_num_2_ %= local_num_1;
+      localNum2 %= localNum1;
     }
   }
-  return (local_num_1 == 0) ? local_num_2_ : local_num_1;
+  return (localNum1 == 0) ? localNum2 : localNum1;
 }
 
 /**
  * Find greatest common division in an array of number using Euclid`s algorithm
- * @param  {number} num_arr - array of natural number
+ * @param  {number} numArr - array of natural number
  * @returns {number} greatest common division
  */
-const euclid = (...num_arr) => num_arr.reduce(euclidRaw, num_arr[0]);
+const euclid = (...numArr) => numArr.reduce(euclidRaw, numArr[0]);
 
