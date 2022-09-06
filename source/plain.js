@@ -11,6 +11,18 @@ const plain = (array) => {
         throw new TypeError('Incorrect argument');
     }
 
-    return array.reduce((acc, val) => 
-        acc.concat(Array.isArray(val) ? plain(val) : val), []);
+    const stack = [...array];
+    const result_array = [];
+
+    while (stack.length) {
+        const current_element = stack.pop();
+
+        if (Array.isArray(current_element)) {
+            stack.push(...current_element);
+        } else {
+            result_array.push(current_element);
+        }
+    }
+
+    return result_array.reverse();
 }
