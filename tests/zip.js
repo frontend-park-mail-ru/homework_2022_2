@@ -82,11 +82,11 @@ QUnit.module('Тестируем функцию zip', function () {
 			c: null,
 			d: 4,
 			e: {
-				data: "some data",
+				data: 'some data',
 				question: {
-					author: "Oleg",
+					author: 'Oleg',
 					name: {
-						title: "How JS perfect"
+						title: 'How JS perfect'
 					}
 				}
 			}
@@ -98,9 +98,9 @@ QUnit.module('Тестируем функцию zip', function () {
 			c: null,
 			d: 4,
 			e: {
-				data: "some data123",
+				data: 'some data123',
 				question: {
-					author: "Oleg123",
+					author: 'Oleg123',
 					name: {
 						title: "How JS perfect123"
 					}
@@ -111,11 +111,11 @@ QUnit.module('Тестируем функцию zip', function () {
 		const obj3 = {
 			fra: 22222,
 			da: {
-				fra: "some data123",
+				fra: 'some data123',
 				fra__: {
-					fra____: "Oleg123",
+					fra____: 'Oleg123',
 					fra______: {
-						fra_______: "How JS perfect123"
+						fra_______: 'How JS perfect123'
 					}
 				}
 			}
@@ -127,21 +127,21 @@ QUnit.module('Тестируем функцию zip', function () {
 			c: null,
 			d: 4,
 			e: {
-				data: "some data",
+				data: 'some data',
 				question: {
-					author: "Oleg",
+					author: 'Oleg',
 					name: {
-						title: "How JS perfect"
+						title: 'How JS perfect'
 					}
 				},
 			},
 			fra: 22222,
 			da: {
-				fra: "some data123",
+				fra: 'some data123',
 				fra__: {
-					fra____: "Oleg123",
+					fra____: 'Oleg123',
 					fra______: {
-						fra_______: "How JS perfect123"
+						fra_______: 'How JS perfect123'
 					}
 				}
 			}
@@ -160,13 +160,13 @@ QUnit.module('Тестируем функцию zip', function () {
 
 	QUnit.test('Функция выбрасывает ошибку в случае вызова с некорректными типами данных', function (assert) {
 		assert.throws(
-			function () { zip(12, "str", "24"); },
+			function () { zip(12, 'str', '24'); },
 			function (err) { return err.toString() === 'TypeError: Arguments must be objects - custom data types' },
 			'Error thrown'
 		);
 
 		assert.throws(
-			function () { zip({name: 'age'}, "str", "24"); },
+			function () { zip({name: 'age'}, 'str', '24'); },
 			function (err) { return err.toString() === 'TypeError: Arguments must be objects - custom data types' },
 			'Error thrown'
 		);
