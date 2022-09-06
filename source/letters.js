@@ -12,10 +12,9 @@ const letters = (str, flag) => {
     if (typeof flag !== 'boolean' && flag != undefined) throw new TypeError('Некорректный тип flag');
 
     return str.split('').filter((value, index, self) => {
+        const indexFunc = flag ? 'indexOf' : 'lastIndexOf'
         return flag === undefined
                     ? self.lastIndexOf(value) === self.indexOf(value)
-                    : flag
-                        ? self.indexOf(value) === index
-                        : self.lastIndexOf(value) === index;
+                    : self[indexFunc](value) === index
     }).join('')
 };
