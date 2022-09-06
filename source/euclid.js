@@ -43,7 +43,7 @@ function euclidRaw(num_1, num_2) {
 
 /**
  * Find greatest common division in an array of number using Euclid`s algorithm
- * @param  {...any} num_arr - array of natural number
+ * @param  {number} num_arr - array of natural number
  * @returns {number} greatest common division
  */
 const euclid = (...num_arr) => num_arr.reduce(euclidRaw, num_arr[0]);
