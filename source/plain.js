@@ -11,11 +11,6 @@ const plain = (array) => {
         throw new Error('Incorrect argument');
     }
 
-    return flatArray(array, Infinity);
+    return array.reduce((acc, val) => 
+        acc.concat(Array.isArray(val) ? plain(val) : val), []);
 }
-
-const flatArray = (array, depth) => 
-    depth > 0 ? 
-        array.reduce((acc, val) => 
-            acc.concat(Array.isArray(val) ? flatArray(val, depth - 1) : val), []) 
-        : array.slice();    
