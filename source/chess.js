@@ -31,9 +31,7 @@ const chess = n => {
   }
   n = Number(n);
   let result = "";
-  // let firstStr = "* ";
-  // firstStr = firstStr.repeat(Math.ceil(n/2) - 1).padEnd(n-1, "*");
-
+  
   for(let i=0; i<n; i++) {
     result+="* ".repeat(n/2 + 1).substring(i%2, n + i%2);  
     result+='\n';
