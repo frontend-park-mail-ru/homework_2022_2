@@ -46,5 +46,41 @@ QUnit.module('Тестируем функцию plain', function () {
 			plain([ ['test_string', 1238 ], [ [ 3.14159265358, 2.71828182, 'constants' ], NaN ], 'infinity', Infinity ]),
 			[ 'test_string', 1238, 3.14159265358, 2.71828182, 'constants', NaN, 'infinity', Infinity ]
 		);
+		assert.deepEqual(
+			plain([ [ null ], [ [ undefined, NaN ], [ 10, true ], Infinity ], 3762.3927481, 11846143, NaN, [ 'string1', 'string2', 'string0' ], -Infinity, undefined ]),
+			[ null, undefined, NaN, 10, true, Infinity, 3762.3927481, 11846143, NaN, 'string1', 'string2', 'string0', -Infinity, undefined ]
+		);
+		assert.deepEqual(
+			plain([ -Infinity, [ 'very good', [ [ 3.1415, [ false, [ undefined, [ NaN ], null ], true ], 'Okay' ], 'not a good' ] ], Infinity ]),
+			[ -Infinity, 'very good', 3.1415, false, undefined, NaN, null, true, 'Okay', 'not a good', Infinity ]
+		);
+	});
+
+	QUnit.test('Выкидывает ошибку в случае некорректных входных данных', function (assert) {
+		assert.throws(
+			function () { plain('not an array'); },
+			function (err) { return err.toString() === 'Error: Incorrect argument' },
+			'Error thrown'
+		);
+		assert.throws(
+			function () { plain( 1, 2, 3, 4, 5, 6, 7, 8 ); },
+			function (err) { return err.toString() === 'Error: Too much arguments' },
+			'Error thrown'
+		);
+		assert.throws(
+			function () { plain(undefined); },
+			function (err) { return err.toString() === 'Error: Incorrect argument' },
+			'Error thrown'
+		);
+		assert.throws(
+			function () { plain(null); },
+			function (err) { return err.toString() === 'Error: Incorrect argument' },
+			'Error thrown'
+		);
+		assert.throws(
+			function () { plain([ 1, 2, 3 ], 'not an array'); },
+			function (err) { return err.toString() === 'Error: Too much arguments' },
+			'Error thrown'
+		);
 	});
 });
