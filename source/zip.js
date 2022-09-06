@@ -26,7 +26,7 @@ const isComplexData = (value) => {
  */
 
 const zip = (...objects) => {
-    if (objects.length === 0) {
+    if (!objects.length) {
         throw new Error('Function was called without arguments');
     }
 
