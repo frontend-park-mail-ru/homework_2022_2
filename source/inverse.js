@@ -22,9 +22,9 @@ const inverse = (array, index) => {
 
 	let arr = array.slice();
 
- 	if (index == undefined || index == 0) return arr.reverse();
+ 	if (index > 0) return arr.splice(0, index).concat(arr.reverse());
 
- 	else if (index > 0) return arr.splice(0, index).concat(arr.reverse());
+ 	else if (index < 0) return arr.splice(0, arr.length + index).reverse().concat(arr);
 
- 	else return arr.splice(0, arr.length + index).reverse().concat(arr);
+ 	return arr.reverse();
 };
