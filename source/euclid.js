@@ -43,17 +43,9 @@ function euclidRaw(num1, num2) {
   num1 = checkerNatNum(num1);
   num2 = checkerNatNum(num2);
 
-  // while (num1 !== 0 && num2 !== 0) {
-  //   if (num1 > num2) {
-  //     num1 %= num2;
-  //   } else {
-  //     num2 %= num1;
-  //   }
-  // }
-
   while ((num1 > num2) ? (num1 %= num2) : (num2 %= num1)) { }
 
-  return (num1 == 0) ? num2 : num1;
+  return num1 || num2;
 }
 
 /**
