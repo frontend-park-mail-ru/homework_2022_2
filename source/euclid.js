@@ -9,12 +9,12 @@ const isNaturalNumber = num => (num > 0) && (Math.trunc(num) === num);
 
 /**
  * Make function for for checking if any argument is a natural number
- * @param {number => bool} checkNatNum - the function returning true if argument is 
+ * @param {number => bool} checkNaturalFunc - the function returning true if argument is 
  * natural number
  * @returns {any => number} function for checking if any argument is a natural number
  * Returns the equivalent number 
  */
-function makeIsNatureNumber(checkNatNum) {
+function makeValidatorNatureNumber(checkNaturalFunc) {
   const NOT_NUMBER_ERR_TEXT = ' is not a number';
   const NOT_NATURAL_ERR_TEXT = ' is not a natural number';
 
@@ -23,7 +23,7 @@ function makeIsNatureNumber(checkNatNum) {
     if (!Number.isFinite(numCasted)) {
       throw TypeError(`${num}` + NOT_NUMBER_ERR_TEXT);
     }
-    if (!checkNatNum(numCasted)) {
+    if (!checkNaturalFunc(numCasted)) {
       throw RangeError(`${num}` + NOT_NATURAL_ERR_TEXT);
     }
     return numCasted;
@@ -39,15 +39,15 @@ function makeIsNatureNumber(checkNatNum) {
  * @throws {RangeError} Arguments is not a natural number
  */
 function euclidRaw(firstValue, secondValue) {
-  const checkerNatNum = makeIsNatureNumber(isNaturalNumber);
-  let firstValidNum = checkerNatNum(firstValue);
-  let secondValidNum = checkerNatNum(secondValue);
+  const naturalValidator = makeValidatorNatureNumber(isNaturalNumber);
+  let firstNum = naturalValidator(firstValue);
+  let secondNum = naturalValidator(secondValue);
 
-  while ((firstValidNum > secondValidNum) ?
-    (firstValidNum %= secondValidNum) :
-    (secondValidNum %= firstValidNum)) { }
+  while ((firstNum > secondNum) ?
+    (firstNum %= secondNum) :
+    (secondNum %= firstNum)) { }
 
-  return firstValidNum || secondValidNum;
+  return firstNum || secondNum;
 }
 
 /**
