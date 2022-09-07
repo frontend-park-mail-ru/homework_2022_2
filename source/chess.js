@@ -2,8 +2,7 @@
 /**
  * Функция, рисующая квадратную ASCII шахматную доску
  * @param {number} n - размер шахматной доски
- * @returns {string}
- * @returns {null}
+ * @returns {string} | {null}
  * @throws исключения в случае невалидного аргумента: пустого, не являющегося натуральным числом, 
  * бесконечного
  * @example
@@ -11,10 +10,15 @@
  *                   * *
  *                  * *
  *                   * *'
- */
+ */ 
 const chess = n => {
 
-  if(!isFinite(n) || n===null){
+  if(n===null){
+    throw new TypeError("Некорректный входной параметр функции chess");
+  }
+
+  n = Number(n);
+  if(Number.isNaN(n) || !isFinite(n)){
     throw new TypeError("Некорректный входной параметр функции chess");
   }
 
@@ -29,7 +33,7 @@ const chess = n => {
   if(n==1){
     return null;
   }
-  n = Number(n);
+
   let result = "";
   
   for(let i=0; i<n; i++) {
