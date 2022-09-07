@@ -53,31 +53,31 @@ QUnit.module('Тестируем функцию euclid', function () {
 		assert.throws(
 			function () { euclid("12", "42", "24"); },
 			function (err) { return err.toString() === 'TypeError: Invalid data were passed to the function <euclid>' },
-			'new TypeError()'
+			'TypeError thrown'
 		);
 
 		assert.throws(
 			function () { euclid("0"); },
 			function (err) { return err.toString() === 'TypeError: Invalid data were passed to the function <euclid>' },
-			'new TypeError()'
+			'TypeError thrown'
 		);
 
 		assert.throws(
 			function () { euclid("www", "qwerty", "abc"); },
 			function (err) { return err.toString() === 'TypeError: Invalid data were passed to the function <euclid>' },
-			'new TypeError()'
+			'TypeError thrown'
 		);
 
 		assert.throws(
 			function () { euclid(""); },
 			function (err) { return err.toString() === 'TypeError: Invalid data were passed to the function <euclid>' },
-			'new TypeError()'
+			'TypeError thrown'
 		);
 
 		assert.throws(
 			function () { euclid(2, 4, 8, "", 24); },
 			function (err) { return err.toString() === 'TypeError: Invalid data were passed to the function <euclid>' },
-			'new TypeError()'
+			'TypeError thrown'
 		);
 	});
 
@@ -85,25 +85,25 @@ QUnit.module('Тестируем функцию euclid', function () {
 		assert.throws(
 			function () { euclid(5, 6, 9, -1); },
 			function (err) { return err.toString() === 'TypeError: Function <euclid> works only with natural numbers' },
-			'new TypeError()'
+			'TypeError thrown'
 		);
 
 		assert.throws(
 			function () { euclid(5, 6, 9, 0, 23); },
 			function (err) { return err.toString() === 'TypeError: Function <euclid> works only with natural numbers' },
-			'new TypeError()'
+			'TypeError thrown'
 		);
 
 		assert.throws(
 			function () { euclid(5, 6, 9, -0, 23); },
 			function (err) { return err.toString() === 'TypeError: Function <euclid> works only with natural numbers' },
-			'new TypeError()'
+			'TypeError thrown'
 		);
 
 		assert.throws(
 			function () { euclid(5, 6, 9.34); },
 			function (err) { return err.toString() === 'TypeError: Function <euclid> works only with natural numbers' },
-			'new TypeError()'
+			'TypeError thrown'
 		);
 	});
 });

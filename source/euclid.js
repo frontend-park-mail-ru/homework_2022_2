@@ -57,7 +57,7 @@ const euclidForPair = (greaterNum = 1, smallerNum = 1) => {
     let residual = greaterNum % smallerNum;
     let tmp = smallerNum;
 
-    while (residual !== 0) {
+    while (residual) {
         smallerNum = residual;
         residual = tmp % smallerNum;
         tmp = smallerNum;
