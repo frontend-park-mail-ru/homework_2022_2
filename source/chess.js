@@ -12,7 +12,6 @@
  *                   * *'
  */ 
 const chess = n => {
-
   if(n===null){
     throw new TypeError("Некорректный входной параметр функции chess");
   }
