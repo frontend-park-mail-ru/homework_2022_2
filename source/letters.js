@@ -1,4 +1,19 @@
 function letters(string, bool = null){
+    if (bool === null){
+        let set = new Set();
+        let extraSet = new Set();
+
+        for (char of string){
+            if (set.has(char)) extraSet.add(char);
+            else set.add(char);
+        }
+        for (item of extraSet){
+            set.delete(item);
+        }
+
+        return Array.from(set).join('');
+    }
+
     const start = bool ? 0 : string.length - 1;
     const end = bool ? string.length : -1;
     const step = bool ? 1 : -1;
