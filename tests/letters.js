@@ -54,3 +54,27 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters('hello world', false), 'he world');
 	});
 });
+
+QUnit.module('Тестируем функцию letters (custom tests)', function () {
+
+	QUnit.test('Удаляет идущие подряд буквы(custom tests)', function (assert) {
+		assert.strictEqual(letters('1221233'), '');
+		assert.strictEqual(letters('awwawbb'), '');
+		assert.strictEqual(letters('.,,.,;;'), '');
+		assert.strictEqual(letters(' 		 	 \n\n'), '');
+	});
+
+	QUnit.test('Оставляет первую букву, остальные удаляет(custom tests)', function (assert) {
+		assert.strictEqual(letters('1211122', true), '12');
+		assert.strictEqual(letters('wWwwwWW', true), 'wW');
+		assert.strictEqual(letters('.-...--', true), '.-');
+		assert.strictEqual(letters(' 0   00', true), ' 0');
+	});
+
+	QUnit.test('Оставляет последнюю букву, остальные удаляет(custom tests)', function (assert) {
+		assert.strictEqual(letters('11122121', false), '21');
+		assert.strictEqual(letters('wwwWWwWw', false), 'Ww');
+		assert.strictEqual(letters('...--.-.', false), '-.');
+		assert.strictEqual(letters('   00 0 ', false), '0 ');
+	});
+});
