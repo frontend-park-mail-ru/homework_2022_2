@@ -35,36 +35,52 @@ QUnit.module('Тестируем функцию inverse', function () {
 	});
 
 	QUnit.test('Функция не принимает аргументы, не являющиеся массивом', function (assert) {
-		  assert.throws(() => {
-		  	inverse();
-		  }, 
-		  Error('Unexpected array parameter!'));
+		const err = new TypeError('Unexpected array parameter!');
 
-		  assert.throws(() => {
-		  	inverse(0);
-		  }, 
-		  Error('Unexpected array parameter!'));
+		assert.throws(
+			() => {
+				inverse();
+			}, 
+			err
+		);
 
-		  assert.throws(() => {
-		  	inverse('a');
-		  }, 
-		  Error('Unexpected array parameter!'));
+		assert.throws(
+			() => {
+				inverse(0);
+			}, 
+			err
+		);
+
+		assert.throws(
+			() => {
+				inverse('a');
+			}, 
+			err
+		);
 	});
 
 	QUnit.test('Функция не принимает индексы, не являющиеся целым числом', function (assert) {
-		  assert.throws(() => {
-		  	inverse([], 0.4);
-		  }, 
-		  Error('Unexpected index parameter!'));
+		const err = new TypeError('Unexpected index parameter!');
 
-		  assert.throws(() => {
-		  	inverse([], 'a');
-		  }, 
-		  Error('Unexpected index parameter!'));
+		assert.throws(
+			() => {
+				inverse([], 0.4);
+			}, 
+			err
+		);
 
-		  assert.throws(() => {
-		  	inverse([], []);
-		  }, 
-		  Error('Unexpected index parameter!'));
+		assert.throws(
+			() => {
+				inverse([], 'a');
+			}, 
+			err 
+		);
+
+		assert.throws(
+			() => {
+				inverse([], []);
+			}, 
+			err 
+		);
 	});
 });

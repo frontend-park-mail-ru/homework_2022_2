@@ -9,22 +9,26 @@
  * @param {array} array - массив элементов, который требуется инвертировать.
  * @param {number} index - элемент, до (в случае положительно значениея) или после (в случае отрицательно значения) которого массив остается неизменным. Целый.
  * @return {array} arr - массив для копирования передаваемого массива, с которым происходит работа в функции.
+ * @throws {TypeError} аргумент array должен являться массивом.
+ * @throws {TypeError} аргумент index должен являться целым числом.
  */
 
 const inverse = (array, index) => {
 	if (!Array.isArray(array)) {
- 		throw new Error('Unexpected array parameter!');
+ 		throw new TypeError('Unexpected array parameter!');
  	}
 
  	if (index != undefined && !Number.isInteger(index)) {
- 		throw new Error('Unexpected index parameter!');
+ 		throw new TypeError('Unexpected index parameter!');
  	}
 
-	let arr = array.slice();
+	const arr = array.slice();
 
- 	if (index > 0) return arr.splice(0, index).concat(arr.reverse());
-
- 	else if (index < 0) return arr.splice(0, arr.length + index).reverse().concat(arr);
+ 	if (index > 0){
+ 		return arr.splice(0, index).concat(arr.reverse());
+ 	} else if (index < 0){
+ 	 	return arr.splice(0, arr.length + index).reverse().concat(arr);
+ 	}
 
  	return arr.reverse();
 };
