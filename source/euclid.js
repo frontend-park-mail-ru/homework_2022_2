@@ -19,14 +19,14 @@ function makeIsNatureNumber(checkNatNum) {
   const errStrNatNum = ' is not a natural number';
 
   return function (num) {
-    const numLocal = +num;
-    if (!Number.isFinite(numLocal)) {
+    const numCasted = +num;
+    if (!Number.isFinite(numCasted)) {
       throw TypeError(`${num}` + errStrNum);
     }
-    if (!checkNatNum(numLocal)) {
+    if (!checkNatNum(numCasted)) {
       throw RangeError(`${num}` + errStrNatNum);
     }
-    return numLocal;
+    return numCasted;
   }
 }
 
