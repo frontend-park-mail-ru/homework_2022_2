@@ -39,10 +39,6 @@ function sorting(numbers, key) {
             let secondOrder = left[key[constants.secondElement]] - right[key[constants.secondElement]];
             return firstOrder || secondOrder;
         });
-    } else {
-        let firstOrder = left[key[constants.firstElement]] - right[key[constants.firstElement]];
-        let secondOrder = left[key[constants.secondElement]] - right[key[constants.secondElement]];
-        return firstOrder || secondOrder;
-    }
+    } 
     return numbers;
 }
