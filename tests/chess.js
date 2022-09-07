@@ -43,17 +43,42 @@ QUnit.module('Тестируем функцию chess', function () {
 	});
 
     QUnit.test('Шахматной доски не целых размеров не бывает', function (assert) {
-		assert.throws (function() { chess(3.5) }, TypeError('argument is not a natural number'));
-		assert.throws (function() { chess('3.5') }, TypeError('argument is not a natural number'));
+		assert.throws (
+		    function() {
+		        chess(3.5)
+		    },
+		    TypeError('argument is not a natural number')
+		);
+		assert.throws (
+		    function() {
+		        chess('3.5')
+		    },
+		    TypeError('argument is not a natural number')
+		);
 	});
 
     QUnit.test('Размер шахматной доски не может быть указан не числом', function (assert) {
-        assert.throws (function() { chess('five') }, TypeError('argument is not a natural number'));
+        assert.throws (
+            function() {
+                chess('five')
+            },
+            TypeError('argument is not a natural number')
+        );
 	});
 
     QUnit.test('Размер шахматной доски не может быть бесконечным', function (assert) {
-		assert.throws (function() { chess(Infinity) }, TypeError('argument is not a natural number'));
-		assert.throws (function() { chess(-Infinity) }, TypeError('argument is not a natural number'));
+		assert.throws (
+		    function() {
+		        chess(Infinity)
+		    },
+		    TypeError('argument is not a natural number')
+		);
+		assert.throws (
+		    function() {
+		        chess(-Infinity)
+		    },
+		    TypeError('argument is not a natural number')
+		);
 	});
 
 });
