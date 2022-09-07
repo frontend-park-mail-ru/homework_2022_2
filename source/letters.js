@@ -1,3 +1,14 @@
+/**
+* Delete all not unique symbols in string if there is no boolean arguement
+* or delete all repeats if there is one
+* @param {string} - string to delete repeats
+* @param {bool} - not necessary; if provided define which enter will remain: if 
+* true then first one, if false then last one
+* @return {string} string without repeats
+* @example
+* letters("irritating", true) returns irtang
+*/
+
 function letters(string, bool = null){
     if (bool === null){
         let set = new Set();
