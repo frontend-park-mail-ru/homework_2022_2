@@ -21,7 +21,11 @@ const set = (o, path, val) => {
             }
             current = current[k];
         }
-        current[keys.shift()] = val
+        const k = keys.shift();
+        if (k === "") {
+            return val
+        }
+        current[k] = val
         return o
     }
 ;
