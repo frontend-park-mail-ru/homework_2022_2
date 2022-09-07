@@ -32,7 +32,7 @@
   let result='';
   
   for(let i=0; i<n; i++) {
-    result+='* '.repeat(n/2+1).substring(i%2, n+i%2);  
+    result += "* ".repeat(n / 2 + 1).substring(i % 2, n + i % 2); 
     result+='\n';
   }
 
