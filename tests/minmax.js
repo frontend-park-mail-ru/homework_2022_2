@@ -36,4 +36,10 @@ QUnit.module('Тестируем функцию minmax', function () {
 		assert.deepEqual(minmax('1, -5.8 или 10, хотя 34 + -5.3 и 73'), [ -5.8, 73 ]);
 		assert.deepEqual(minmax('1 and 2 is too simple for 10!'), [ 1, 10 ]);
 	});
+
+	QUnit.test('minmax выбрасывает ошибку при некорректном аргументе(не string)', function (assert) {
+		assert.throws(() => minmax(12), Error('INVALID_ARGUMENT_TYPE'));
+		assert.throws(() => minmax({}), Error('INVALID_ARGUMENT_TYPE'));
+		assert.throws(() => minmax([]), Error('INVALID_ARGUMENT_TYPE'));
+	});
 });
