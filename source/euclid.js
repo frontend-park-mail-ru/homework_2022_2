@@ -19,7 +19,7 @@ function makeIsNatureNumber(checkNatNum) {
   const NOT_NATURAL_ERR_TEXT = ' is not a natural number';
 
   return function (num) {
-    const numCasted = +num;
+    const numCasted = Number(num);
     if (!Number.isFinite(numCasted)) {
       throw TypeError(`${num}` + NOT_NUMBER_ERR_TEXT);
     }
