@@ -15,16 +15,16 @@ const isNaturalNumber = num => (num > 0) && (Math.trunc(num) === num);
  * Returns the equivalent number 
  */
 function makeIsNatureNumber(checkNatNum) {
-  const errStrNum = ' is not a number';
-  const errStrNatNum = ' is not a natural number';
+  const NOT_NUMBER_ERR_TEXT = ' is not a number';
+  const NOT_NATURAL_ERR_TEXT = ' is not a natural number';
 
   return function (num) {
     const numCasted = +num;
     if (!Number.isFinite(numCasted)) {
-      throw TypeError(`${num}` + errStrNum);
+      throw TypeError(`${num}` + NOT_NUMBER_ERR_TEXT);
     }
     if (!checkNatNum(numCasted)) {
-      throw RangeError(`${num}` + errStrNatNum);
+      throw RangeError(`${num}` + NOT_NATURAL_ERR_TEXT);
     }
     return numCasted;
   }
