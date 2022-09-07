@@ -21,19 +21,19 @@
     throw new TypeError('Входной параметр не является целым числом');
   }
 
-  if(n<1 || n>100) {
+  if(n < 1 || n > 100) {
     throw new RangeError('Функция chess принимает на вход натуральные числа от 2 до 100');
   }
 
-  if(n==1) {
+  if(n == 1) {
     return null;
   }
 
-  let result='';
+  let result = '';
   
   for(let i=0; i<n; i++) {
     result += "* ".repeat(n / 2 + 1).substring(i % 2, n + i % 2); 
-    result+='\n';
+    result += '\n';
   }
 
   return result;
