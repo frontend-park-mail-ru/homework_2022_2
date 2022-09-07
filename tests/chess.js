@@ -45,10 +45,10 @@ QUnit.module('Тестируем функцию chess', function () {
 		assert.throws(() => chess(3.5), TypeError("Входной параметр не является целым числом"));
 	});
 
-	QUnit.test('Аргумент должен находится в интервале [2;100]', function (assert) {
+	QUnit.test('Аргумент должен находиться в интервале [2;100]', function (assert) {
 		assert.throws(() => chess(120), RangeError("Функция chess принимает на вход натуральные числа от 2 до 100"));
 		assert.throws(() => chess(-5), RangeError("Функция chess принимает на вход натуральные числа от 2 до 100"));
-		assert.throws(() => chess(0), RangeError("Функция chess принимает на вход натуральные числа от 2 до 100"));
+		assert.throws(() => chess(0), TypeError("Некорректный входной параметр функции chess"));
 	});
 
 	QUnit.test('Функция без аргументов должна выбрасывать соответствующую ошибку', function (assert) {

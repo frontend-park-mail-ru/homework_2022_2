@@ -12,12 +12,8 @@
  *                   * *'
  */ 
 const chess = n => {
-  if(n===null){
-    throw new TypeError("Некорректный входной параметр функции chess");
-  }
-
-  n = Number(n);
-  if(Number.isNaN(n) || !isFinite(n)){
+   n = Number(n);
+  if(!n || !isFinite(n)){
     throw new TypeError("Некорректный входной параметр функции chess");
   }
 
