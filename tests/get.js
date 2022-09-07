@@ -48,4 +48,46 @@ QUnit.module('Тестируем функцию get', function () {
 		assert.strictEqual(get(object, '.baz.length'), undefined);
 		assert.strictEqual(get(object, '.0.1.2'), undefined);
 	});
+
+	QUnit.test('get выбрасывает исключение TypeError, если первый аргумент не Object или null', function (assert) {
+		assert.throws(function() {
+			get(12, '.baz.length');
+		}, new TypeError('Incorrect type of arguments'));
+		
+		assert.throws(function() {
+			get(true, '.baz.length');
+		}, new TypeError('Incorrect type of arguments'));
+		
+		assert.throws(function() {
+			get(undefined, '.baz.length');
+		}, new TypeError('Incorrect type of arguments'));
+		
+		assert.throws(function() {
+			get(null, '.baz.length');
+		}, new TypeError('Incorrect type of arguments'));
+	});
+
+	QUnit.test('get выбрасывает исключение TypeError, если второй аргумент не string', function (assert) {
+		const object = {
+			foo: {
+				bar: 42
+			}
+		};
+
+		assert.throws(function() {
+			get(object, 53);
+		}, new TypeError('Incorrect type of arguments'));
+
+		assert.throws(function() {
+			get(object, undefined);
+		}, new TypeError('Incorrect type of arguments'));
+
+		assert.throws(function() {
+			get(object, false);
+		}, new TypeError('Incorrect type of arguments'));
+		
+		assert.throws(function() {
+			get(object, null);
+		}, new TypeError('Incorrect type of arguments'));
+	});
 });
