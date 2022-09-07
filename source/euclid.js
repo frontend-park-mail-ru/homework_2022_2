@@ -15,11 +15,11 @@ const isNaturalNumber = num => (num > 0) && (Math.trunc(num) === num);
  * Returns the equivalent number 
  */
 function makeIsNatureNumber(checkNatNum) {
-  let errStrNum = ' is not a number';
-  let errStrNatNum = ' is not a natural number';
+  const errStrNum = ' is not a number';
+  const errStrNatNum = ' is not a natural number';
 
   return function (num) {
-    let numLocal = +num;
+    const numLocal = +num;
     if (!Number.isFinite(numLocal)) {
       throw TypeError(`${num}` + errStrNum);
     }
@@ -39,7 +39,7 @@ function makeIsNatureNumber(checkNatNum) {
  * @throws {RangeError} Arguments is not a natural number
  */
 function euclidRaw(num1, num2) {
-  let checkerNatNum = makeIsNatureNumber(isNaturalNumber);
+  const checkerNatNum = makeIsNatureNumber(isNaturalNumber);
   num1 = checkerNatNum(num1);
   num2 = checkerNatNum(num2);
 
