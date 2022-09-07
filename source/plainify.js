@@ -3,9 +3,9 @@
 /**
  * Преобразует объект с вложенными свойствами в plain-объект
  * 
- * @param {Object} nested - Объект с вложенными свойствами
+ * @param {object} nested - Объект с вложенными свойствами
  * @param {string} propertyName - Имя свойства
- * @returns {Object} - plain-объект
+ * @returns {object} - plain-объект
  * @throws {TypeError} - Если аргумент имеет неверный тип
  * @throws {Error} - Если аргумент является пустым объектом
  * @example
@@ -27,7 +27,13 @@ const plainify = (nested, propertyName = '') => {
 
     const propertyArray = Object.entries(nested); //получаем массив свойств объекта
 
-    // функция обратного вызова
+    /**
+     * Функция обратного вызова
+     * 
+     * @param {object} plainObj - последний результат вызова функции обратного вызова
+     * @param {object} param1 - Текущий элемент массива
+     * @returns {object}
+     */
     const callbackFunction = (plainObj, [key, value]) => {
         const newPropertyName = `${propertyName}${propertyName ? '.' : ''}${key}`; // добавление ключа к имени свойства
         return Object.assign(plainObj, value instanceof Object ? plainify(value, newPropertyName) : {[newPropertyName]: value}); // копирование свойств в целевой объект
