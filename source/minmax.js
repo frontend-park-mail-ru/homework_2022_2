@@ -12,6 +12,6 @@ const minmax = (stringWithNumbers) => {
         throw new Error('INVALID_ARGUMENT_TYPE');
     }
     const regularExpression = /(-?(\d+)?\.?\d+e?-?(\d+)?)|(-?Infinity)/g;
-    const numbers = stringWithNumbers.match(regularExpression)?.map(v => Number(v));
+    const numbers = stringWithNumbers.match(regularExpression)?.map(item => Number(item));
     return (numbers ? [Math.min(...numbers), Math.max(...numbers)] : [undefined, undefined]);
 };
