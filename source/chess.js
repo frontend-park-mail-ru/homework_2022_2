@@ -11,28 +11,28 @@
  *                  * *
  *                   * *'
  */ 
-const chess = (n) => {
+ const chess = (n) => {
   n = Number(n);
   if (!n || !isFinite(n)){
-    throw new TypeError("Некорректный входной параметр функции chess");
+    throw new TypeError('Некорректный входной параметр функции chess');
   }
 
-  if (!Number.isInteger(Number(n))){
-    throw new TypeError("Входной параметр не является целым числом");
+  if(!Number.isInteger(Number(n))) {
+    throw new TypeError('Входной параметр не является целым числом');
   }
 
-  if (n<1 || n>100){
-    throw new RangeError("Функция chess принимает на вход натуральные числа от 2 до 100");
+  if(n<1 || n>100) {
+    throw new RangeError('Функция chess принимает на вход натуральные числа от 2 до 100');
   }
 
-  if (n==1){
+  if(n==1) {
     return null;
   }
 
-  let result="";
+  let result='';
   
-  for (let i=0; i<n; i++) {
-    result+="* ".repeat(n/2+1).substring(i%2, n+i%2);  
+  for(let i=0; i<n; i++) {
+    result+='* '.repeat(n/2+1).substring(i%2, n+i%2);  
     result+='\n';
   }
 
