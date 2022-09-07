@@ -9,7 +9,7 @@
 * euclid(30, 6, 18) returns 6
 */
 const euclid = (...numbers) => {
-    if (numbers.length === 0) {
+    if (!numbers.length) {
         throw new Error('Function <euclid> was called without arguments');
     }
 
