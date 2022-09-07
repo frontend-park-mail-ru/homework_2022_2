@@ -32,20 +32,22 @@ function makeIsNatureNumber(checkNatNum) {
 
 /**
  * Find greatest common divisor using Euclid`s algorithm
- * @param {number} num1  - first natural number
- * @param {number} num2 - second natural number
+ * @param {number | string} firstValue  - first natural number
+ * @param {number | string} secondValue - second natural number
  * @returns {number} greatest common divisor
  * @throws {TypeError} Arguments is not a number
  * @throws {RangeError} Arguments is not a natural number
  */
-function euclidRaw(num1, num2) {
+function euclidRaw(firstValue, secondValue) {
   const checkerNatNum = makeIsNatureNumber(isNaturalNumber);
-  num1 = checkerNatNum(num1);
-  num2 = checkerNatNum(num2);
+  let firstValidNum = checkerNatNum(firstValue);
+  let secondValidNum = checkerNatNum(secondValue);
 
-  while ((num1 > num2) ? (num1 %= num2) : (num2 %= num1)) { }
+  while ((firstValidNum > secondValidNum) ?
+    (firstValidNum %= secondValidNum) :
+    (secondValidNum %= firstValidNum)) { }
 
-  return num1 || num2;
+  return firstValidNum || secondValidNum;
 }
 
 /**
