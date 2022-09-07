@@ -6,15 +6,13 @@
  * массива кроме нескольких первых (количество зависит от числа). Если число
  * отрицательное — то на месте остаются элементы в конце массива
  *
- * @param {array} массив элементов, который требуется инвертировать.
- * @param {integer} index - элемент, до/после которого массив остается неизменным.
- * @return {array} результирующий массив.
+ * @param {array} array - массив элементов, который требуется инвертировать.
+ * @param {number} index - элемент, до (в случае положительно значениея) или после (в случае отрицательно значения) которого массив остается неизменным. Целый.
+ * @return {array} arr - массив для копирования передаваемого массива, с которым происходит работа в функции.
  */
 
 const inverse = (array, index) => {
- 	let result;
-
- 	if (!Array.isArray(array)) {
+	if (!Array.isArray(array)) {
  		throw new Error('Unexpected array parameter!');
  	}
 
@@ -22,11 +20,11 @@ const inverse = (array, index) => {
  		throw new Error('Unexpected index parameter!');
  	}
 
- 	index == undefined || index == 0 ? result = array.reverse() : 
- 		Math.abs(index) >= array.length ? result = array : 
- 			index > 0 ? result = array.splice(0, index).concat(array.reverse()) :
- 				result = array.splice(0, array.length + index).reverse().concat(array);
+	let arr = array.slice();
 
+ 	if (index == undefined || index == 0) return arr.reverse();
 
- 	return result;
+ 	else if (index > 0) return arr.splice(0, index).concat(arr.reverse());
+
+ 	else return arr.splice(0, arr.length + index).reverse().concat(arr);
 };
