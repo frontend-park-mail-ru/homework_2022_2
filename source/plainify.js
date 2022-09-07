@@ -36,7 +36,7 @@ const plainify = (nested, propertyName = '') => {
      */
     const callbackFunction = (plainObj, [key, value]) => {
         const newPropertyName = `${propertyName}${propertyName ? '.' : ''}${key}`; // добавление ключа к имени свойства
-        return Object.assign(plainObj, value instanceof Object ? plainify(value, newPropertyName) : {[newPropertyName]: value}); // копирование свойств в целевой объект
+        return Object.assign(plainObj, typeof value === 'object' ? plainify(value, newPropertyName) : {[newPropertyName]: value}); // копирование свойств в целевой объект
     }
 
     return propertyArray.reduce(callbackFunction, {}); // для каждого элемента масссива свойств вызывается функция обратного вызова
