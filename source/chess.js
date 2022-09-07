@@ -18,7 +18,7 @@
     throw new TypeError('Некорректный входной параметр функции chess');
   }
 
-  if(!Number.isInteger(Number(n))) {
+  if(!Number.isInteger(n)) {
     throw new TypeError('Входной параметр не является целым числом');
   }
 
@@ -26,7 +26,7 @@
     throw new RangeError('Функция chess принимает на вход натуральные числа от 2 до 100');
   }
 
-  if(n == 1) {
+  if(n === 1) {
     return null;
   }
 
