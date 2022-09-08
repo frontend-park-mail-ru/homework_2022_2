@@ -25,8 +25,6 @@ const plainify = (nested, propertyName = '') => {
         throw new TypeError('Function argument must not be an empty object');
     }
 
-    const propertyArray = Object.entries(nested); //получаем массив свойств объекта
-
     /**
      * Функция обратного вызова
      * 
@@ -34,11 +32,10 @@ const plainify = (nested, propertyName = '') => {
      * @param {object} param1 - Текущий элемент массива
      * @returns {object}
      */
-    const callbackFunction = (plainObj, [key, value]) => {
+
+    return Object.entries(nested).reduce((plainObj, [key, value]) => {
         const newPropertyName = `${propertyName}${propertyName ? '.' : ''}${key}`; // добавление ключа к имени свойства
         return Object.assign(plainObj, typeof value === 'object' ? plainify(value, newPropertyName) : {[newPropertyName]: value}); // копирование свойств в целевой объект
-    }
-
-    return propertyArray.reduce(callbackFunction, {}); // для каждого элемента масссива свойств вызывается функция обратного вызова
+    }, {}); // для каждого элемента масссива свойств вызывается функция обратного вызова
     // возвращаемое значение функции предоставляется как арагумент при следующем вызове функции
 }
