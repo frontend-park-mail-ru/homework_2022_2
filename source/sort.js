@@ -4,6 +4,7 @@
  * Sort words in sentence and letters in words with first one in uppercase.
  * @param {string} str - String to sort.
  * @return {string} Sorted string.
+ * @throws {TypeError} Argument is not a string.
  */
 const sort = (str) => {
     if (typeof str != 'string') {
