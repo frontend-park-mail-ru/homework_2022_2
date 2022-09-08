@@ -6,8 +6,12 @@
  * @return {string} Sorted string.
  */
 const sort = (str) => {
-    let collator = new Intl.Collator()
-    let words = str.toLowerCase().split(' ');
+    if (typeof str != 'string') {
+        throw TypeError(`${typeof str}` + ' is not a string.');
+    }
+
+    const collator = new Intl.Collator()
+    const words = str.toLowerCase().split(' ');
     words.forEach((word, index) => {
             word = word.split('').sort(collator.compare).join('');
             words[index] = word.replace(/^./, word[0].toUpperCase());

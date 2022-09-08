@@ -32,6 +32,15 @@ QUnit.module('Тестируем функцию sort', function () {
 		assert.strictEqual(sort('в б а в а'), 'А А Б В В');
 	});
 
+	QUnit.test('Функция обрабатыет входные данные', function (assert) {
+		assert.throws(function () {
+			sort(228)
+		}, TypeError, 'sort(\'228\') throws TypeError');
+		assert.throws(function () {
+			sort(sort(228))
+		}, TypeError, 'sort(sort(\'228\')) throws TypeError');
+	})
+
 	QUnit.test('Функция работает правильно', function (assert) {
 		assert.strictEqual(sort('мама мыла раму'), 'Аамм Алмы Амру');
 		assert.strictEqual(sort('космический корабль летит на марс'), 'Абклорь Амрс Ан Еиийккмоссч Еилтт');
