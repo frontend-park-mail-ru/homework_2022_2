@@ -83,43 +83,37 @@ QUnit.module('Тестируем функцию plainify', function () {
 		
 		assert.throws(
 			function () {plainify(5);},
-			function (err) {return err.toString() === 'TypeError: Invalid data was passed to the function'},
-			'Error throw'
+			new TypeError('Invalid data was passed to the function')
 		);
 
 		assert.throws(
 			function () {plainify('');},
-			function (err) {return err.toString() === 'TypeError: Invalid data was passed to the function'},
-			'Error throw'
+			new TypeError('Invalid data was passed to the function')
 		);
 
 		assert.throws(
 			function () {plainify("as",'df');},
-			function (err) {return err.toString() === 'TypeError: Invalid data was passed to the function'},
-			'Error throw'
+			new TypeError('Invalid data was passed to the function')
 		);
 
 		assert.throws(
 			function () {plainify(Infinity);},
-			function (err) {return err.toString() === 'TypeError: Invalid data was passed to the function'},
-			'Error throw'
+			new TypeError('Invalid data was passed to the function')
 		);
 
 		assert.throws(
 			function () {plainify(undefined);},
-			function (err) {return err.toString() === 'TypeError: Invalid data was passed to the function'},
-			'Error throw'
+			new TypeError('Invalid data was passed to the function')
 		);
 
 		assert.throws(
 			function () {plainify(NaN);},
-			function (err) {return err.toString() === 'TypeError: Invalid data was passed to the function'},
-			'Error throw'
+			new TypeError('Invalid data was passed to the function')
 		);
 
 		assert.throws(
 			function () {plainify(NaN, undefined, Infinity);},
-			function (err) {return err.toString() === 'TypeError: Invalid data was passed to the function'}
+			new TypeError('Invalid data was passed to the function')
 		);
 	});
 
@@ -127,7 +121,7 @@ QUnit.module('Тестируем функцию plainify', function () {
 		
 		assert.throws(
 			function () {plainify(null);},
-			function (err) {return err.toString() === 'TypeError: A null argument was passed to the function'}
+			new TypeError('A null argument was passed to the function')
 		);
 
 	});
@@ -136,7 +130,7 @@ QUnit.module('Тестируем функцию plainify', function () {
 		
 		assert.throws(
 			function () {plainify({});},
-			function (err) {return err.toString() === 'TypeError: Function argument must not be an empty object'}
+			new TypeError('Function argument must not be an empty object')
 		);
 
 	});
