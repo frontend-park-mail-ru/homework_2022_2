@@ -39,7 +39,6 @@ QUnit.module('Тестируем функцию minmax', function () {
 
 	QUnit.test('minmax выбрасывает ошибку при некорректном аргументе(не string)', function (assert) {
 		const error = new TypeError('EXPECTED_STRING');
-		console.log(typeof error);
 		assert.throws(() => minmax(12), error);
 		assert.throws(() => minmax({}), error);
 		assert.throws(() => minmax([]), error);
