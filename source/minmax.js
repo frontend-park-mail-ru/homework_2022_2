@@ -5,13 +5,13 @@
  * 
  * @param {string} stringWithNumbers - строка содержащаяя числа.
  * @return {number[]} массив из двух чисел (минимальное и максимальное).
- * @throws {INVALID_ARGUMENT_TYPE} - выбрасывается ошибка, если аргумент stringWithNumbers не типа string.
+ * @throws {TypeError} выбрасывается ошибка 'EXPECTED_STRING', если аргумент stringWithNumbers не типа string.
  */
 const minmax = (stringWithNumbers) => {
     if (typeof stringWithNumbers !== 'string') {
-        throw new Error('INVALID_ARGUMENT_TYPE');
+        throw new TypeError('EXPECTED_STRING');
     }
     const regularExpression = /(-?(\d+)?\.?\d+e?-?(\d+)?)|(-?Infinity)/g;
     const numbers = stringWithNumbers.match(regularExpression)?.map(item => Number(item));
-    return (numbers ? [Math.min(...numbers), Math.max(...numbers)] : [undefined, undefined]);
+    return numbers ? [Math.min(...numbers), Math.max(...numbers)] : [undefined, undefined];
 };
