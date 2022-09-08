@@ -25,14 +25,6 @@ const plainify = (nested, propertyName = '') => {
         throw new TypeError('Function argument must not be an empty object');
     }
 
-    /**
-     * Функция обратного вызова
-     * 
-     * @param {object} plainObj - последний результат вызова функции обратного вызова
-     * @param {object} param1 - Текущий элемент массива
-     * @returns {object}
-     */
-
     return Object.entries(nested).reduce((plainObj, [key, value]) => {
         const newPropertyName = `${propertyName}${propertyName ? '.' : ''}${key}`; // добавление ключа к имени свойства
         return Object.assign(plainObj, typeof value === 'object' ? plainify(value, newPropertyName) : {[newPropertyName]: value}); // копирование свойств в целевой объект
