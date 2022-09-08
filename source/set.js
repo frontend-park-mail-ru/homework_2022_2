@@ -25,6 +25,11 @@ const set = (obj, path, val) => {
         if (key === "") {
             return object;
         }
+
+        if (index < array.length - 1 && typeof object[key] !== "object") {
+            delete object[key]
+        }
+
         if (!(key in object)) {
             object[key] = {};
         }

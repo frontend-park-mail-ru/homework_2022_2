@@ -100,14 +100,14 @@ QUnit.module('Тестируем функцию set', function () {
         const object1 = {
             foo: [1, 2, 3],
             bar: [
-                {foobar: '42'}
+                {foobar: '42'},
             ]
         };
 
         const new1 = {
             foo: null,
             bar: [
-                {foobar: '42'}
+                {foobar: '42'},
             ]
         };
 
@@ -122,7 +122,7 @@ QUnit.module('Тестируем функцию set', function () {
         try {
             set(object1, {}, {});
         } catch (err) {
-            assert.deepEqual(err, TypeError("Invalid Argument"))
+            assert.deepEqual(err, TypeError("Invalid Argument"));
         }
     });
 
@@ -132,16 +132,16 @@ QUnit.module('Тестируем функцию set', function () {
         try {
             set(object1, ".path", {});
         } catch (err) {
-            assert.deepEqual(err, TypeError("Invalid Argument"))
+            assert.deepEqual(err, TypeError("Invalid Argument"));
         }
     });
 
     QUnit.test('set бросает ошибку при некорректном типе аргументов: val undefined', function (assert) {
         const object1 = {};
         try {
-            set(object1, ".path", );
+            set(object1, ".path",);
         } catch (err) {
-            assert.deepEqual(err, TypeError("Invalid Argument"))
+            assert.deepEqual(err, TypeError("Invalid Argument"));
         }
     });
 
@@ -151,7 +151,7 @@ QUnit.module('Тестируем функцию set', function () {
         try {
             set(object1, "", {});
         } catch (err) {
-            assert.deepEqual(err, TypeError("Incorrect Path"))
+            assert.deepEqual(err, TypeError("Incorrect Path"));
         }
     });
 
@@ -160,7 +160,30 @@ QUnit.module('Тестируем функцию set', function () {
         try {
             set(object1, "val", {});
         } catch (err) {
-            assert.deepEqual(err, TypeError("Incorrect Path"))
+            assert.deepEqual(err, TypeError("Incorrect Path"));
         }
     });
+
+    QUnit.test('set удаляет элементы, если того требует путь', function (assert) {
+        const obj = {
+            key1: "val1",
+            key2: "val2",
+            key3: {
+                key1: "val3",
+            }
+        }
+
+        const new1 = {
+            key1: "val1",
+            key2: "val2",
+            key3: {
+                key1: {
+                    smth: {},
+                },
+            }
+        };
+
+        assert.deepEqual(set(obj, '.key3.key1.smth', {}), new1);
+    });
+
 });
