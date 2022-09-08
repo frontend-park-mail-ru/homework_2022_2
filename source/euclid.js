@@ -31,14 +31,13 @@ const makeValidatorNatureNumber = checkNaturalFunc => {
 }
 
 /**
- * Find greatest common divisor using Euclid`s algorithm
- * @param {number | string} firstValue  - first natural number
- * @param {number | string} secondValue - second natural number
- * @returns {number} greatest common divisor
+ * Find greatest common division in an array of number using Euclid`s algorithm
+ * @param  {...number} numArr - array of natural number
+ * @returns {number} greatest common division
  * @throws {TypeError} Arguments is not a number
  * @throws {RangeError} Arguments is not a natural number
  */
-function euclidRaw(firstValue, secondValue) {
+const euclid = (...numArr) => numArr.reduce((firstValue, secondValue) => {
   const naturalValidator = makeValidatorNatureNumber(isNaturalNumber);
   let firstNum = naturalValidator(firstValue);
   let secondNum = naturalValidator(secondValue);
@@ -48,12 +47,5 @@ function euclidRaw(firstValue, secondValue) {
     (secondNum %= firstNum)) { }
 
   return firstNum || secondNum;
-}
-
-/**
- * Find greatest common division in an array of number using Euclid`s algorithm
- * @param  {...number} numArr - array of natural number
- * @returns {number} greatest common division
- */
-const euclid = (...numArr) => numArr.reduce(euclidRaw, numArr[0]);
+}, numArr[0]);
 
