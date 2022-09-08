@@ -115,16 +115,52 @@ QUnit.module('Тестируем функцию set', function () {
         assert.deepEqual(set(object1, '.foo', null), new1);
     });
 
-    QUnit.test('set работает правильно при пустом пути', function (assert) {
-        const object1 = {
-            foo: null,
-            bar: [
-                {foobar: '42'}
-            ]
-        };
 
-        const new1 = {};
+    QUnit.test('set бросает ошибку при некорректном типе аргументов: path не строка', function (assert) {
 
-        assert.deepEqual(set(object1, '', {}), new1);
+        const object1 = {};
+        try {
+            set(object1, {}, {});
+        } catch (err) {
+            assert.deepEqual(err, TypeError("Invalid Argument"))
+        }
+    });
+
+    QUnit.test('set бросает ошибку при некорректном типе аргументов: obj не объект', function (assert) {
+
+        const object1 = "";
+        try {
+            set(object1, ".path", {});
+        } catch (err) {
+            assert.deepEqual(err, TypeError("Invalid Argument"))
+        }
+    });
+
+    QUnit.test('set бросает ошибку при некорректном типе аргументов: val undefined', function (assert) {
+        const object1 = {};
+        try {
+            set(object1, ".path", );
+        } catch (err) {
+            assert.deepEqual(err, TypeError("Invalid Argument"))
+        }
+    });
+
+
+    QUnit.test('set бросает ошибку при некорректном типе аргументов: пустой путь', function (assert) {
+        const object1 = {};
+        try {
+            set(object1, "", {});
+        } catch (err) {
+            assert.deepEqual(err, TypeError("Incorrect Path"))
+        }
+    });
+
+    QUnit.test('set бросает ошибку при некорректном типе аргументов: некорректный путь', function (assert) {
+        const object1 = {};
+        try {
+            set(object1, "val", {});
+        } catch (err) {
+            assert.deepEqual(err, TypeError("Incorrect Path"))
+        }
     });
 });

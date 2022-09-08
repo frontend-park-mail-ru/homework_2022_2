@@ -3,29 +3,34 @@
 /**
  * Устанавливает значение  вложенного свойства объекта по пути к нему
  *
- * @returns {string|TypeError} - измененный объект
- * @param o - исходный объект
- * @param path - путь к свойству
- * @param val - устанавливаемое значение
+ * @param {Object} obj - исходный объект
+ * @param {string} path - путь к свойству
+ * @param val {(number|string|Array|Object)}- устанавливаемое значение
+ * @returns {Object} - измененный объект
+ * @throws {TypeError} - выбрасывает исключение при некорректных аргументах
  */
-const set = (o, path, val) => {
+const set = (obj, path, val) => {
+        if (typeof path != "string" || typeof obj != "object" || typeof val == "undefined") {
+            throw TypeError("Invalid Argument")
+        }
+        if (path.indexOf(".") === -1) {
+            throw TypeError("Incorrect Path")
+        }
         const keys = path.split('.');
-        let current = o;
-        while (keys.length > 1) {
-            const k = keys.shift();
-            if (k === "") {
-                continue
+        keys.reduce(function (object, key, index, array) {
+            if (index === array.length - 1) {
+                object[key] = val
+                return object
             }
-            if (!(k in current)) {
-                current[k] = {}
+            if (key === "") {
+                return object
             }
-            current = current[k];
-        }
-        const k = keys.shift();
-        if (k === "") {
-            return val
-        }
-        current[k] = val
-        return o
+            if (!(key in object)) {
+                object[key] = {}
+            }
+            object = object[key]
+            return object
+        }, obj)
+        return obj
     }
 ;
