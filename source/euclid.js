@@ -42,9 +42,11 @@ const euclid = (...numArr) => numArr.reduce((firstValue, secondValue) => {
   let firstNum = naturalValidator(firstValue);
   let secondNum = naturalValidator(secondValue);
 
-  while ((firstNum > secondNum) ?
-    (firstNum %= secondNum) :
-    (secondNum %= firstNum)) { }
+  for (let remainder = 1; remainder;) {
+    remainder = (firstNum > secondNum) ?
+      (firstNum %= secondNum) :
+      (secondNum %= firstNum);
+  }
 
   return firstNum || secondNum;
 }, numArr[0]);
