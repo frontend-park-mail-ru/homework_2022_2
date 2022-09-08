@@ -180,4 +180,46 @@ QUnit.module('Тестируем функцию set', function () {
         }
     });
 
+    QUnit.test('корректный путь', function (assert) {
+        const obj = {
+            key1: "val1",
+            key2: "val2",
+            key3: {
+                key1: "val3",
+            }
+        }
+        const new1 = {
+            key1: "val1",
+            key2: "val2",
+            key3: {
+                key1: "val3",
+            },
+            smth: {}
+        }
+        assert.deepEqual(set(obj, '.smth', {}), new1);
+    });
+
+    QUnit.test('set бросает ошибку при некорректном типе аргументов: некорректный путь тип 3', function (assert) {
+        const obj = {
+            key1: "val1",
+            key2: "val2",
+            key3: {
+                key1: "val3",
+            }
+        }
+        const new1 = {
+            key1: "val1",
+            key2: "val2",
+            key3: {
+                key1: "val3",
+            },
+            smth: {}
+        }
+
+        try {
+            set(obj, '.', {})
+        } catch (err) {
+            assert.deepEqual(err, TypeError("Incorrect Path"));
+        }
+    });
 });

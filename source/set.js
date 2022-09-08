@@ -18,11 +18,15 @@ const set = (obj, path, val) => {
     }
     const keys = path.split('.');
     keys.reduce((object, key, index, array) => {
-        if (index === array.length - 1) {
-            object[key] = val;
+        if (key === "") {
+            if (index === array.length - 1) {
+                throw TypeError("Incorrect Path");
+            }
             return object;
         }
-        if (key === "") {
+
+        if (index === array.length - 1) {
+            object[key] = val;
             return object;
         }
 
