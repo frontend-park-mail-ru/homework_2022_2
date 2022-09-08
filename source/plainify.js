@@ -13,7 +13,7 @@
  * plainify({foo: 'bar', baz: 42})
  */
 const plainify = (nested, propertyName = '') => {
-    if (!(typeof nested === 'object')) {
+    if (typeof nested !== 'object') {
         throw new TypeError('Invalid data was passed to the function');
     }
 
