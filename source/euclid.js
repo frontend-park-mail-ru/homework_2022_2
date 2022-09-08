@@ -14,7 +14,7 @@ const isNaturalNumber = num => (num > 0) && (Math.trunc(num) === num);
  * @returns {any => number} function for checking if any argument is a natural number
  * Returns the equivalent number 
  */
-function makeValidatorNatureNumber(checkNaturalFunc) {
+const makeValidatorNatureNumber = checkNaturalFunc => {
   const NOT_NUMBER_ERR_TEXT = ' is not a number';
   const NOT_NATURAL_ERR_TEXT = ' is not a natural number';
 
