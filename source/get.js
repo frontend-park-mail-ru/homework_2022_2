@@ -16,9 +16,7 @@ const get = (obj, propPath) => {
     let cloneObj = {...obj};
 
     propPath = propPath.trim()
-    const props = propPath.split('.').filter(prop => !!prop);
-
-    props.every((prop) => {
+    propPath.split('.').filter(prop => !!prop).every((prop) => {
         cloneObj = cloneObj[prop];
         return cloneObj;
     });
