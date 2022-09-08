@@ -12,6 +12,7 @@ QUnit.module('Тестируем функцию get', function () {
 		};
 
 		assert.strictEqual(get(object, '.foo'), object.foo);
+		assert.strictEqual(get(object, ' .foo '), object.foo);
 		assert.strictEqual(get(object, '.deep.hested.field'), object.deep.hested.field);
 
 		assert.deepEqual(get(object, '.deep.hested'), object.deep.hested);
@@ -47,7 +48,6 @@ QUnit.module('Тестируем функцию get', function () {
 		assert.strictEqual(get(object, '.baz.0'), undefined);
 		assert.strictEqual(get(object, '.baz.length'), undefined);
 		assert.strictEqual(get(object, '.0.1.2'), undefined);
-		assert.strictEqual(get(object, ' .foo '), undefined);
 	});
 
 	QUnit.test('get выбрасывает исключение TypeError, если первый аргумент не Object или null', function (assert) {

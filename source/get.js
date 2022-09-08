@@ -13,14 +13,16 @@ const get = (obj, propPath) => {
         throw new TypeError('Incorrect type of arguments');
     }
 
+    let cloneObj = {...obj};
+
+    propPath = propPath.trim()
     const props = propPath.split('.').filter(prop => !!prop);
 
-    let propObj = obj;
     props.every((prop) => {
-        propObj = propObj[prop];
-        return propObj;
+        cloneObj = cloneObj[prop];
+        return cloneObj;
     });
 
-    return propObj;
+    return cloneObj;
 };
 
