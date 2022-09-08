@@ -3,18 +3,18 @@
 /**
 * Delete all not unique symbols in string if there is no boolean argument
 * or delete all repeats if there is one
-* @param {string} - string to delete repeats
-* @param {bool} - not necessary; if provided define which enter will remain: if 
+* @param {string} lettersString - string to delete repeats
+* @param {boolean} [mode] - if provided define which enter will remain: if
 * true then first one, if false then last one
 * @return {string} string without repeats
 * @throws {TypeError} throws exception 'first argument must be string', if str
 * letters("irritating", true) returns irtang
 */
 
-let letters = (lettersString, bool = null) => {
+let letters = (lettersString, mode = null) => {
     if (typeof lettersString != "string") throw new TypeError('first argument must be string');
-    if (typeof bool != "boolean" && bool != null) throw new TypeError('second argument must be string or absent');
-    if (bool === null){
+    if (typeof mode != "boolean" && mode != null) throw new TypeError('second argument must be string or absent');
+    if (mode === null){
         let set = new Set();
         let extraSet = new Set();
 
@@ -28,17 +28,8 @@ let letters = (lettersString, bool = null) => {
 
         return Array.from(set).join('');
     }
+    //if mode is true put string in set in direct order if false put in reverse order
+    const set = mode ? new Set(lettersString) : new Set(lettersString.split('').reverse().join(''));
 
-    const start = bool ? 0 : lettersString.length - 1;
-    const end = bool ? lettersString.length : -1;
-    const step = bool ? 1 : -1;
-    
-    let set = new Set();
-    for (let i = start; i != end; i += step){
-        set.add(lettersString[i]);
-    }
-
-    let arr = Array.from(set);
-    if (!bool) arr = arr.reverse();
-    return arr.join('');
+    return (mode ? Array.from(set) : Array.from(set).reverse()).join('')
 }
