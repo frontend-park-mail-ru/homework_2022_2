@@ -38,3 +38,35 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.strictEqual(roman('2017'), 'MMXVII');
 	});
 });
+
+QUnit.module('Custom tests for roman', function () {
+
+	QUnit.test('roman(): arabic -> roman', function (assert) {
+		assert.strictEqual(roman(494), 'CDXCIV');
+		assert.strictEqual(roman(' 949 '), 'CMXLIX');
+		assert.deepEqual(roman(' 9499'), NaN);
+		assert.deepEqual(roman('-1'), NaN);
+		assert.deepEqual(roman('0'), NaN);
+		assert.deepEqual(roman('23.435'), NaN);
+		assert.strictEqual(roman(1), 'I');
+		assert.strictEqual(roman(3999), 'MMMCMXCIX');
+	});
+});
+
+QUnit.module('Checkin input is correctness', function () {
+
+	QUnit.test('isArabic()', function (assert) {
+		assert.deepEqual(isArabic(666), true);
+		assert.deepEqual(isArabic(' 505 '), true);
+		assert.deepEqual(isArabic(' 949!'), false);
+		assert.deepEqual(isArabic(' 94l9'), false);
+	});
+
+	QUnit.test('isRoman()', function (assert) {
+		assert.deepEqual(isRoman(494), false);
+		assert.deepEqual(isRoman('989'), false);
+		assert.deepEqual(isRoman('MCmXc'), true);
+		assert.deepEqual(isRoman('MC!mXc'), false);
+	});
+});
+
