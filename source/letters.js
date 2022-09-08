@@ -7,7 +7,8 @@
 * @param {boolean} [mode] - if provided define which enter will remain: if
 * true then first one, if false then last one
 * @return {string} string without repeats
-* @throws {TypeError} throws exception 'first argument must be string', if str
+* @throws {TypeError} throws exception 'first argument must be string', if lettersString is invalid
+* @throws {TypeError} throws exception 'second argument must be string or absent', if provided mode is invalid
 * letters("irritating", true) returns irtang
 */
 
