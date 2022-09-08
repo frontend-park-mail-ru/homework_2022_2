@@ -9,16 +9,18 @@
 * @throws {TypeError} - Некорректный тип аргуметов
 */
 const get = (obj, propPath) => {
-    if (!(typeof obj === 'object' && obj !== null) || !(typeof propPath === 'string')) {
+    if (!(typeof obj === 'object' && obj) || !(typeof propPath === 'string')) {
         throw new TypeError('Incorrect type of arguments');
     }
 
-    let props = propPath.split('.').filter(prop => !!prop);
-    for (let prop of props) {
-        obj = obj[prop];
-        if (obj === undefined) {
-            break;
-        }
-    }
-    return obj;
+    const props = propPath.split('.').filter(prop => !!prop);
+
+    let propObj = obj;
+    props.every((prop) => {
+        propObj = propObj[prop];
+        return propObj;
+    });
+
+    return propObj;
 };
+
