@@ -26,13 +26,14 @@ const set = (obj, path, val) => {
             return object;
         }
 
-        if (index < array.length - 1 && typeof object[key] !== "object") {
-            delete object[key]
-        }
-
         if (!(key in object)) {
             object[key] = {};
         }
+
+        if (index < array.length - 1 && typeof object[key] !== "object") {
+            throw TypeError("Incorrect Path");
+        }
+
         object = object[key];
         return object;
     }, obj);
