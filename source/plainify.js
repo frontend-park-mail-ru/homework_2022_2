@@ -13,7 +13,7 @@
  * plainify({foo: 'bar', baz: 42})
  */
 const plainify = (nested, propertyName = '') => {
-    if (typeof nested != 'object') {
+    if (!(typeof nested === 'object')) {
         throw new TypeError('Invalid data was passed to the function');
     }
 
@@ -22,7 +22,7 @@ const plainify = (nested, propertyName = '') => {
     }
 
     if (Object.keys(nested).length == 0) {
-        throw new Error('Function argument must not be an empty object')
+        throw new TypeError('Function argument must not be an empty object');
     }
 
     const propertyArray = Object.entries(nested); //получаем массив свойств объекта

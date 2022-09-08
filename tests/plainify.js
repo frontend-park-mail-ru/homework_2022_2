@@ -136,7 +136,7 @@ QUnit.module('Тестируем функцию plainify', function () {
 		
 		assert.throws(
 			function () {plainify({});},
-			function (err) {return err.toString() === 'Error: Function argument must not be an empty object'}
+			function (err) {return err.toString() === 'TypeError: Function argument must not be an empty object'}
 		);
 
 	});
