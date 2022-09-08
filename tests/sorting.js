@@ -144,7 +144,7 @@ QUnit.module('Тестируем функцию sorting', function () {
 		assert.deepEqual(actual, expected);
 	});
 
-	QUnit.test('sorting сортирует по нескольким полям', function (assert) {
+	QUnit.test('sorting сортирует по нескольким полям pt. 1', function (assert) {
 		const initial = [
 			{ prop1: 3, id: '1' },
 			{ prop1: 3, id: '2' },
@@ -167,6 +167,58 @@ QUnit.module('Тестируем функцию sorting', function () {
 			{ prop1: 3, id: '2' },
 			{ prop1: 4, id: '2' }
 		];
+
+		assert.deepEqual(actual, expected);
+	});
+
+	QUnit.test('sorting сортирует по нескольким полям pt. 2', function (assert) {
+		const initial = [
+			{ prop1: 3, id: '1', name: "Vanya" },
+			{ prop1: 3, id: '2', name: "Valya" },
+			{ prop1: 1, id: '1', name: "Vasya" },
+			{ prop1: 1, id: '2', name: "Ann" },
+			{ prop1: 4, id: '1', name: "Ann" },
+			{ prop1: 4, id: '2', name: "Ben" },
+			{ prop1: 2, id: '1', name: "Bob" },
+			{ prop1: 2, id: '2', name: "Serafima" }
+		];
+		const actual = sorting(initial, ['name', 'prop1', 'id']);
+
+		const expected = [
+			{ prop1: 1, id: '2', name: 'Ann' },
+			{ prop1: 4, id: '1', name: 'Ann' },
+			{ prop1: 4, id: '2', name: 'Ben' },
+			{ prop1: 2, id: '1', name: 'Bob' },
+			{ prop1: 2, id: '2', name: 'Serafima' },
+			{ prop1: 3, id: '2', name: 'Valya' },
+			{ prop1: 3, id: '1', name: 'Vanya' },
+			{ prop1: 1, id: '1', name: 'Vasya' }
+		];
+
+		assert.deepEqual(actual, expected);
+	});
+
+	QUnit.test('sorting возвращает пустой массив в случае записи на входе мусора pt. 1', function (assert) {
+		const actual = sorting(NaN, ['name', 'prop1', 'id']);
+
+		const expected = [];
+
+		assert.deepEqual(actual, expected);
+	});
+
+	QUnit.test('sorting возвращает пустой массив в случае записи на входе мусора pt. 2', function (assert) {
+		const actual = sorting(NaN, null);
+
+		const expected = [];
+
+		assert.deepEqual(actual, expected);
+	});
+
+	QUnit.test('sorting возвращает пустой массив в случае записи на входе мусора pt. 3', function (assert) {
+		let emptyVariable;
+		const actual = sorting(emptyVariable, ['name', 'prop1', 'id']);
+
+		const expected = [];
 
 		assert.deepEqual(actual, expected);
 	});
