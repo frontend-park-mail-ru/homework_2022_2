@@ -15,11 +15,11 @@
 const letters = (lettersString, mode = null) => {
     if (!(typeof lettersString === 'string' || lettersString instanceof String)) {
         throw new TypeError('first argument must be string');
-    };
+    }
 
     if (typeof mode !== 'boolean' && mode !== null) {
         throw new TypeError('second argument must be string or absent');
-    };
+    }
 
     if (mode === null){
         const set = new Set();
