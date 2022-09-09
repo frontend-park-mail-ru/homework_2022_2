@@ -24,13 +24,13 @@ const set = (obj, path, val) => {
             }
             return object;
         }
-        
+
         if (index === array.length - 1) {
             object[key] = val;
             return object;
         }
 
-        if (!(key in object) || (index < array.length - 1 && typeof object[key] !== "object")) {
+        if (!Array.isArray(object[key]) && typeof object[key] !== "object") {
             object[key] = {};
         }
 
