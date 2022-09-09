@@ -11,6 +11,8 @@ QUnit.module('Тестируем функцию rle', function () {
 		assert.strictEqual(rle('A'), 'A');
 		assert.strictEqual(rle('ABCABCABC'), 'ABCABCABC');
 		assert.strictEqual(rle('ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ'), 'Z36');
+		assert.strictEqual(rle(''), '');
+		assert.throws(() => rle(' '), Error, 'Incorrect string');
 		assert.throws(() => rle('+'), Error, 'Incorrect string');
 		assert.throws(() => rle('AAAFSD3W'), Error, 'Incorrect string');
 		assert.throws(() => rle('a'), Error, 'Incorrect string');

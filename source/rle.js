@@ -11,25 +11,28 @@
  * @returns {string} ansString - RLE сжатая строка.
  */
 const rle = (str) => {
-  let ansString = "";
-  let letterCounter = 1;
   if (typeof str !== 'string') {
     throw new TypeError("Incorrect object");
   }
-  for (let i = 0; i < str.length; i++) {
-    if (str[i] < 'A' || str[i] > 'Z') {
+  const arrFromString = str.split('');
+  let letterCounter = 1;
+  let prevSymb = '';
+  let ansString = arrFromString.reduce((ansString, curSymb) => {
+    if(curSymb < 'A' || curSymb > 'Z') {
       throw new Error("Incorrect string");
     }
-    if (str[i] != str[i - 1]) {
+    if (curSymb !== prevSymb) {
       if (letterCounter !== 1) {
-        ansString += letterCounter;
-      }
-      letterCounter = 1;
-      ansString += str[i];
-    } else {
-      letterCounter++;
+          ansString += letterCounter;
+          letterCounter = 1;
+      } 
+      prevSymb = curSymb;
+      return ansString += curSymb; 
     }
-  }
+    letterCounter++;
+    prevSymb = curSymb;
+    return ansString;
+}, '');
   if (letterCounter !== 1) {
     ansString += letterCounter;
   }
