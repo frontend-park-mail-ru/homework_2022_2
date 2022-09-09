@@ -21,9 +21,10 @@ const plainify = (nested, propertyName = '') => {
         throw new TypeError('A null argument was passed to the function');
     }
 
-    if (Object.keys(nested).length == 0) {
-        if (propertyName)
+    if (Object.keys(nested).length === 0) {
+        if (propertyName){
             return {[propertyName]: undefined};
+        }
         throw new TypeError('Function argument must not be an empty object');
     }
 
