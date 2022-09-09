@@ -185,7 +185,7 @@ QUnit.module('Тестируем функцию set', function () {
         }
         assert.deepEqual(set(obj, '.key3.key1.smth', {}), new1);
     });
-    
+
 
     QUnit.test('set бросает ошибку при некорректном типе аргументов: некорректный путь тип 2', function (assert) {
         const obj = {
