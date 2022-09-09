@@ -6,16 +6,18 @@
  * @returns {Array} Одномерный массив
  */
 function plain(srcArray) {
-    let resArr = [];
+    const stack = srcArray.slice();
+    const plained = [];
 
-    for (let elem of srcArray) {
+    while (stack.length) {
+        const elem = stack.pop();
         if (Array.isArray(elem)) {
-            resArr.push(...plain(elem));
+            stack.push(...elem.slice());
         }
         else {
-            resArr.push(elem);
+            plained.push(elem);
         }
     }
 
-    return resArr;
+    return plained.reverse();
 }
