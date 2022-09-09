@@ -10,37 +10,31 @@
  *      6. Function sorts by several fields.
  *      7. Function returns empty array in case which input is garbage.
  * 
- * @param {Array} numbers - array of data.
- * @param {Array} key     - key for sorting.
+ * @param {Array} dataArray - array of data.
+ * @param {Array} key - key for sorting.
  * @return sorted array according rules.
+ * @throws {TypeError} Argument is not an Array type.
  */
-function sorting(numbers, key) {
-    if (numbers == [] || key == []) {
-        return numbers;
+function sorting(dataArray, key) {
+    if (!Array.isArray(dataArray) || !Array.isArray(key)) {
+        throw new TypeError('invalid input');
     }
-    if (!Array.isArray(numbers) || !Array.isArray(key)) {
-        return [];
+    
+    if (dataArray === [] || key === []) {
+        return dataArray;
     }
-
-    numbers.sort(function (left, right) {
-        let orderArray = [];
-
-        key.forEach((item) => {
-            let order = null;
-            if (typeof (left[item]) == 'string') {
-                order = left[item].localeCompare(right[item]);
-            } else {
-                order = left[item] - right[item];
+    
+    const copyToArray = dataArray;
+    copyToArray.sort(function (left, right) {
+        for (let item of key) {
+            if (left[item] > right[item]) {
+                return 1;
             }
-            orderArray.push(order);
-        });
-
-        let resultOrder = 0;
-        orderArray.forEach((item) => {
-            resultOrder = resultOrder || item;
-        });
-        return resultOrder;
+            if (left[item] < right[item]) {
+                return -1;
+            }
+        }
+        return 0;
     });
-
-    return numbers;
+    return copyToArray;
 }

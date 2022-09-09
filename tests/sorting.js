@@ -199,27 +199,21 @@ QUnit.module('Тестируем функцию sorting', function () {
 	});
 
 	QUnit.test('sorting возвращает пустой массив в случае записи на входе мусора pt. 1', function (assert) {
-		const actual = sorting(NaN, ['name', 'prop1', 'id']);
-
-		const expected = [];
-
-		assert.deepEqual(actual, expected);
+		assert.throws(function () {
+			sorting(NaN, ['name', 'prop1', 'id'])
+		}, TypeError, 'invalid input');
 	});
 
 	QUnit.test('sorting возвращает пустой массив в случае записи на входе мусора pt. 2', function (assert) {
-		const actual = sorting(NaN, null);
-
-		const expected = [];
-
-		assert.deepEqual(actual, expected);
+		assert.throws(function () {
+			sorting(NaN, null);
+		}, TypeError, 'invalid input');
 	});
 
 	QUnit.test('sorting возвращает пустой массив в случае записи на входе мусора pt. 3', function (assert) {
 		let emptyVariable;
-		const actual = sorting(emptyVariable, ['name', 'prop1', 'id']);
-
-		const expected = [];
-
-		assert.deepEqual(actual, expected);
+		assert.throws(function () {
+			sorting(emptyVariable, ['name', 'prop1', 'id']);
+		}, TypeError, 'invalid input');
 	});
 });
