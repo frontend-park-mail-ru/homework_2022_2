@@ -13,10 +13,10 @@ const get = (obj, propPath) => {
         throw new TypeError('Incorrect type of arguments');
     }
 
-    let cloneObj = {...obj};
+    let cloneObj = structuredClone(obj);
 
-    propPath = propPath.trim()
-    propPath.split('.').filter(prop => !!prop).every((prop) => {
+    const trimPath = propPath.trim();
+    trimPath.split('.').filter(prop => !!prop).every((prop) => {
         cloneObj = cloneObj[prop];
         return cloneObj;
     });
