@@ -164,7 +164,7 @@ QUnit.module('Тестируем функцию set', function () {
         }
     });
 
-    QUnit.test('set бросает ошибку при некорректном типе аргументов: некорректный путь тип 2', function (assert) {
+    QUnit.test('удаляем элементы, если того требует путь', function (assert) {
         const obj = {
             key1: "val1",
             key2: "val2",
@@ -173,33 +173,21 @@ QUnit.module('Тестируем функцию set', function () {
             }
         }
 
-        try {
-            set(obj, '.key3.key1.smth', {})
-        } catch (err) {
-            assert.deepEqual(err, TypeError("Incorrect Path"));
-        }
-    });
-
-    QUnit.test('корректный путь', function (assert) {
-        const obj = {
-            key1: "val1",
-            key2: "val2",
-            key3: {
-                key1: "val3",
-            }
-        }
         const new1 = {
             key1: "val1",
             key2: "val2",
             key3: {
-                key1: "val3",
+                key1: {
+                    smth: {}
+                }
             },
-            smth: {}
-        }
-        assert.deepEqual(set(obj, '.smth', {}), new1);
-    });
 
-    QUnit.test('set бросает ошибку при некорректном типе аргументов: некорректный путь тип 3', function (assert) {
+        }
+        assert.deepEqual(set(obj, '.key3.key1.smth', {}), new1);
+    });
+    
+
+    QUnit.test('set бросает ошибку при некорректном типе аргументов: некорректный путь тип 2', function (assert) {
         const obj = {
             key1: "val1",
             key2: "val2",

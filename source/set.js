@@ -25,6 +25,10 @@ const set = (obj, path, val) => {
             return object;
         }
 
+        if (index < array.length - 1 && typeof object[key] !== "object") {
+            delete object[key];
+        }
+
         if (index === array.length - 1) {
             object[key] = val;
             return object;
@@ -32,10 +36,6 @@ const set = (obj, path, val) => {
 
         if (!(key in object)) {
             object[key] = {};
-        }
-
-        if (index < array.length - 1 && typeof object[key] !== "object") {
-            throw TypeError("Incorrect Path");
         }
 
         object = object[key];
