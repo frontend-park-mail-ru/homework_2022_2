@@ -1,17 +1,17 @@
 'use strict';
 
 /**
-* Delete all not unique symbols in string if there is no boolean argument
-* or delete all repeats if there is one
-*
-* @param {string} lettersString - string to delete repeats
-* @param {boolean} [mode] - if provided define which enter will remain: if
-* true then first one, if false then last one
-* @return {string} string without repeats
-* @throws {TypeError} throws exception 'first argument must be string', if lettersString is invalid
-* @throws {TypeError} throws exception 'second argument must be string or absent', if provided mode is invalid
-* letters("irritating", true) returns irtang
-*/
+ * Delete all not unique symbols in string if there is no boolean argument
+ * or delete all repeats if there is one
+ *
+ * @param {string} lettersString - string to delete repeats
+ * @param {boolean} [mode] - if provided define which enter will remain: if
+ * true then first one, if false then last one
+ * @return {string} string without repeats
+ * @throws {TypeError} throws exception 'first argument must be string', if lettersString is invalid
+ * @throws {TypeError} throws exception 'second argument must be string or absent', if provided mode is invalid
+ * letters("irritating", true) returns irtang
+ */
 const letters = (lettersString, mode = null) => {
     if (!(typeof lettersString === 'string' || lettersString instanceof String)) {
         throw new TypeError('first argument must be string');
