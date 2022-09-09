@@ -82,42 +82,42 @@ QUnit.module('Тестируем функцию plainify', function () {
 	QUnit.test('plainify выдает ошибку, если входные данные некорректного типа', function (assert) {
 		
 		assert.throws(
-			function () {plainify(5);},
+			() => {plainify(5);},
 			new TypeError('Invalid data was passed to the function')
 		);
 
 		assert.throws(
-			function () {plainify('');},
+			() => {plainify('');},
 			new TypeError('Invalid data was passed to the function')
 		);
 
 		assert.throws(
-			function () {plainify("as",'df');},
+			() => {plainify("as",'df');},
 			new TypeError('Invalid data was passed to the function')
 		);
 
 		assert.throws(
-			function () {plainify(Infinity);},
+			() => {plainify(Infinity);},
 			new TypeError('Invalid data was passed to the function')
 		);
 
 		assert.throws(
-			function () {plainify(undefined);},
+			() => {plainify(undefined);},
 			new TypeError('Invalid data was passed to the function')
 		);
 
 		assert.throws(
-			function () {plainify(NaN);},
+			() => {plainify(NaN);},
 			new TypeError('Invalid data was passed to the function')
 		);
 
 		assert.throws(
-			function () {plainify(NaN, undefined, Infinity);},
+			() => {plainify(NaN, undefined, Infinity);},
 			new TypeError('Invalid data was passed to the function')
 		);
 
 		assert.throws(
-			function () {plainify(function func(){});},
+			() => {plainify(function func(){});},
 			new TypeError('Invalid data was passed to the function')
 		);
 	});
@@ -125,7 +125,7 @@ QUnit.module('Тестируем функцию plainify', function () {
 	QUnit.test('plainify выдает ошибку, если на вход подается null', function (assert) {
 		
 		assert.throws(
-			function () {plainify(null);},
+			() => {plainify(null);},
 			new TypeError('A null argument was passed to the function')
 		);
 
@@ -134,12 +134,12 @@ QUnit.module('Тестируем функцию plainify', function () {
 	QUnit.test('plainify выдает ошибку, если на вход подается пустой объект', function (assert) {
 		
 		assert.throws(
-			function () {plainify({});},
+			() => {plainify({});},
 			new TypeError('Function argument must not be an empty object')
 		);
 
 		assert.throws(
-			function () {plainify([]);},
+			() => {plainify([]);},
 			new TypeError('Function argument must not be an empty object')
 		);
 
