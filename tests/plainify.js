@@ -65,7 +65,8 @@ QUnit.module('Тестируем функцию plainify', function () {
 				asd: {
 					fgh: {
 						jkl: {
-							qwe: undefined
+							qwe: undefined,
+							1: {}
 						}
 					}
 				}
@@ -73,7 +74,8 @@ QUnit.module('Тестируем функцию plainify', function () {
 		};
 
 		const plain4 = {
-			'deep.asd.fgh.jkl.qwe': undefined
+			'deep.asd.fgh.jkl.qwe': undefined,
+			'deep.asd.fgh.jkl.1': undefined
 		};
 
 		assert.deepEqual(plainify(nested4), plain4);

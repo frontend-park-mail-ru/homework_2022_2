@@ -22,12 +22,16 @@ const plainify = (nested, propertyName = '') => {
     }
 
     if (Object.keys(nested).length == 0) {
+        if (propertyName)
+            return {[propertyName]: undefined};
         throw new TypeError('Function argument must not be an empty object');
     }
 
     return Object.entries(nested).reduce((plainObj, [key, value]) => {
         const newPropertyName = `${propertyName}${propertyName ? '.' : ''}${key}`; // добавление ключа к имени свойства
-        return Object.assign(plainObj, typeof value === 'object' ? plainify(value, newPropertyName) : {[newPropertyName]: value}); // копирование свойств в целевой объект
+        return Object.assign(
+            plainObj,
+            typeof value === 'object' ? plainify(value, newPropertyName) : {[newPropertyName]: value}); // копирование свойств в целевой объект
     }, {}); // для каждого элемента масссива свойств вызывается функция обратного вызова
     // возвращаемое значение функции предоставляется как арагумент при следующем вызове функции
 }
