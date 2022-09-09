@@ -12,7 +12,7 @@
  * 
  * @param {Array} dataArray - array of data.
  * @param {Array} key - key for sorting.
- * @return sorted array according rules.
+ * @return {Array} sorted array according rules.
  * @throws {TypeError} Argument is not an Array type.
  */
 function sorting(dataArray, key) {
@@ -24,8 +24,8 @@ function sorting(dataArray, key) {
         return dataArray;
     }
     
-    const copyToArray = dataArray;
-    copyToArray.sort(function (left, right) {
+    const copyToArray = dataArray.concat();
+    copyToArray.sort((left, right)  => {
         for (let item of key) {
             if (left[item] > right[item]) {
                 return 1;
