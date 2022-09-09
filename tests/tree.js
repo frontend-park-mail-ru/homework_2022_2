@@ -53,4 +53,26 @@ QUnit.module('Тестируем функцию tree', function () {
 		assert.strictEqual(tree(8), expected);
 		assert.strictEqual(tree('8'), expected);
 	});
+
+	QUnit.test('Ёлочек отрицательной высоты не бывает', function (assert) {
+		assert.strictEqual(tree(-4), null);
+		assert.strictEqual(tree('-4'), null);
+	});
+
+	QUnit.test('Высота ёлочки может быть только числовым значением', function (assert) {
+		assert.strictEqual(tree('высокая'), null);
+		assert.strictEqual(tree('small'), null);
+	});
+
+	QUnit.test('Высота ёлочки должна быть натуральным числом', function (assert) {
+		assert.strictEqual(tree(4.6), null);
+		assert.strictEqual(tree('4.6'), null);
+	})
+
+	QUnit.test('Высота ёлочки не может равняться бесконечности', function (assert) {
+		assert.strictEqual(tree(Infinity), null);
+		assert.strictEqual(tree('Infinity'), null);
+	})
+
+
 });
