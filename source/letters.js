@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
 * Delete all not unique symbols in string if there is no boolean argument
@@ -12,12 +12,13 @@
 * letters("irritating", true) returns irtang
 */
 
-let letters = (lettersString, mode = null) => {
-    if (typeof lettersString != "string") throw new TypeError('first argument must be string');
-    if (typeof mode != "boolean" && mode != null) throw new TypeError('second argument must be string or absent');
+const letters = (lettersString, mode = null) => {
+    if (!(typeof lettersString === 'string' || lettersString instanceof String)) throw new TypeError('first argument must be string');
+    if (typeof mode !== 'boolean' && mode !== null) throw new TypeError('second argument must be string or absent');
+
     if (mode === null){
-        let set = new Set();
-        let extraSet = new Set();
+        const set = new Set();
+        const extraSet = new Set();
 
         for (let char of lettersString){
             if (set.has(char)) extraSet.add(char);
@@ -32,5 +33,5 @@ let letters = (lettersString, mode = null) => {
     //if mode is true put string in set in direct order if false put in reverse order
     const set = mode ? new Set(lettersString) : new Set(lettersString.split('').reverse().join(''));
 
-    return (mode ? Array.from(set) : Array.from(set).reverse()).join('')
+    return (mode ? [...set] : [...set].reverse()).join('');
 }
