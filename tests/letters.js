@@ -77,4 +77,15 @@ QUnit.module('Тестируем функцию letters (custom tests)', functio
 		assert.strictEqual(letters('...--.-.', false), '-.');
 		assert.strictEqual(letters('   00 0 ', false), '0 ');
 	});
+
+	QUnit.test('Проверка на различные типы данных (custom tests)', function (assert) {
+		assert.strictEqual(letters('11122121', true), '12');
+		assert.strictEqual(letters("11122121", true), '12');
+		assert.strictEqual(letters(`11122121`, true), '12');
+		assert.strictEqual(letters(new String('11122121'), true), '12');
+		const stringError = new TypeError('first argument must be string');
+		const modeError = new TypeError('second argument must be string or absent');
+		assert.throws(() => letters(11122121), stringError);
+		assert.throws(() => letters("11122121", 12), modeError);
+	});
 });
