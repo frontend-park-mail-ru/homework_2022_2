@@ -80,7 +80,6 @@ const translateArabicToRoman = function (arabicN) {
 const translateRomanToArabic = function (romanN) {
     romanN = romanN.toUpperCase().split('');
 
-    // let tempRomanN = romanN.slice(0, -1);
     return romanN.reduce((sum, currNumber, i, romanArr) => {
         if (romanToArabicDic[currNumber] >= romanToArabicDic[romanArr[i + 1] ? romanArr[i + 1] : currNumber])
             return sum + romanToArabicDic[currNumber];
