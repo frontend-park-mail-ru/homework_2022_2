@@ -80,22 +80,14 @@ const translateArabicToRoman = function (arabicN) {
 const translateRomanToArabic = function (romanN) {
     romanN = romanN.toUpperCase().split('');
 
-    /**
-     * resulting arabic number
-     * @type {number}
-     */
-    let arabicN = 0;
-
     let tempRomanN = romanN.slice(0, -1);
-    tempRomanN.forEach((currNumber, i) => {
-        if (romanToArabicDic[currNumber] >= romanToArabicDic[romanN[i + 1]])
-            arabicN += romanToArabicDic[currNumber];
-        else
-            arabicN -= romanToArabicDic[currNumber];
-    });
-    arabicN += romanToArabicDic[romanN[romanN.length - 1]];
-
-    return arabicN;
+    return romanToArabicDic[romanN[romanN.length - 1]] +
+        tempRomanN.reduce((sum, currNumber, i) => {
+            if (romanToArabicDic[currNumber] >= romanToArabicDic[romanN[i + 1]])
+                return sum + romanToArabicDic[currNumber];
+            else
+                return sum - romanToArabicDic[currNumber];
+        });
 }
 
 /**
