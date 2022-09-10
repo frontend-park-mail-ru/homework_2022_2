@@ -85,6 +85,13 @@ QUnit.module('Тестируем функцию tree', function () {
         assert.strictEqual(tree('null'), null);
     });
 
+    QUnit.test('Ёлочка странной высоты', function (assert) {
+        assert.strictEqual(tree(NaN), null);
+        assert.strictEqual(tree('NaN'), null);
+        assert.strictEqual(tree(-1), null);
+        assert.strictEqual(tree('-1'), null);
+    });
+
     QUnit.test('Ёлочка со строчной высотой ', function (assert) {
         assert.strictEqual(tree('privet'), null);
         assert.strictEqual(tree('проверка'), null);

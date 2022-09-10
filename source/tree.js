@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * @author Федоров Александр @thelvv
  */
@@ -15,12 +17,17 @@
  *     *****
  *       |
  */
-const tree = number => {
+const tree = (number) => {
+    /**
+     * Преобразование аргумента к типу Number.
+     */
+    number = Number(number);
+
     /**
      * Проверка аргумента на правильность типа, значение, большее 2 (и неотрицательность), принадлежность к числам,
      * целочисленность и величину.
      */
-    if ((!(number)) || (number < 3) || (!(typeof Number(number) === 'number')) || (!(Number.isInteger(Number(number)))) || (!(Number.isSafeInteger(Number(number))))) {
+    if ((!(number)) || (number < 3) || (isNaN(number)) || ((!(Number.isInteger(number))) || (!(Number.isSafeInteger(number))))) {
         return null;
     }
 
@@ -33,18 +40,11 @@ const tree = number => {
 
     /**
      * Массив размера высота-1 (уровни, где есть звездочки), по которому будет происходить
-     * итерация в reduce.
+     * итерация в reduce. Заполняется натуральными числами.
      *
-     * @type {numer[]}
+     * @type {Number[]}
      */
-    let NumbersOfLevels = new Array(number - 1);
-
-    /**
-     * Заполнение массива натуральными числами.
-     */
-    for (let i = 0; i < number - 1; i++) {
-        NumbersOfLevels[i] = i + 1;
-    }
+    let NumbersOfLevels = Array.from({length: (number - 1)}, (v, k) => k+1);
 
     /**
      * Переменная, хранящая конечный ответ.
@@ -52,7 +52,7 @@ const tree = number => {
      *
      * @type {String}
      */
-    let answer = NumbersOfLevels.reduce(function (prev, curr) {
+    let answer = NumbersOfLevels.reduce((prev, curr) => {
         /**
          * Переменная, хранящая количество звездочек на данном уровне ёлки.
          *
