@@ -63,8 +63,8 @@ QUnit.module('Checkin input is correctness', function () {
         assert.deepEqual(isRoman('989'), false);
         assert.deepEqual(isRoman('MCmXc'), true);
         assert.deepEqual(isRoman('MC!mXc'), false);
-        assert.deepEqual(isRoman((new String('...'))), false);
-        assert.deepEqual(isRoman((String('...'))), false);
+        assert.deepEqual(isRoman((new String('IV'))), true);
+        assert.deepEqual(isRoman((String('Vi'))), true);
     });
 
     QUnit.test('roman() throws', function (assert) {

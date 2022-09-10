@@ -61,12 +61,12 @@ const translateArabicToRoman = function (arabicN) {
             --i;
         }
     ``
-    roman4Symbols.forEach((currSymbol, i) => {
-        if (i >= 2) {
-            romanN = romanN.replace(roman4Symbols[i - 1][0] + currSymbol,
-                currSymbol[0] + roman4Symbols[i - 2][0])
-            romanN = romanN.replace(currSymbol, currSymbol[0] + roman4Symbols[i - 1][0])
-        }
+
+    let temp4Symbols = roman4Symbols.slice(2);
+    temp4Symbols.forEach((currSymbol, i) => {
+        romanN = romanN.replace(roman4Symbols[i + 1][0] + currSymbol,
+            currSymbol[0] + roman4Symbols[i][0])
+        romanN = romanN.replace(currSymbol, currSymbol[0] + roman4Symbols[i + 1][0])
     });
 
     return romanN;
@@ -86,12 +86,14 @@ const translateRomanToArabic = function (romanN) {
      */
     let arabicN = 0;
 
-    romanN.forEach((currNumber, i) => {
-        if (romanToArabicDic[currNumber] >= romanToArabicDic[i === romanN.length - 1 ? currNumber : romanN[i + 1]])
+    let tempRomanN = romanN.slice(0, -1);
+    tempRomanN.forEach((currNumber, i) => {
+        if (romanToArabicDic[currNumber] >= romanToArabicDic[romanN[i + 1]])
             arabicN += romanToArabicDic[currNumber];
         else
             arabicN -= romanToArabicDic[currNumber];
     });
+    arabicN += romanToArabicDic[romanN[romanN.length - 1]];
 
     return arabicN;
 }
@@ -109,8 +111,7 @@ const isArabic = (inputSymbols) => Number.isInteger(+inputSymbols);
  * @returns {boolean} whether inputSymbols is roman number
  */
 const isRoman = (inputSymbols) => {
-    if (typeof inputSymbols !== 'string')
-        return false;
+    inputSymbols = inputSymbols.toString();
 
     /**
      * to exclude any non-roman numeric symbols
