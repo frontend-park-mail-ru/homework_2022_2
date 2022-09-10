@@ -80,14 +80,13 @@ const translateArabicToRoman = function (arabicN) {
 const translateRomanToArabic = function (romanN) {
     romanN = romanN.toUpperCase().split('');
 
-    let tempRomanN = romanN.slice(0, -1);
-    return romanToArabicDic[romanN[romanN.length - 1]] +
-        tempRomanN.reduce((sum, currNumber, i) => {
-            if (romanToArabicDic[currNumber] >= romanToArabicDic[romanN[i + 1]])
-                return sum + romanToArabicDic[currNumber];
-            else
-                return sum - romanToArabicDic[currNumber];
-        });
+    // let tempRomanN = romanN.slice(0, -1);
+    return romanN.reduce((sum, currNumber, i, romanArr) => {
+        if (romanToArabicDic[currNumber] >= romanToArabicDic[romanArr[i + 1] ? romanArr[i + 1] : currNumber])
+            return sum + romanToArabicDic[currNumber];
+        else
+            return sum - romanToArabicDic[currNumber];
+    }, 0);
 }
 
 /**
@@ -119,8 +118,6 @@ const isRoman = (inputSymbols) => {
  * @returns {string | number} converted roman | arabic number
  */
 const roman = function (inputSymbols) {
-    //const err = new FormatError("formatting error");
-
     if (isArabic(inputSymbols) && (+inputSymbols >= 1 && +inputSymbols <= 3999))
         return translateArabicToRoman(+inputSymbols);
 
