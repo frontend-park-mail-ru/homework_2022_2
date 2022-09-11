@@ -13,7 +13,15 @@
  * plainify({foo: 'bar', baz: 42})
  */
 const plainify = (nested, propertyName = '') => {
-    if (!Object.prototype.isPrototypeOf(nested) || nested.constructor !== Object) {
+
+    const argValidation = (nested, propertyName) => {
+        if (nested === undefined || nested === null || !Object.prototype.isPrototypeOf(nested) || nested.constructor !== Object || typeof propertyName !== 'string') {
+            return false;
+        }
+        return true;
+    }
+
+    if (!argValidation(nested, propertyName)) {
         throw new TypeError('Invalid data was passed to the function');
     }
 
@@ -28,7 +36,7 @@ const plainify = (nested, propertyName = '') => {
         const newPropertyName = `${propertyName}${propertyName ? '.' : ''}${key}`; // добавление ключа к имени свойства
         return Object.assign(
             plainObj,
-            typeof value === 'object' ? plainify(value, newPropertyName) : {[newPropertyName]: value}); // копирование свойств в целевой объект
+            argValidation(value, newPropertyName) ? plainify(value, newPropertyName) : {[newPropertyName]: value}); // копирование свойств в целевой объект
     }, {}); // для каждого элемента масссива свойств вызывается функция обратного вызова
     // возвращаемое значение функции предоставляется как арагумент при следующем вызове функции
 }
