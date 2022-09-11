@@ -13,12 +13,8 @@
  * plainify({foo: 'bar', baz: 42})
  */
 const plainify = (nested, propertyName = '') => {
-    if (typeof nested !== 'object' || nested instanceof String) {
+    if (!Object.prototype.isPrototypeOf(nested) || nested.constructor !== Object) {
         throw new TypeError('Invalid data was passed to the function');
-    }
-
-    if (nested === null) {
-        throw new TypeError('A null argument was passed to the function');
     }
 
     if (Object.keys(nested).length === 0) {
