@@ -19,11 +19,18 @@
  */
 const tree = (number) => {
     /**
+     * Константа, хранящая аргумент, приведенный к типу Number.
+     *
+     * @type {Number}
+     */
+    const intNumber = Number(number);
+
+    /**
      * Проверка аргумента на правильность типа, значение, большее 2 (и неотрицательность), принадлежность к числам,
      * целочисленность и величину.
      */
     if ((!(number)) || (number < 3) || (isNaN(number)) ||
-        ((!(Number.isInteger(Number(number)))) || (!(Number.isSafeInteger(Number(number)))))) {
+        ((!(Number.isInteger(intNumber))) || (!(Number.isSafeInteger(intNumber))))) {
         return null;
     }
 
@@ -40,7 +47,7 @@ const tree = (number) => {
      *
      * @type {Number[]}
      */
-    let NumbersOfLevels = Array.from({length: (number - 1)}, (v, k) => k+1);
+    const NumbersOfLevels = Array.from({length: (number - 1)}, (v, k) => k+1);
 
     /**
      * Переменная, хранящая конечный ответ.
@@ -74,7 +81,7 @@ const tree = (number) => {
      *
      * @type {String}
      */
-    let indent = ' '.repeat((maxWidth - 1) / 2);
+    const indent = ' '.repeat((maxWidth - 1) / 2);
 
     /**
      * Добавление нижнего уровня ёлки.
