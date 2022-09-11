@@ -10,17 +10,23 @@
  * @throws {TypeError} - выбрасывает исключение при некорректных аргументах
  */
 const set = (obj, path, val) => {
-    if (typeof path !== "string" || typeof obj !== "object" || typeof val === "undefined") {
-        throw TypeError("Invalid Argument");
+    if (typeof path !== 'string') {
+        throw TypeError('Invalid Argument: path is not string');
     }
-    if (path.indexOf(".") === -1) {
-        throw TypeError("Incorrect Path");
+    if (typeof obj !== 'object' || obj === null) {
+        throw TypeError('Invalid Argument: obj is not an object');
+    }
+    if (typeof val === 'undefined') {
+        throw TypeError('Invalid Argument: val is undefined');
+    }
+    if (!path.includes('.')) {
+        throw TypeError('Incorrect Path');
     }
     const keys = path.split('.');
     keys.reduce((object, key, index, array) => {
-        if (key === "") {
+        if (key === '') {
             if (index === array.length - 1) {
-                throw TypeError("Incorrect Path");
+                throw TypeError('Incorrect Path');
             }
             return object;
         }
@@ -30,7 +36,7 @@ const set = (obj, path, val) => {
             return object;
         }
 
-        if (!Array.isArray(object[key]) && typeof object[key] !== "object") {
+        if (!Array.isArray(object[key]) && typeof object[key] !== 'object') {
             object[key] = {};
         }
 
