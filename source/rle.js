@@ -12,24 +12,23 @@
  */
 const rle = (str) => {
   if (typeof str !== 'string') {
-    throw new TypeError("Incorrect object");
+    if(!(str instanceof String)){
+      throw new TypeError("Incorrect object");
+    }
+  }
+  const reg = /[^A-Z]/;
+  if (reg.test(str)) {
+    throw new Error("Incorrect string");
   }
   const arrFromString = str.split('');
   let letterCounter = 1;
   let prevSymb = '';
   let ansString = arrFromString.reduce((ansString, curSymb) => {
-    if(curSymb < 'A' || curSymb > 'Z') {
-      throw new Error("Incorrect string");
-    }
-    if (curSymb !== prevSymb) {
-      if (letterCounter !== 1) {
-          ansString += letterCounter;
-          letterCounter = 1;
-      } 
-      prevSymb = curSymb;
-      return ansString += curSymb; 
-    }
-    letterCounter++;
+    (curSymb !== prevSymb) ? (
+      (letterCounter !== 1) ? (ansString += letterCounter):(1),    
+      letterCounter = 1,
+      ansString += curSymb
+      ) : letterCounter++;
     prevSymb = curSymb;
     return ansString;
 }, '');
