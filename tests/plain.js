@@ -46,9 +46,19 @@ QUnit.module('Тестируем функцию plain', function () {
 
 	QUnit.test('№2 Работает с объектами', function (assert) {
 		let obj1 = {};
-		let obj2 = { "#2": 1 };
-		let obj3 = { "#3": null };
-		let obj4 = { "#4": NaN };
+		let obj2 = { '#2': 1 };
+		let obj3 = { '#3': null };
+		let obj4 = { '#4': NaN };
 		assert.deepEqual(plain([[obj1, obj2], obj3, [obj4, obj4]]), [obj1, obj2, obj3, obj4, obj4]);
+	});
+
+	QUnit.test('№3 Работает с невалидными данными', function (assert) {
+		const err = new TypeError('Invalid input data');
+		assert.throws(() => { plain(NaN); }, err);
+		assert.throws(() => { plain(null); }, err);
+		assert.throws(() => { plain(undefined); }, err);
+		assert.throws(() => { plain('str'); }, err);
+		assert.throws(() => { plain(123); }, err);
+		assert.throws(() => { plain({}); }, err);
 	});
 });
