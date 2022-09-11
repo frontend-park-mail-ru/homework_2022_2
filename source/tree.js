@@ -19,15 +19,11 @@
  */
 const tree = (number) => {
     /**
-     * Преобразование аргумента к типу Number.
-     */
-    number = Number(number);
-
-    /**
      * Проверка аргумента на правильность типа, значение, большее 2 (и неотрицательность), принадлежность к числам,
      * целочисленность и величину.
      */
-    if ((!(number)) || (number < 3) || (isNaN(number)) || ((!(Number.isInteger(number))) || (!(Number.isSafeInteger(number))))) {
+    if ((!(number)) || (number < 3) || (isNaN(number)) ||
+        ((!(Number.isInteger(Number(number)))) || (!(Number.isSafeInteger(Number(number)))))) {
         return null;
     }
 
@@ -54,18 +50,18 @@ const tree = (number) => {
      */
     let answer = NumbersOfLevels.reduce((prev, curr) => {
         /**
-         * Переменная, хранящая количество звездочек на данном уровне ёлки.
+         * Константа, хранящая количество звездочек на данном уровне ёлки.
          *
          * @type {Number}
          */
-        let numOfStars = curr * 2 - 1;
+        const numOfStars = curr * 2 - 1;
 
         /**
          * Строка, содержащая все пробелы до звездочки.
          *
          * @type {String}
          */
-        let indent = ' '.repeat((maxWidth - numOfStars) / 2);
+        const indent = ' '.repeat((maxWidth - numOfStars) / 2);
 
         /**
          * Конкатенация кусков строки в общую - уровень ёлки, а также с ее предыдущим уровнем.
