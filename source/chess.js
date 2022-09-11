@@ -13,7 +13,7 @@
  *                   * *'
  */ 
  const chess = (n) => {
-  let nNum = Number(n);
+  const nNum = Number(n);
   if (!nNum || !isFinite(nNum)) {
     throw new TypeError('Некорректный входной параметр функции chess');
   }
@@ -32,7 +32,7 @@
 
   let result = '';
   
-  for (let i=0; i<nNum; i++) {
+  for (let i = 0; i < nNum; i++) {
     result += "* ".repeat(nNum / 2 + 1).substring(i % 2, nNum + i % 2); 
     result += '\n';
   }
