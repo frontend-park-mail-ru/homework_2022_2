@@ -76,9 +76,9 @@ const translateArabicToRoman = (arabicN) => {
  * @returns {number} arabic number
  */
 const translateRomanToArabic = (romanN) => {
-    romanN = romanN.toUpperCase().split('');
+    let romanNum = romanN.toUpperCase().split('');
 
-    return romanN.reduce((sum, currNumber, i, romanArr) => {
+    return romanNum.reduce((sum, currNumber, i, romanArr) => {
         if (romanToArabicDic[currNumber] >= romanToArabicDic[romanArr[i + 1] ? romanArr[i + 1] : currNumber])
             return sum + romanToArabicDic[currNumber];
         else
