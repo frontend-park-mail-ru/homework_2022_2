@@ -25,9 +25,8 @@ const rle = (str) => {
   let prevSymb = '';
   let ansString = arrFromString.reduce((ansString, curSymb) => {
     (curSymb !== prevSymb) ? (
-      (letterCounter !== 1) ? (ansString += letterCounter):(1),    
-      letterCounter = 1,
-      ansString += curSymb
+      ansString += `${(letterCounter !== 1) ? letterCounter : ''}` + curSymb,    
+      letterCounter = 1
       ) : letterCounter++;
     prevSymb = curSymb;
     return ansString;
