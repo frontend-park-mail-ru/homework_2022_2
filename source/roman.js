@@ -47,20 +47,18 @@ const roman4Symbols = ['MMMM', 'DDDD', 'CCCC', 'LLLL', 'XXXX', 'VVVV', 'IIII'];
  * @param {number} arabicN arabic number to convert
  * @returns {string} roman number
  */
-const translateArabicToRoman = function (arabicN) {
+const translateArabicToRoman = (arabicN) => {
     /**
      * resulting roman number
      * @type {string}
      */
-    let romanN = '';
-
-    for (let i = 0; arabicN !== 0; ++i)
-        if (arabicN - romanNums[i] >= 0) {
-            arabicN -= romanNums[i];
-            romanN += arabicToRomanDic[romanNums[i]];
-            --i;
+    let romanN = romanNums.reduce(([rNum, aNum], currNum) => {
+        while (aNum - currNum >= 0) {
+            aNum -= currNum;
+            rNum += arabicToRomanDic[currNum];
         }
-    ``
+        return [rNum, aNum];
+    }, ['', arabicN])[0];
 
     let temp4Symbols = roman4Symbols.slice(2);
     temp4Symbols.forEach((currSymbol, i) => {
@@ -77,7 +75,7 @@ const translateArabicToRoman = function (arabicN) {
  * @param {string} romanN roman number to convert
  * @returns {number} arabic number
  */
-const translateRomanToArabic = function (romanN) {
+const translateRomanToArabic = (romanN) => {
     romanN = romanN.toUpperCase().split('');
 
     return romanN.reduce((sum, currNumber, i, romanArr) => {
@@ -93,7 +91,7 @@ const translateRomanToArabic = function (romanN) {
  * @param {string} inputSymbols symbols for check
  * @returns {boolean} whether +inputSymbols is integer
  */
-const isArabic = (inputSymbols) => Number.isInteger(+inputSymbols);
+const isArabic = (inputSymbols) => Number.isInteger(Number(inputSymbols ?? NaN));
 
 /**
  * roman number validation
@@ -101,14 +99,15 @@ const isArabic = (inputSymbols) => Number.isInteger(+inputSymbols);
  * @returns {boolean} whether inputSymbols is roman number
  */
 const isRoman = (inputSymbols) => {
-    inputSymbols = inputSymbols.toString();
-
-    /**
-     * to exclude any non-roman numeric symbols
-     * @type {RegExp}
-     */
-    const romanChars = /^[MDCLXVI]*$/;
-    return romanChars.test(inputSymbols.toUpperCase());
+    if (typeof inputSymbols === 'string' || inputSymbols instanceof String) {
+        /**
+         * to exclude any non-roman numeric symbols
+         * @type {RegExp}
+         */
+        const romanChars = /^[MDCLXVI]*$/;
+        return romanChars.test(inputSymbols.toUpperCase());
+    } else
+        return false;
 }
 
 /**
@@ -116,7 +115,7 @@ const isRoman = (inputSymbols) => {
  * @param {string} inputSymbols symbols to convert
  * @returns {string | number} converted roman | arabic number
  */
-const roman = function (inputSymbols) {
+const roman = (inputSymbols) => {
     if (isArabic(inputSymbols) && (+inputSymbols >= 1 && +inputSymbols <= 3999))
         return translateArabicToRoman(+inputSymbols);
 

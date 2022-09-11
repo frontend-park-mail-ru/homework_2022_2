@@ -56,6 +56,8 @@ QUnit.module('Checkin input is correctness', function () {
         assert.deepEqual(isArabic(' 505 '), true);
         assert.deepEqual(isArabic(' 949!'), false);
         assert.deepEqual(isArabic(' 94l9'), false);
+        assert.deepEqual(isArabic(null), false);
+        assert.deepEqual(isArabic(undefined), false);
     });
 
     QUnit.test('isRoman()', function (assert) {
@@ -65,6 +67,8 @@ QUnit.module('Checkin input is correctness', function () {
         assert.deepEqual(isRoman('MC!mXc'), false);
         assert.deepEqual(isRoman((new String('IV'))), true);
         assert.deepEqual(isRoman((String('Vi'))), true);
+        assert.deepEqual(isRoman(null), false);
+        assert.deepEqual(isRoman(undefined), false);
     });
 
     QUnit.test('roman() throws', function (assert) {
