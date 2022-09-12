@@ -53,14 +53,11 @@ const translateArabicToRoman = (arabicN) => {
      * @type {string}
      */
     let romanN = romanNums.reduce(([rNum, aNum], currNum) => {
-        while (aNum - currNum >= 0) {
-            aNum -= currNum;
-            rNum += arabicToRomanDic[currNum];
-        }
-        return [rNum, aNum];
+        return [rNum + arabicToRomanDic[currNum].repeat(Math.floor(aNum / currNum)),
+            aNum % currNum];
     }, ['', arabicN])[0];
 
-    let temp4Symbols = roman4Symbols.slice(2);
+    const temp4Symbols = roman4Symbols.slice(2);
     temp4Symbols.forEach((currSymbol, i) => {
         romanN = romanN.replace(roman4Symbols[i + 1][0] + currSymbol,
             currSymbol[0] + roman4Symbols[i][0])
@@ -76,13 +73,14 @@ const translateArabicToRoman = (arabicN) => {
  * @returns {number} arabic number
  */
 const translateRomanToArabic = (romanN) => {
-    let romanNum = romanN.toUpperCase().split('');
+    const romanNum = romanN.toUpperCase().split('');
 
     return romanNum.reduce((sum, currNumber, i, romanArr) => {
-        if (romanToArabicDic[currNumber] >= romanToArabicDic[romanArr[i + 1] ? romanArr[i + 1] : currNumber])
+        if (romanToArabicDic[currNumber] >= romanToArabicDic[romanArr[i + 1] ? romanArr[i + 1] : currNumber]) {
             return sum + romanToArabicDic[currNumber];
-        else
+        } else {
             return sum - romanToArabicDic[currNumber];
+        }
     }, 0);
 }
 
@@ -106,8 +104,9 @@ const isRoman = (inputSymbols) => {
          */
         const romanChars = /^[MDCLXVI]*$/;
         return romanChars.test(inputSymbols.toUpperCase());
-    } else
+    } else {
         return false;
+    }
 }
 
 /**
@@ -116,11 +115,11 @@ const isRoman = (inputSymbols) => {
  * @returns {string | number} converted roman | arabic number
  */
 const roman = (inputSymbols) => {
-    if (isArabic(inputSymbols) && (+inputSymbols >= 1 && +inputSymbols <= 3999))
+    if (isArabic(inputSymbols) && (+inputSymbols >= 1 && +inputSymbols <= 3999)) {
         return translateArabicToRoman(+inputSymbols);
-
-    if (isRoman(inputSymbols))
+    }
+    if (isRoman(inputSymbols)) {
         return translateRomanToArabic(inputSymbols);
-
+    }
     throw new TypeError('Error, wrong input format');
 }
