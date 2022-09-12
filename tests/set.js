@@ -110,57 +110,34 @@ QUnit.module('Тестируем функцию set', function () {
 			]
 		};
 
-
 		assert.deepEqual(set(object1, '.foo', null), new1);
 	});
 
 
 	QUnit.test('set бросает ошибку при некорректном типе аргументов: path не строка', function (assert) {
-
 		const object1 = {};
-		try {
-			set(object1, {}, {});
-		} catch (err) {
-			assert.deepEqual(err, TypeError('Invalid Argument'));
-		}
+		assert.throws(() => set(object1, {}, {}), TypeError('Invalid Argument: path is not string'));
 	});
 
 	QUnit.test('set бросает ошибку при некорректном типе аргументов: obj не объект', function (assert) {
-
 		const object1 = '';
-		try {
-			set(object1, '.path', {});
-		} catch (err) {
-			assert.deepEqual(err, TypeError('Invalid Argument'));
-		}
+		assert.throws(() => set(object1, '.path', {}), TypeError('Invalid Argument: obj is not an object'));
 	});
 
 	QUnit.test('set бросает ошибку при некорректном типе аргументов: val undefined', function (assert) {
 		const object1 = {};
-		try {
-			set(object1, '.path',);
-		} catch (err) {
-			assert.deepEqual(err, TypeError('Invalid Argument'));
-		}
+		assert.throws(() => set(object1, '.path',), TypeError('Invalid Argument: val is undefined'));
 	});
 
 
 	QUnit.test('set бросает ошибку при некорректном типе аргументов: пустой путь', function (assert) {
 		const object1 = {};
-		try {
-			set(object1, '', {});
-		} catch (err) {
-			assert.deepEqual(err, TypeError('Incorrect Path'));
-		}
+		assert.throws(() => set(object1, '', {}), TypeError('Incorrect Path'));
 	});
 
 	QUnit.test('set бросает ошибку при некорректном типе аргументов: некорректный путь', function (assert) {
 		const object1 = {};
-		try {
-			set(object1, 'val', {});
-		} catch (err) {
-			assert.deepEqual(err, TypeError('Incorrect Path'));
-		}
+		assert.throws(() => set(object1, 'val', {}), TypeError('Incorrect Path'));
 	});
 
 	QUnit.test('удаляем элементы, если того требует путь', function (assert) {
@@ -194,19 +171,6 @@ QUnit.module('Тестируем функцию set', function () {
 				key1: 'val3',
 			}
 		}
-		const new1 = {
-			key1: 'val1',
-			key2: 'val2',
-			key3: {
-				key1: 'val3',
-			},
-			smth: {}
-		}
-
-		try {
-			set(obj, '.', {})
-		} catch (err) {
-			assert.deepEqual(err, TypeError('Incorrect Path'));
-		}
+		assert.throws(() => set(obj, '.', {}), TypeError('Incorrect Path'));
 	});
 });
