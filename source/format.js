@@ -15,12 +15,7 @@ let format = (numbers, cols) => {
     for (let i = 0; i < numbers.length; i += cols) {
         for (let j = 0; (j < cols) && (i + j < numbers.length); ++j) {
             let colWidth = maxColWidth(numbers, j, cols);
-            let spaces = "";
-            let spacesCount = colWidth - String(numbers[i + j]).length;
-            for (let k = 0; k < spacesCount; ++k) {
-                spaces += " ";
-            }
-            res += (spaces + numbers[i + j]);
+            res += (" ".repeat(colWidth - String(numbers[i + j]).length) + numbers[i + j]);
             (j < cols - 1 && numbers[i + j] !== numbers[numbers.length - 1]) ? res += ' ' :
                 (j === cols - 1 && numbers[i + j] !== numbers[numbers.length - 1]) ? res += '\n' : false
         }
