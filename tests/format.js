@@ -102,7 +102,8 @@ QUnit.module('Тестируем функцию format', function () {
         const expected = "-1 1 2 10 100 -100 1000 10000 -10000"
         assert.strictEqual(format(input, input.length), expected);
 
-        assert.throws(() => format(input, input.length + 1), Error("incorrect number of cols"));
-        assert.throws(() => format(input, -1), Error("incorrect number of cols"));
+        assert.throws(() => format(input, input.length + 1), Error("incorrect cols"));
+        assert.throws(() => format(input, -1), Error("incorrect cols"));
+        assert.throws(() => format(input, "sad"), Error("incorrect cols"));
     });
 });
