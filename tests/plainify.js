@@ -74,11 +74,11 @@ QUnit.module('Тестируем функцию plainify', function () {
 		};
 
 		const plain4 = {
-			'deep.asd.fgh.jkl.qwe': undefined,
-			'deep.asd.fgh.jkl.1': undefined
+			'a.deep.asd.fgh.jkl.qwe': undefined,
+			'a.deep.asd.fgh.jkl.1': undefined
 		};
 
-		assert.deepEqual(plainify(nested4), plain4);
+		assert.deepEqual(plainify(nested4, "a"), plain4);
 	});
 
 	QUnit.test('plainify выдает ошибку, если входные данные некорректного типа', function (assert) {

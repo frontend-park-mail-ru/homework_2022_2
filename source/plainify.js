@@ -15,7 +15,7 @@
 const plainify = (nested, propertyName = '') => {
 
     const argValidation = (nested, propertyName) => {
-        if (!nested || !Object.prototype.isPrototypeOf(nested) || nested.constructor !== Object || typeof propertyName !== 'string') {
+        if (!nested || !Object.prototype.isPrototypeOf(nested) || nested.constructor !== Object || propertyName.constructor !== String) {
             return false;
         }
         return true;
