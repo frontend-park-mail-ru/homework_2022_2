@@ -1,31 +1,29 @@
 'use strict';
 
 const ARAB_MAPPING = [1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000];
-const ROMAN_MAPPING = ["I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"];
+const ROMAN_MAPPING = ['I', 'IV', 'V', 'IX', 'X', 'XL', 'L', 'XC', 'C', 'CD', 'D', 'CM', 'M'];
 
 /**
  * @author {@link https://github.com/VarenytsiaMykhailo}
  *
  * Converts a number from Roman to Arabic and vice versa.
  *
- * @param {input} input - string of roman or number of arabic.
+ * @param {string|number} input - string of roman or number of arabic.
  * @returns {string|number|undefined} string - in roman representation, number - in arabic representation, undefined - if incorrect input.
+ *
+ * @example
+ *
+ *  let romanResult = roman('1990');
+ *  let arabicResult = roman('MCMIV');
+ *  let arabicResult2 = roman('mmxvii'); // You can use lower case representation
  */
-const roman = input => {
-    let result;
-    if (typeof input == 'string') {
-        if (/^[0-9]+$/.test(input) && !input.toString().startsWith('0')) {
-            result = to_roman(input);
-        } else if (/^[IVXLCDM]+$/i.test(input)) {
-            result = to_arab(input);
-        }
-    } else if (typeof input == 'number' && input !== 0) {
-        if (/^[0-9]+$/.test(input.toString())) {
-            result = to_roman(input);
-        }
+const roman = (input) => {
+    const arabicPatter = /^[0-9]+$/;
+    if (arabicPatter.test(input) && !input.toString().startsWith('0')) {
+        return toRoman(input)
+    } else {
+        return toArab(input)
     }
-
-    return result; // If Incorrect input returns 'undefined'
 }
 
 /**
@@ -34,11 +32,12 @@ const roman = input => {
  * Converts a number from Arabic to Roman.
  *
  * @param {number} arab - in arabic representation.
- * @returns {string} string - in roman representation.
+ * @returns {string|undefined} string - in roman representation, undefined - if incorrect input.
  */
-const to_roman = arab => {
-    if (!arab) {
-        return "";
+const toRoman = (arab) => {
+    const arabicPatter = /^[0-9]+$/;
+    if (!arabicPatter.test(String(arab)) || arab === 0) {
+        return undefined;
     }
     let result = "";
     let n = ARAB_MAPPING.length - 1;
@@ -50,7 +49,7 @@ const to_roman = arab => {
             --n;
         }
     }
-    //console.log(result);
+
     return result;
 }
 
@@ -60,21 +59,26 @@ const to_roman = arab => {
  * Converts a number from Roman to Arabic.
  *
  * @param {string} roman - in roman representation.
- * @returns {number} number - in arabic representation.
+ * @returns {number|undefined} number - in arabic representation, undefined - if incorrect input.
  */
-const to_arab = roman => {
-    let text = roman.toUpperCase();
+const toArab = (roman) => {
+    const romanPattern = /^[IVXLCDM]+$/i;
+    if (!romanPattern.test(roman)) {
+        return undefined;
+    }
+    const text = roman.toUpperCase();
     let result = 0;
     let textStartPos = 0;
     let n = ARAB_MAPPING.length - 1;
     while (n >= 0 && textStartPos < text.length) {
-        if (text.substr(textStartPos, ROMAN_MAPPING[n].length) === ROMAN_MAPPING[n]) {
+        if (text.substring(textStartPos, textStartPos + ROMAN_MAPPING[n].length) === ROMAN_MAPPING[n]) {
             result += ARAB_MAPPING[n];
             textStartPos += ROMAN_MAPPING[n].length;
         } else {
             --n;
         }
     }
-    //console.log(result);
+
     return result;
 }
+
