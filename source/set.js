@@ -10,7 +10,7 @@
  * @throws {TypeError} - выбрасывает исключение при некорректных аргументах
  */
 const set = (obj, path, val) => {
-    if (typeof path !== 'string') {
+    if (!(typeof path === 'string' || path instanceof String)) {
         throw TypeError('Invalid Argument: path is not string');
     }
     if (typeof obj !== 'object' || obj === null) {
