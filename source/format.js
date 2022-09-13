@@ -18,13 +18,7 @@ function colsWidthArr(numbers, colsCount) {
     for(let i = 0; i < colsCount; ++i){
         cols[i] = [];
     }
-    numbers.forEach((el, index) => {
-        numbers[index] = +numbers[index];
-        if (!isFinite(numbers[index])) {
-            throw TypeError("its not a numbers");
-        }
-        cols[index % cols.length].push(numbers[index]);
-    });
+    numbers.forEach((el, index) => cols[index % cols.length].push(numbers[index]));
     return cols.map(col => Math.max(...(col.map(el => String(el).length))));
 }
 
@@ -40,6 +34,10 @@ function colsWidthArr(numbers, colsCount) {
 
 const format = (numbers, cols) => {
     try {
+        numbers = numbers.map(el => +el);
+        if(!numbers.every(el => isFinite(el))){
+            throw TypeError("its not a numbers");
+        }
         let res = "";
         const widths = colsWidthArr(numbers, cols);
         for (let i = 0; i < numbers.length; i += cols) {
