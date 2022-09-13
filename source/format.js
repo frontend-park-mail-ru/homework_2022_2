@@ -15,7 +15,7 @@
  * */
 function colsWidthArr(numbers, colsCount) {
     const cols = new Array(colsCount);
-    for(let i = 0; i < colsCount; ++i){
+    for (let i = 0; i < colsCount; ++i) {
         cols[i] = [];
     }
     numbers.forEach((el, index) => cols[index % cols.length].push(numbers[index]));
@@ -33,22 +33,19 @@ function colsWidthArr(numbers, colsCount) {
  * */
 
 const format = (numbers, cols) => {
-    try {
-        numbers = numbers.map(el => Number(el));
-        if(!numbers.every(el => isFinite(el))){
+    const numbersChecked = numbers.map(el => {
+        let temp = Number(el);
+        if (!isFinite(temp)) {
             throw TypeError("its not a numbers");
         }
-        let res = "";
-        const widths = colsWidthArr(numbers, cols);
-        for (let i = 0; i < numbers.length; i += cols) {
-            for (let j = 0; (j < cols) && (i + j < numbers.length); ++j) {
-                res += (" ".repeat(widths[j] - String(numbers[i + j]).length) + numbers[i + j]);
-                (j < cols - 1 && i + j !== numbers.length - 1) ? res += ' ' :
-                    (j === cols - 1 && i + j !== numbers.length - 1) ? res += '\n' : false;
-            }
-        }
-        return res;
-    } catch (e) {
-        throw e;
-    }
+        return temp;
+    });
+    let res = "";
+    const widths = colsWidthArr(numbersChecked, cols);
+    numbersChecked.forEach((el, index) => {
+        res += (" ".repeat(widths[index % cols] - String(el).length) + el);
+        index < numbersChecked.length - 1 && index % cols < cols - 1 ? res += ' ' :
+            index < numbersChecked.length - 1 && index % cols === cols - 1 ? res += '\n' : false;
+    });
+    return res;
 }
