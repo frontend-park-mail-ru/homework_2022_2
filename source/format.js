@@ -43,12 +43,11 @@ const format = (numbers, cols) => {
     let res = "";
     const widths = colsWidthArr(numbersChecked, cols);
     numbersChecked.forEach((el, index) => {
-        let i = index % cols;
+        const i = index % cols;
         res += String(el).padStart(widths[i]);
-        let endFlag = (index == numbersChecked.length - 1);
         let rowEnd = (i === cols - 1);
-        !endFlag && !rowEnd ? res += ' ' : false;
-        !endFlag && rowEnd ? res += '\n' : false;
+        if (index === numbersChecked.length - 1) { return; }
+        res += rowEnd ? '\n' : ' ';
     });
     return res;
 }
