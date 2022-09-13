@@ -88,4 +88,3 @@ QUnit.module('Checkin input is correctness', function () {
             assert.throws(() => roman(undefined));
         });
 });
-
