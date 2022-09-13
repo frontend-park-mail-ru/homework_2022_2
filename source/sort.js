@@ -33,13 +33,11 @@ const sort = (str) => {
         throw TypeError(`${typeof str}` + ' is not a string.');
     }
 
-    const collator = new Intl.Collator()
-    const words = str.toLowerCase().split(' ').sort();
+    const collator = new Intl.Collator();
+    const words = quickSort(str.toLowerCase().split(' ')).map((word) => {
+        let sortedWord = quickSort(word.split(''), collator.compare).join('');
+        return sortedWord[0].toUpperCase() + sortedWord.slice(1);
+    });
 
-    for (let i = 0; i < words.length; i++) {
-        let word = quickSort(words[i].split(''), collator.compare).join('');
-        words[i] = word[0].toUpperCase() + word.slice(1);
-    }
-
-    return quickSort(words, collator.compare).join(' ')
+    return quickSort(words, collator.compare).join(' ');
 }
