@@ -56,7 +56,7 @@ QUnit.module('Тестируем функцию format', function () {
         const input1 = [0, 1, 2, "str", 100, -100, 1000, 10000];
         assert.throws(() => format(input1, 2), TypeError("its not a numbers"));
 
-        const input2 = [0, 1, 2, [1,2,3,4], 100, -100, 1000, 10000];
+        const input2 = [0, 1, 2, [1, 2, 3, 4], 100, -100, 1000, 10000];
         assert.throws(() => format(input2, 2), TypeError("its not a numbers"));
 
         const input3 = [0, 1, 2, "w11w", 100, -100, 1000, 10000];
@@ -64,7 +64,7 @@ QUnit.module('Тестируем функцию format', function () {
 
         const input4 = [0, 1, 2, "  10  ", 100, -100, 1000, 10000, -10000];
 
-                const expected =
+        const expected =
             '     0     1\n' +
             '     2    10\n' +
             '   100  -100\n' +
@@ -74,5 +74,8 @@ QUnit.module('Тестируем функцию format', function () {
 
         const input5 = [0, 1, 2, "11 1", 100, -100, 1000, 10000];
         assert.throws(() => format(input5, 2), TypeError("its not a numbers"));
+
+        const input6 = [0, 1, 2, "  10  ", "^_^", -100, 1000, 10000, -10000];
+        assert.throws(() => format(input6, 2), TypeError("its not a numbers"));
     });
 });

@@ -34,18 +34,21 @@ function colsWidthArr(numbers, colsCount) {
 
 const format = (numbers, cols) => {
     const numbersChecked = numbers.map(el => {
-        let temp = Number(el);
-        if (!isFinite(temp)) {
+        const num = Number(el);
+        if (!isFinite(num)) {
             throw TypeError("its not a numbers");
         }
-        return temp;
+        return num;
     });
     let res = "";
     const widths = colsWidthArr(numbersChecked, cols);
     numbersChecked.forEach((el, index) => {
-        res += (" ".repeat(widths[index % cols] - String(el).length) + el);
-        index < numbersChecked.length - 1 && index % cols < cols - 1 ? res += ' ' :
-            index < numbersChecked.length - 1 && index % cols === cols - 1 ? res += '\n' : false;
+        let i = index % cols;
+        res += String(el).padStart(widths[i]);
+        let endFlag = (index == numbersChecked.length - 1);
+        let rowEnd = (i === cols - 1);
+        !endFlag && !rowEnd ? res += ' ' : false;
+        !endFlag && rowEnd ? res += '\n' : false;
     });
     return res;
 }
