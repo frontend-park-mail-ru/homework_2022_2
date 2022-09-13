@@ -34,7 +34,7 @@ function colsWidthArr(numbers, colsCount) {
 
 const format = (numbers, cols) => {
     try {
-        numbers = numbers.map(el => +el);
+        numbers = numbers.map(el => Number(el));
         if(!numbers.every(el => isFinite(el))){
             throw TypeError("its not a numbers");
         }
