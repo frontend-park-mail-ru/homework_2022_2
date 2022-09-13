@@ -39,7 +39,7 @@ QUnit.module('Тестируем функцию roman', function () {
     });
 });
 
-    QUnit.module('Custom tests for roman', function () {
+QUnit.module('Custom tests for roman', function () {
 
         QUnit.test('roman(): arabic -> roman', function (assert) {
             assert.strictEqual(roman(494), 'CDXCIV');
