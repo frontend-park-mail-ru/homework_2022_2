@@ -14,19 +14,22 @@
  * @return {Object} массив с длинами столбцов будущей матрицы
  * */
 function colsWidthArr(numbers, colsCount) {
-    let res = [];
-    for (let i = 0; i < colsCount; ++i) {
-        let tempCol = [];
-        for (let j = i; j < numbers.length; j += colsCount) {
-            numbers[j] = +numbers[j];
-            if (!isFinite(numbers[j])) {
-                throw TypeError("its not a numbers");
-            }
-            tempCol.push(numbers[j]);
-        }
-        res[i] = Math.max(...(tempCol.map(el => String(el).length)));
+    const cols = new Array(colsCount);
+    for(let i = 0; i < colsCount; ++i){
+        cols[i] = [];
     }
-    return res;
+    for(let i = 0; i < numbers.length; ++i) {
+        numbers[i] = +numbers[i];
+        if (!isFinite(numbers[i])) {
+            throw TypeError("its not a numbers");
+        }
+        cols[i % colsCount].push(numbers[i]);
+    }
+    const colsWidths = new Array(colsCount);
+    for(let i = 0; i < colsCount; ++i) {
+        colsWidths[i] = Math.max(...(cols[i].map(el => String(el).length)));
+    }
+    return colsWidths;
 }
 
 /**
@@ -39,7 +42,7 @@ function colsWidthArr(numbers, colsCount) {
  * @return {String} - матрица записанная в строку
  * */
 
-let format = (numbers, cols) => {
+const format = (numbers, cols) => {
     try {
         let res = "";
         const widths = colsWidthArr(numbers, cols);
