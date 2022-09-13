@@ -23,9 +23,9 @@ QUnit.module('Тестируем функцию rle', function () {
 	});
 
 	QUnit.test('rle ввод некорректной строки', function (assert) {
-		assert.throws(() => rle(' '), Error, 'Incorrect string');
-		assert.throws(() => rle('+'), Error, 'Incorrect string');
-		assert.throws(() => rle('AAAFSD3W'), Error, 'Incorrect string');
-		assert.throws(() => rle('a'), Error, 'Incorrect string');
+		assert.throws(() => rle(' '), TypeError, 'Incorrect string');
+		assert.throws(() => rle('+'), TypeError, 'Incorrect string');
+		assert.throws(() => rle('AAAFSD3W'), TypeError, 'Incorrect string');
+		assert.throws(() => rle('a'), TypeError, 'Incorrect string');
 	});
 });
