@@ -25,11 +25,7 @@ function colsWidthArr(numbers, colsCount) {
         }
         cols[i % colsCount].push(numbers[i]);
     }
-    const colsWidths = new Array(colsCount);
-    for(let i = 0; i < colsCount; ++i) {
-        colsWidths[i] = Math.max(...(cols[i].map(el => String(el).length)));
-    }
-    return colsWidths;
+    return cols.map(col => Math.max(...(col.map(el => String(el).length))));
 }
 
 /**
