@@ -45,8 +45,8 @@ const format = (numbers, cols) => {
     const widths = colsWidthArr(numbersChecked, cols);
     numbersChecked.forEach((el, index) => {
         const colIndex = index % cols;
-        res += String(el).padStart(widths[i]);
-        const rowEnd = (i === cols - 1);
+        res += String(el).padStart(widths[colIndex]);
+        const rowEnd = (colIndex === cols - 1);
         if (index === numbersChecked.length - 1) return;
         res += rowEnd ? '\n' : ' ';
     });
