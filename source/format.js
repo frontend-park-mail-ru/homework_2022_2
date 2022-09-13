@@ -33,7 +33,7 @@ function colsWidthArr(numbers, colsCount) {
  * */
 
 const format = (numbers, cols) => {
-    if(cols > numbers.length || cols < 1){throw Error("incorrect number of cols");}
+    if (cols > numbers.length || cols < 1) throw Error("incorrect number of cols");
     const numbersChecked = numbers.map(el => {
         const num = Number(el);
         if (!isFinite(num)) {
@@ -46,8 +46,8 @@ const format = (numbers, cols) => {
     numbersChecked.forEach((el, index) => {
         const i = index % cols;
         res += String(el).padStart(widths[i]);
-        let rowEnd = (i === cols - 1);
-        if (index === numbersChecked.length - 1) { return; }
+        const rowEnd = (i === cols - 1);
+        if (index === numbersChecked.length - 1) return;
         res += rowEnd ? '\n' : ' ';
     });
     return res;
