@@ -18,13 +18,13 @@ function colsWidthArr(numbers, colsCount) {
     for(let i = 0; i < colsCount; ++i){
         cols[i] = [];
     }
-    for(let i = 0; i < numbers.length; ++i) {
-        numbers[i] = +numbers[i];
-        if (!isFinite(numbers[i])) {
+    numbers.forEach((el, index) => {
+        numbers[index] = +numbers[index];
+        if (!isFinite(numbers[index])) {
             throw TypeError("its not a numbers");
         }
-        cols[i % colsCount].push(numbers[i]);
-    }
+        cols[index % cols.length].push(numbers[index]);
+    });
     return cols.map(col => Math.max(...(col.map(el => String(el).length))));
 }
 
