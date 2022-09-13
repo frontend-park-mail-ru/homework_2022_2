@@ -1,7 +1,7 @@
 'use strict';
 
 QUnit.module('Тестируем функцию roman', function () {
-    QUnit.test('roman правильно переводит из римской системы счисления', function (assert) {
+        QUnit.test('roman правильно переводит из римской системы счисления', function (assert) {
                 assert.strictEqual(roman('I'), 1);
                 assert.strictEqual(roman('V'), 5);
                 assert.strictEqual(roman('M'), 1000);
