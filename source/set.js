@@ -5,7 +5,7 @@
  *
  * @param {object} obj - исходный объект
  * @param {string} path - путь к свойству
- * @param val {(number|string|Array|Object)}- устанавливаемое значение
+ * @param val {(number|string|array|object)}- устанавливаемое значение
  * @returns {object} - измененный объект
  * @throws {TypeError} - выбрасывает исключение при некорректных аргументах
  */
