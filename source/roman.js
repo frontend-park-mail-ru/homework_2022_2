@@ -13,21 +13,21 @@ const ROMAN_MAPPING = ['I', 'IV', 'V', 'IX', 'X', 'XL', 'L', 'XC', 'C', 'CD', 'D
  * @throws {TypeError} - if incorrect input.
  *
  * @example
- *
- *  let romanResult = roman('1990');
- *  let arabicResult = roman('MCMIV');
- *  let arabicResult2 = roman('mmxvii'); // You can use lower case representation
+ * // returns 'MCMXC'
+ * roman('1990')
+ * @example
+ * // returns 1904
+ * roman('MCMIV')
+ * @example <caption>You can use lower case representation.</caption>
+ * // returns 2017
+ * roman('mmxvii')
  */
 const roman = (input) => {
-    try {
-        if (Number.isInteger(Number(input)) && !input.toString().startsWith('0')) {
-            return toRoman(Number(input));
-        } else {
-            return toArab(input);
-        }
-    } catch (e) {
-        throw e;
-    }
+    const inputNumber = Number(input);
+    return Number.isInteger(inputNumber) ? toRoman(inputNumber) :
+        (typeof input === 'string' || input instanceof String) ? toArab(input) : function () {
+            throw TypeError('Incorrect input data.')
+        }();
 }
 
 /**
