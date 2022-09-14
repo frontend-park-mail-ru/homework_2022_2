@@ -38,25 +38,50 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.strictEqual(roman('2017'), 'MMXVII');
 	});
 	
-	QUnit.test('roman должен вернуть undefined, если передано некорректное представление в римской системе счисления', function (assert) {
-		assert.strictEqual(roman('ZXCVBN'), undefined);
-		assert.strictEqual(roman('QWERTY'), undefined);
+	QUnit.test('roman должен вернуть TypeError, если передано некорректное представление в римской системе счисления', (assert) => {
+		assert.throws(function() {
+			roman('ZXCVBN');
+		}, TypeError('Incorrect input data.'));
+		assert.throws(function() {
+			roman('QWERTY');
+		}, TypeError('Incorrect input data.'));
 	});
 	
-	QUnit.test('roman должен вернуть undefined, если передано отрицательное число, или 0 или число с плавающей точкой', function (assert) {
-		assert.strictEqual(roman(0), undefined);
-		assert.strictEqual(roman('0'), undefined);
-
-		assert.strictEqual(roman(-777), undefined);
-		assert.strictEqual(roman('-777'), undefined);
+	QUnit.test('roman должен вернуть TypeError, если передано отрицательное число, или 0 или число с плавающей точкой', (assert) => {
+		assert.throws(function() {
+			roman(0);
+		}, TypeError('Incorrect input data.'));
+		assert.throws(function() {
+			roman('0');
+		}, TypeError('Incorrect input data.'));
 		
-		assert.strictEqual(roman(-333), undefined);
-		assert.strictEqual(roman('-333'), undefined);
+		assert.throws(function() {
+			roman(-777);
+		}, TypeError('Incorrect input data.'));
+		assert.throws(function() {
+			roman('-777');
+		}, TypeError('Incorrect input data.'));
 		
-		assert.strictEqual(roman(-1.678), undefined);
-		assert.strictEqual(roman('-1.678'), undefined)
+		assert.throws(function() {
+			roman(-333);
+		}, TypeError('Incorrect input data.'));
+		assert.throws(function() {
+			roman('-333');
+		}, TypeError('Incorrect input data.'));
 		
-		assert.strictEqual(roman(1.678), undefined);
-		assert.strictEqual(roman('1.678'), undefined);
+		assert.throws(function() {
+			roman(-1.678);
+		}, TypeError('Incorrect input data.'));
+		assert.throws(function() {
+			roman('-1.678');
+		}, TypeError('Incorrect input data.'));
+		
+		
+		assert.throws(function() {
+			roman(1.678);
+		}, TypeError('Incorrect input data.'));
+		assert.throws(function() {
+			roman('1.678');
+		}, TypeError('Incorrect input data.'));
 	});
 });

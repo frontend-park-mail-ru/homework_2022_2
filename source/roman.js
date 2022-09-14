@@ -9,7 +9,8 @@ const ROMAN_MAPPING = ['I', 'IV', 'V', 'IX', 'X', 'XL', 'L', 'XC', 'C', 'CD', 'D
  * Converts a number from Roman to Arabic and vice versa.
  *
  * @param {string|number} input - string of roman or number of arabic.
- * @returns {string|number|undefined} string - in roman representation, number - in arabic representation, undefined - if incorrect input.
+ * @returns {string|number} string - in roman representation, number - in arabic representation.
+ * @throws {TypeError} - if incorrect input.
  *
  * @example
  *
@@ -18,11 +19,14 @@ const ROMAN_MAPPING = ['I', 'IV', 'V', 'IX', 'X', 'XL', 'L', 'XC', 'C', 'CD', 'D
  *  let arabicResult2 = roman('mmxvii'); // You can use lower case representation
  */
 const roman = (input) => {
-    const arabicPatter = /^[0-9]+$/;
-    if (arabicPatter.test(input) && !input.toString().startsWith('0')) {
-        return toRoman(input)
-    } else {
-        return toArab(input)
+    try {
+        if (Number.isInteger(Number(input)) && !input.toString().startsWith('0')) {
+            return toRoman(Number(input));
+        } else {
+            return toArab(input);
+        }
+    } catch (e) {
+        throw e;
     }
 }
 
@@ -32,12 +36,12 @@ const roman = (input) => {
  * Converts a number from Arabic to Roman.
  *
  * @param {number} arab - in arabic representation.
- * @returns {string|undefined} string - in roman representation, undefined - if incorrect input.
+ * @returns {string} string - in roman representation.
+ * @throws {TypeError} - if incorrect input.
  */
 const toRoman = (arab) => {
-    const arabicPatter = /^[0-9]+$/;
-    if (!arabicPatter.test(String(arab)) || arab === 0) {
-        return undefined;
+    if (!Number.isInteger(arab) || arab <= 0) {
+        throw TypeError('Incorrect input data.');
     }
     let result = "";
     let n = ARAB_MAPPING.length - 1;
@@ -59,12 +63,13 @@ const toRoman = (arab) => {
  * Converts a number from Roman to Arabic.
  *
  * @param {string} roman - in roman representation.
- * @returns {number|undefined} number - in arabic representation, undefined - if incorrect input.
+ * @returns {number} number - in arabic representation.
+ * @throws {TypeError} - if incorrect input.
  */
 const toArab = (roman) => {
     const romanPattern = /^[IVXLCDM]+$/i;
     if (!romanPattern.test(roman)) {
-        return undefined;
+        throw TypeError('Incorrect input data.');
     }
     const text = roman.toUpperCase();
     let result = 0;
