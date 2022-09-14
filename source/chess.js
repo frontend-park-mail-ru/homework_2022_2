@@ -7,20 +7,18 @@
 * @throws {TypeError} аргумент неверного типа
 */
 const chess = size => {
-    let n = Number(size);
-    if (!Number.isInteger(n)) {
+    const numericSize = Number(size);
+    if (!Number.isInteger(numericSize)) {
         throw TypeError('argument is not a natural number');
     }
-    if (size < 2) {
+    if (numericSize < 2) {
         return null;
     }
 
-    let chessBoard = '';
-    let evenLine = ''.padStart(n, '* ') + '\n';
-    let oddLine = ''.padStart(n, ' *') + '\n';
-    for (let i = 0; i < n; i++) {
-        chessBoard += i % 2 == 0 ? evenLine : oddLine;
-    }
+    let evenLine = '\n'.padStart(numericSize + 1, '* ');
+    let oddLine = '\n'.padStart(numericSize + 1, ' *');
+    let chessLine = evenLine + oddLine;
+    let chessBoard = chessLine.repeat(numericSize / 2) + evenLine.repeat(numericSize % 2);
 
     return chessBoard;
 }
