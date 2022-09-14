@@ -60,16 +60,21 @@ QUnit.module('Тестируем функцию tree', function () {
 	});
 
 	QUnit.test('Высота ёлочки может быть только числовым значением', function (assert) {
-		assert.throws(() => tree('высокая'), TypeError('Высота ёлочки может быть только числовым значением'));
+		assert.throws(() => tree('высокая'), TypeError('Очень странная высота для ёлочки'));
 	});
 
 	QUnit.test('Высота ёлочки должна быть целым числом', function (assert) {
-		assert.throws(() => tree(6.5), TypeError('Высота ёлочки должна быть целым числом'));
+		assert.throws(() => tree(6.5), TypeError('Очень странная высота для ёлочки'));
 	})
 
 	QUnit.test('Высота ёлочки не может равняться бесконечности', function (assert) {
-		assert.throws(() => tree(Infinity), TypeError('Высота ёлочки не может равняться бесконечности'));
+		assert.throws(() => tree(Infinity), TypeError('Очень странная высота для ёлочки'));
 	})
+
+	QUnit.test('Высота ёлочки не может быть пустой', function (assert) {
+		assert.throws(() => tree(NaN), TypeError('Очень странная высота для ёлочки'));
+		assert.throws(() => tree(null), TypeError('Очень странная высота для ёлочки'));
+	});
 
 
 });

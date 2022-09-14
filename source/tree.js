@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * функция рисует ASCII-ёлочку заданной высоты из звёздочек
@@ -14,26 +14,31 @@
  */
 
 
-function* generateSequence(start, end, element) {
-  for (let i = start; i <= end; i++) yield element;
+function* generateSequence(end, element) {
+  for (let i = 0; i <= end - 1; i++) yield element;
 }
 
-function* generateTree (height, row, element_1, element_2) {
+function* generateLine (height, row, element) {
   
-  // printing spaces
-  yield* generateSequence(1, height - 1 - row, element_1);
+  yield* generateSequence(height - 1 - row, ' ');
 
-  //printing stars
-  yield* generateSequence(1, 2 * row - 1, element_2);
+  yield* generateSequence(2 * row - 1, element);
 
-  //printing spaces
-  yield* generateSequence(1, height - 1 - row, element_1);
+  yield* generateSequence(height - 1 - row, ' ');
 
   yield "\n";
-  
 }
 
-function tree (n) {
+let generateTrunk = (height) => {
+
+  let string = '';
+  for (let code of generateLine(height, 1, '|')) {
+    string += code; 
+  }
+  return string;
+}
+
+let tree = (n) => {
 
 
   const height = Number(n);
@@ -42,36 +47,20 @@ function tree (n) {
     return null;
   }
 
-  if (!Number(height)) {
-    throw new TypeError('Высота ёлочки может быть только числовым значением')
+  if ((isNaN(height)) || (!height) || (!Number.isInteger(height)) || (!isFinite(height))) {
+    throw new TypeError('Очень странная высота для ёлочки');
   }
-
-  if (!isFinite(height)) {
-    throw new TypeError('Высота ёлочки не может равняться бесконечности')
-  }
-
-  if (!Number.isInteger(height)) {
-    throw new TypeError('Высота ёлочки должна быть целым числом')
-  }
-
-
-
 
   let string = "";
 
-  for (let row = 1; row <= height; row++) {
+  for (let row = 1; row < height; row++) {
 
-    if (row == height) {
-      for (let code of generateTree(height, 1, ' ', '|')) {
-        string += code;
-      }
-      break;
-    }
-
-    for (let code of generateTree(height, row, ' ', '*')) {
+    for (let code of generateLine(height, row, '*')) {
       string += code;
     }
   }
+
+  string += generateTrunk(height);
 
   return string;
 }
