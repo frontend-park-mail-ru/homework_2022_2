@@ -34,10 +34,10 @@ QUnit.module('Тестируем функцию sort', function () {
 
 	QUnit.test('Функция обрабатыет входные данные', function (assert) {
 		assert.throws(function () {
-			sort(228)
+			sort(228);
 		}, TypeError, 'sort(\'228\') throws TypeError');
 		assert.throws(function () {
-			sort(sort(228))
+			sort(sort(228));
 		}, TypeError, 'sort(sort(\'228\')) throws TypeError');
 	})
 
