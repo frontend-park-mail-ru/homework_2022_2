@@ -99,14 +99,14 @@ QUnit.module('Тестируем функцию set', function () {
 		const object1 = {
 			foo: [1, 2, 3],
 			bar: [
-				{foobar: '42'},
+				{foobar: '42'}
 			]
 		};
 
 		const new1 = {
 			foo: null,
 			bar: [
-				{foobar: '42'},
+				{foobar: '42'}
 			]
 		};
 
@@ -126,7 +126,7 @@ QUnit.module('Тестируем функцию set', function () {
 
 	QUnit.test('set бросает ошибку при некорректном типе аргументов: val undefined', function (assert) {
 		const object1 = {};
-		assert.throws(() => set(object1, '.path',), TypeError('Invalid Argument: val is undefined'));
+		assert.throws(() => set(object1, '.path'), TypeError('Invalid Argument: val is undefined'));
 	});
 
 
@@ -145,7 +145,7 @@ QUnit.module('Тестируем функцию set', function () {
 			key1: 'val1',
 			key2: 'val2',
 			key3: {
-				key1: 'val3',
+				key1: 'val3'
 			}
 		}
 
@@ -156,7 +156,7 @@ QUnit.module('Тестируем функцию set', function () {
 				key1: {
 					smth: {}
 				}
-			},
+			}
 
 		}
 		assert.deepEqual(set(obj, '.key3.key1.smth', {}), new1);
@@ -168,7 +168,7 @@ QUnit.module('Тестируем функцию set', function () {
 			key1: 'val1',
 			key2: 'val2',
 			key3: {
-				key1: 'val3',
+				key1: 'val3'
 			}
 		}
 		assert.throws(() => set(obj, '.', {}), TypeError('Incorrect Path'));

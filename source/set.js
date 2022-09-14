@@ -3,10 +3,10 @@
 /**
  * Устанавливает значение  вложенного свойства объекта по пути к нему
  *
- * @param {Object} obj - исходный объект
+ * @param {object} obj - исходный объект
  * @param {string} path - путь к свойству
  * @param val {(number|string|Array|Object)}- устанавливаемое значение
- * @returns {Object} - измененный объект
+ * @returns {object} - измененный объект
  * @throws {TypeError} - выбрасывает исключение при некорректных аргументах
  */
 const set = (obj, path, val) => {
@@ -16,7 +16,7 @@ const set = (obj, path, val) => {
     if (typeof obj !== 'object' || obj === null) {
         throw TypeError('Invalid Argument: obj is not an object');
     }
-    if (typeof val === 'undefined') {
+    if (val === undefined) {
         throw TypeError('Invalid Argument: val is undefined');
     }
     if (!path.includes('.')) {
