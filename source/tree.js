@@ -61,7 +61,7 @@ function tree (n) {
   for (let row = 1; row <= height; row++) {
 
     if (row == height) {
-      for (let code of generateTree(height, 1, " ", '|')) {
+      for (let code of generateTree(height, 1, ' ', '|')) {
         string += code;
       }
       break;
