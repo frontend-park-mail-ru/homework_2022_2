@@ -24,7 +24,7 @@ function partition(dataArray, leftIndex, rightIndex, keyArray) {
         }
     }
 
-    [dataArray[pivotIndex], dataArray[rightIndex]] = [dataArray[rightIndex], dataArray[pivotIndex]]
+    [dataArray[pivotIndex], dataArray[rightIndex]] = [dataArray[rightIndex], dataArray[pivotIndex]];
     return pivotIndex;
 }
 
@@ -55,7 +55,7 @@ function sorting(dataArray, keyArray) {
     }
 
     const copyToArray = dataArray.concat();
-    let copyToKeys = keyArray.concat();
+    const copyToKeys = keyArray.concat();
     let keyStack = [];
     
     keyStack.push(copyToKeys.shift());
@@ -65,10 +65,10 @@ function sorting(dataArray, keyArray) {
         stack.push(0);
         stack.push(dataArray.length - 1);
         while (stack[stack.length - 1] >= 0) {
-            let end = stack.pop();
-            let start = stack.pop();
+            const end = stack.pop();
+            const start = stack.pop();
 
-            let pivotIndex = partition(copyToArray, start, end, keyStack);
+            const pivotIndex = partition(copyToArray, start, end, keyStack);
 
             if (pivotIndex - 1 > start) {
                 stack.push(start);
