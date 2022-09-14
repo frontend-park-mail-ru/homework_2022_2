@@ -60,18 +60,15 @@ QUnit.module('Тестируем функцию tree', function () {
 	});
 
 	QUnit.test('Высота ёлочки может быть только числовым значением', function (assert) {
-		assert.strictEqual(tree('высокая'), null);
-		assert.strictEqual(tree('small'), null);
+		assert.throws(() => tree('высокая'), TypeError('Высота ёлочки может быть только числовым значением'));
 	});
 
-	QUnit.test('Высота ёлочки должна быть натуральным числом', function (assert) {
-		assert.strictEqual(tree(4.6), null);
-		assert.strictEqual(tree('4.6'), null);
+	QUnit.test('Высота ёлочки должна быть целым числом', function (assert) {
+		assert.throws(() => tree(6.5), TypeError('Высота ёлочки должна быть целым числом'));
 	})
 
 	QUnit.test('Высота ёлочки не может равняться бесконечности', function (assert) {
-		assert.strictEqual(tree(Infinity), null);
-		assert.strictEqual(tree('Infinity'), null);
+		assert.throws(() => tree(Infinity), TypeError('Высота ёлочки не может равняться бесконечности'));
 	})
 
 

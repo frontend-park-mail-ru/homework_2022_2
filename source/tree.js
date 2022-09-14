@@ -3,74 +3,74 @@
 /**
  * функция рисует ASCII-ёлочку заданной высоты из звёздочек
  * @param {number} height - высота ёлочки
- * @returns {String} | {null}
+ * @returns {String | null}
  * @example
  * tree(4) return
- *    '  *  \n'
-			' *** \n'
-			'*****\n'
-			'  |  \n'
+ *  '  *  \n'
+		' *** \n'
+		'*****\n'
+		'  |  \n'
  */
-
 
 
 function* generateSequence(start, end, element) {
   for (let i = start; i <= end; i++) yield element;
 }
 
-function* generateTree (height, row) {
+function* generateTree (height, row, element_1, element_2) {
   
   // printing spaces
-  yield* generateSequence(1, height - 1 - row, " ");
+  yield* generateSequence(1, height - 1 - row, element_1);
 
   //printing stars
-  yield* generateSequence(1, 2 * row - 1, "*");
+  yield* generateSequence(1, 2 * row - 1, element_2);
 
   //printing spaces
-  yield* generateSequence(1, height - 1 - row, " ");
+  yield* generateSequence(1, height - 1 - row, element_1);
 
   yield "\n";
   
 }
 
-function tree (height) {
+function tree (n) {
+
+
+  const height = Number(n);
+
+  if (height < 3 ) {
+    return null;
+  }
+
+  if (!Number(height)) {
+    throw new TypeError('Высота ёлочки может быть только числовым значением')
+  }
+
+  if (!isFinite(height)) {
+    throw new TypeError('Высота ёлочки не может равняться бесконечности')
+  }
+
+  if (!Number.isInteger(height)) {
+    throw new TypeError('Высота ёлочки должна быть целым числом')
+  }
+
+
+
+
   let string = "";
 
-  for (let row = 1; row <= height - 1; row++) {
+  for (let row = 1; row <= height; row++) {
 
-    for(let code of generateTree(height, row)) {
+    if (row == height) {
+      for (let code of generateTree(height, 1, " ", '|')) {
+        string += code;
+      }
+      break;
+    }
+
+    for (let code of generateTree(height, row, ' ', '*')) {
       string += code;
     }
   }
+
   return string;
 }
-
-
-
-// function tree (height) {
-//   if (height < 3 || height % 1 != 0 || height == Infinity) {
-//     return null;
-//   }
-//   let string = "";
-//   // External loop
-//   for (let i = 1; i <= height - 1; i++) {
-//     // printing spaces
-//     for (let j = 1; j <= height - 1 - i; j++) {
-//       string += " ";
-//     }
-//     // printing star
-//     for (let k = 0; k < 2 * i - 1; k++) {
-//       string += "*";
-//     }
-
-//     // printing spaces second time
-//     for (let j = 1; j <= height - 1 - i; j++) {
-//       string += " ";
-//     }
-//     string += "\n";
-//   }
-
-//   string += ' '.repeat(height - 2) + "|" + ' '.repeat(height - 2) + "\n";
-
-//   return string;
-// }
