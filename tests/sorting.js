@@ -176,8 +176,8 @@ QUnit.module('Тестируем функцию sorting', function () {
 			{ prop1: 3, id: '1', name: "Vanya" },
 			{ prop1: 3, id: '2', name: "Valya" },
 			{ prop1: 1, id: '1', name: "Vasya" },
-			{ prop1: 1, id: '2', name: "Ann" },
-			{ prop1: 4, id: '1', name: "Ann" },
+			{ prop1: 4, id: '2', name: "Ann" },
+			{ prop1: 1, id: '1', name: "Ann" },
 			{ prop1: 4, id: '2', name: "Ben" },
 			{ prop1: 2, id: '1', name: "Bob" },
 			{ prop1: 2, id: '2', name: "Serafima" }
@@ -185,8 +185,8 @@ QUnit.module('Тестируем функцию sorting', function () {
 		const actual = sorting(initial, ['name', 'prop1', 'id']);
 
 		const expected = [
-			{ prop1: 1, id: '2', name: 'Ann' },
-			{ prop1: 4, id: '1', name: 'Ann' },
+			{ prop1: 1, id: '1', name: 'Ann' },
+			{ prop1: 4, id: '2', name: 'Ann' },
 			{ prop1: 4, id: '2', name: 'Ben' },
 			{ prop1: 2, id: '1', name: 'Bob' },
 			{ prop1: 2, id: '2', name: 'Serafima' },
