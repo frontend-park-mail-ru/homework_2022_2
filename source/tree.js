@@ -6,6 +6,7 @@
  * @returns {String | null}
  * @example
  * tree(4) return
+ * 
  *  '  *  \n'
 		' *** \n'
 		'*****\n'
