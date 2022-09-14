@@ -7,7 +7,7 @@
  * @example
  * tree(4) return
  * 
- * '  *  \n'
+   '  *  \n'
 	 ' *** \n'
 	 '*****\n'
 	 '  |  \n'
