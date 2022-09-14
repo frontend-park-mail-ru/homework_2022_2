@@ -15,10 +15,8 @@ const chess = size => {
         return null;
     }
 
-    let evenLine = '\n'.padStart(numericSize + 1, '* ');
-    let oddLine = '\n'.padStart(numericSize + 1, ' *');
-    let chessLine = evenLine + oddLine;
-    let chessBoard = chessLine.repeat(numericSize / 2) + evenLine.repeat(numericSize % 2);
-
-    return chessBoard;
+    const evenLine = '\n'.padStart(numericSize + 1, '* ');
+    const oddLine = '\n'.padStart(numericSize + 1, ' *');
+    const chessLine = evenLine + oddLine;
+    return chessLine.repeat(numericSize / 2) + evenLine.repeat(numericSize % 2);
 }
