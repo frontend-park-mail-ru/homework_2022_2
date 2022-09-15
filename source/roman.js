@@ -28,7 +28,7 @@ const roman = (input) => {
         throw TypeError('Incorrect input data. Expected integer or string.');
     }
 
-    return Number.isInteger(inputNumber) ? toRoman(inputNumber) : toArab(input);
+    return inputNumber || inputNumber >= 0 ? toRoman(inputNumber) : toArab(input);
 }
 
 /**
@@ -44,7 +44,7 @@ const toRoman = (arab) => {
     if (!Number.isInteger(arab) || arab <= 0) {
         throw TypeError('Incorrect input data. Expected integer > 0.');
     }
-    let result = "";
+    let result = '';
     let n = ARAB_MAPPING.length - 1;
     while (arab > 0) {
         if (arab >= ARAB_MAPPING[n]) {

@@ -76,7 +76,7 @@ QUnit.module('Тестируем функцию roman', function () {
 		}, TypeError('Incorrect input data. Expected integer or string.'));
 		assert.throws(function() {
 			roman('-1.678');
-		}, TypeError('Incorrect input data. Expected string of chars: "I", "V", "X", "L", "C", "D", "M" of upper or lower case.'));
+		}, TypeError('Incorrect input data. Expected integer > 0.'));
 		
 		
 		assert.throws(function() {
@@ -84,7 +84,7 @@ QUnit.module('Тестируем функцию roman', function () {
 		}, TypeError('Incorrect input data. Expected integer or string.'));
 		assert.throws(function() {
 			roman('1.678');
-		}, TypeError('Incorrect input data. Expected string of chars: "I", "V", "X", "L", "C", "D", "M" of upper or lower case.'));
+		}, TypeError('Incorrect input data. Expected integer > 0.'));
 	});
 	
 	QUnit.test('roman должен вернуть TypeError, если переданы неверные типы данных', (assert) => {
