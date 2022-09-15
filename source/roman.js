@@ -24,12 +24,11 @@ const ROMAN_MAPPING = ['I', 'IV', 'V', 'IX', 'X', 'XL', 'L', 'XC', 'C', 'CD', 'D
  */
 const roman = (input) => {
     const inputNumber = Number(input);
-    const isInteger = Number.isInteger(inputNumber);
-    if (!(isInteger || (typeof input === 'string' || input instanceof String))) {
+    if (!(Number.isInteger(input) || (typeof input === 'string' || input instanceof String))) {
         throw TypeError('Incorrect input data. Expected integer or string.');
     }
 
-    return isInteger ? toRoman(inputNumber) : toArab(input);
+    return Number.isInteger(inputNumber) ? toRoman(inputNumber) : toArab(input);
 }
 
 /**

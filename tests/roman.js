@@ -1,7 +1,7 @@
 'use strict';
 
 QUnit.module('Тестируем функцию roman', function () {
-	QUnit.test('roman правильно переводит из римской системы счисления', function (assert) {
+	QUnit.test('roman правильно переводит из римской системы счисления', (assert) => {
 		assert.strictEqual(roman('I'), 1);
 		assert.strictEqual(roman('V'), 5);
 		assert.strictEqual(roman('M'), 1000);
@@ -17,7 +17,7 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.strictEqual(roman('mmxvii'), 2017);
 	});
 
-	QUnit.test('roman правильно переводит из десятичной системы счисления', function (assert) {
+	QUnit.test('roman правильно переводит из десятичной системы счисления', (assert) => {
 		assert.strictEqual(roman(1), 'I');
 		assert.strictEqual(roman(5), 'V');
 		assert.strictEqual(roman(1000), 'M');
@@ -32,7 +32,7 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.strictEqual(roman(2017), 'MMXVII');
 	});
 
-	QUnit.test('roman правильно определяет, что было передано на вход', function (assert) {
+	QUnit.test('roman правильно определяет, что было передано на вход', (assert) => {
 		assert.strictEqual(roman('1904'), 'MCMIV');
 		assert.strictEqual(roman('1990'), 'MCMXC');
 		assert.strictEqual(roman('2017'), 'MMXVII');
@@ -85,5 +85,23 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.throws(function() {
 			roman('1.678');
 		}, TypeError('Incorrect input data. Expected string of chars: "I", "V", "X", "L", "C", "D", "M" of upper or lower case.'));
+	});
+	
+	QUnit.test('roman должен вернуть TypeError, если переданы неверные типы данных', (assert) => {
+		assert.throws(function() {
+			roman(['MM', 'IVV', 'C']);
+		}, TypeError('Incorrect input data. Expected integer or string.'));
+		assert.throws(function() {
+			roman(true);
+		}, TypeError('Incorrect input data. Expected integer or string.'));
+		assert.throws(function() {
+			roman(null);
+		}, TypeError('Incorrect input data. Expected integer or string.'));
+		assert.throws(function() {
+			roman(NaN);
+		}, TypeError('Incorrect input data. Expected integer or string.'));
+		assert.throws(function() {
+			roman(undefined);
+		}, TypeError('Incorrect input data. Expected integer or string.'));
 	});
 });
