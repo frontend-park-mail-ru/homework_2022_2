@@ -24,10 +24,12 @@ const ROMAN_MAPPING = ['I', 'IV', 'V', 'IX', 'X', 'XL', 'L', 'XC', 'C', 'CD', 'D
  */
 const roman = (input) => {
     const inputNumber = Number(input);
-    return Number.isInteger(inputNumber) ? toRoman(inputNumber) :
-        (typeof input === 'string' || input instanceof String) ? toArab(input) : function () {
-            throw TypeError('Incorrect input data.')
-        }();
+    const isInteger = Number.isInteger(inputNumber);
+    if (!(isInteger || (typeof input === 'string' || input instanceof String))) {
+        throw TypeError('Incorrect input data. Expected integer or string.');
+    }
+
+    return isInteger ? toRoman(inputNumber) : toArab(input);
 }
 
 /**
@@ -41,7 +43,7 @@ const roman = (input) => {
  */
 const toRoman = (arab) => {
     if (!Number.isInteger(arab) || arab <= 0) {
-        throw TypeError('Incorrect input data.');
+        throw TypeError('Incorrect input data. Expected integer > 0.');
     }
     let result = "";
     let n = ARAB_MAPPING.length - 1;
@@ -69,7 +71,7 @@ const toRoman = (arab) => {
 const toArab = (roman) => {
     const romanPattern = /^[IVXLCDM]+$/i;
     if (!romanPattern.test(roman)) {
-        throw TypeError('Incorrect input data.');
+        throw TypeError('Incorrect input data. Expected string of chars: "I", "V", "X", "L", "C", "D", "M" of upper or lower case.');
     }
     const text = roman.toUpperCase();
     let result = 0;
@@ -86,4 +88,5 @@ const toArab = (roman) => {
 
     return result;
 }
+
 

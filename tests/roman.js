@@ -36,52 +36,54 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.strictEqual(roman('1904'), 'MCMIV');
 		assert.strictEqual(roman('1990'), 'MCMXC');
 		assert.strictEqual(roman('2017'), 'MMXVII');
+		assert.strictEqual(roman('10000'), 'MMMMMMMMMM');
+		assert.strictEqual(roman('12345'), 'MMMMMMMMMMMMCCCXLV');
 	});
 	
 	QUnit.test('roman должен вернуть TypeError, если передано некорректное представление в римской системе счисления', (assert) => {
 		assert.throws(function() {
 			roman('ZXCVBN');
-		}, TypeError('Incorrect input data.'));
+		}, TypeError('Incorrect input data. Expected string of chars: "I", "V", "X", "L", "C", "D", "M" of upper or lower case.'));
 		assert.throws(function() {
 			roman('QWERTY');
-		}, TypeError('Incorrect input data.'));
+		}, TypeError('Incorrect input data. Expected string of chars: "I", "V", "X", "L", "C", "D", "M" of upper or lower case.'));
 	});
 	
 	QUnit.test('roman должен вернуть TypeError, если передано отрицательное число, или 0 или число с плавающей точкой', (assert) => {
 		assert.throws(function() {
 			roman(0);
-		}, TypeError('Incorrect input data.'));
+		}, TypeError('Incorrect input data. Expected integer > 0.'));
 		assert.throws(function() {
 			roman('0');
-		}, TypeError('Incorrect input data.'));
+		}, TypeError('Incorrect input data. Expected integer > 0.'));
 		
 		assert.throws(function() {
 			roman(-777);
-		}, TypeError('Incorrect input data.'));
+		}, TypeError('Incorrect input data. Expected integer > 0.'));
 		assert.throws(function() {
 			roman('-777');
-		}, TypeError('Incorrect input data.'));
+		}, TypeError('Incorrect input data. Expected integer > 0.'));
 		
 		assert.throws(function() {
 			roman(-333);
-		}, TypeError('Incorrect input data.'));
+		}, TypeError('Incorrect input data. Expected integer > 0.'));
 		assert.throws(function() {
 			roman('-333');
-		}, TypeError('Incorrect input data.'));
+		}, TypeError('Incorrect input data. Expected integer > 0.'));
 		
 		assert.throws(function() {
 			roman(-1.678);
-		}, TypeError('Incorrect input data.'));
+		}, TypeError('Incorrect input data. Expected integer or string.'));
 		assert.throws(function() {
 			roman('-1.678');
-		}, TypeError('Incorrect input data.'));
+		}, TypeError('Incorrect input data. Expected string of chars: "I", "V", "X", "L", "C", "D", "M" of upper or lower case.'));
 		
 		
 		assert.throws(function() {
 			roman(1.678);
-		}, TypeError('Incorrect input data.'));
+		}, TypeError('Incorrect input data. Expected integer or string.'));
 		assert.throws(function() {
 			roman('1.678');
-		}, TypeError('Incorrect input data.'));
+		}, TypeError('Incorrect input data. Expected string of chars: "I", "V", "X", "L", "C", "D", "M" of upper or lower case.'));
 	});
 });
