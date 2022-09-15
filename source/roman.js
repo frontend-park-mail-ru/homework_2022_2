@@ -70,7 +70,9 @@ const toRoman = (arab) => {
 const toArab = (roman) => {
     const romanPattern = /^[IVXLCDM]+$/i;
     if (!romanPattern.test(roman)) {
-        throw TypeError('Incorrect input data. Expected string of chars: "I", "V", "X", "L", "C", "D", "M" of upper or lower case.');
+        throw TypeError('Incorrect input data. Expected string of chars: ' +
+            '"I", "V", "X", "L", "C", "D", "M" of upper or lower case.'
+        );
     }
     const text = roman.toUpperCase();
     let result = 0;
