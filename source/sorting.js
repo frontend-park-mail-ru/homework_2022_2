@@ -1,31 +1,30 @@
 'use strict';
 
 /**
- * This function make partition for quick sort.
+ * Implementation of quick sort.
  * 
- * @param {Array} dataArray - input data
- * @param {Number} leftIndex - start index
- * @param {Number} rightIndex - finish index
- * @param {Array} keyArray - keys to sort
- * @returns index of pivot.
+ * @param {array} dataArray - input array of data.
+ * @param {function} compare - compare function.
+ * @returns sorted array.
  */
-function partition(dataArray, leftIndex, rightIndex, keyArray) {
-    let pivotIndex = leftIndex;
+function quickSort(dataArray, compare = (left, right) => left > right) {
+    if (dataArray.length < 2) {
+        return dataArray;
+    }
+    let pivot = dataArray[0];
 
-    for (let i = leftIndex; i < rightIndex; i++) {
-        for (let j = 0; j < keyArray.length; j++) {
-            if (keyArray.length < 2 || dataArray[i][keyArray[j]] != dataArray[rightIndex][keyArray[j]]) {
-                if (dataArray[i][keyArray[j]] <= dataArray[rightIndex][keyArray[j]]) {
-                    [dataArray[i], dataArray[pivotIndex]] = [dataArray[pivotIndex], dataArray[i]];
-                    pivotIndex++;
-                    break;
-                }
-            }
+    const leftArray = [];
+    const rightArray = [];
+
+    for (let i = 1; i < dataArray.length; i++) {
+        if (compare(pivot, dataArray[i]) > 0) {
+            leftArray.push(dataArray[i]);
+        } else {
+            rightArray.push(dataArray[i]);
         }
     }
 
-    [dataArray[pivotIndex], dataArray[rightIndex]] = [dataArray[rightIndex], dataArray[pivotIndex]];
-    return pivotIndex;
+    return quickSort(leftArray, compare).concat(pivot, quickSort(rightArray, compare));
 }
 
 /**
@@ -38,9 +37,9 @@ function partition(dataArray, leftIndex, rightIndex, keyArray) {
  *      6. Function sorts by several fields.
  *      7. Function returns empty array in case which input is garbage.
  * 
- * @param {Array} dataArray - array of data.
- * @param {Array} keyArray - key for sorting.
- * @return {Array} sorted array according rules.
+ * @param {array} dataArray - array of data.
+ * @param {array} keyArray - key for sorting.
+ * @return {array} sorted array according rules.
  * @throws {TypeError} Argument is not an Array type.
  */
 function sorting(dataArray, keyArray) {
@@ -54,41 +53,18 @@ function sorting(dataArray, keyArray) {
         return dataArray;
     }
 
-    const copyToArray = dataArray.concat();
-    const copyToKeys = keyArray.concat();
-    let keyStack = [];
-    
-    keyStack.push(copyToKeys.shift());
-    while (keyStack.length > 0) {
-        let stack = [];
-
-        stack.push(0);
-        stack.push(dataArray.length - 1);
-        while (stack[stack.length - 1] >= 0) {
-            const end = stack.pop();
-            const start = stack.pop();
-
-            const pivotIndex = partition(copyToArray, start, end, keyStack);
-
-            if (pivotIndex - 1 > start) {
-                stack.push(start);
-                stack.push(pivotIndex - 1);
+    let result = dataArray.concat();
+    for (let i = keyArray.length - 1; i >= 0; i--) {
+        result = quickSort(result, (left, right) => {
+            if (left[keyArray[i]] > right[keyArray[i]]) {
+                return 1;
+            } 
+            if (left[keyArray[i]] < right[keyArray[i]]) {
+                return -1;
             }
-
-            if (pivotIndex + 1 < end) {
-                stack.push(pivotIndex + 1);
-                stack.push(end);
-            }
-        }
-
-        if (keyStack.length > 1) {
-            keyStack.pop();
-        }
-        if (copyToKeys.length > 0) {
-            keyStack.push(copyToKeys.shift());
-        } else {
-            keyStack = [];
-        }
+            return 0;
+        });
     }
-    return copyToArray;
+
+    return result;
 }
