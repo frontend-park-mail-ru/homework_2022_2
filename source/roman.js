@@ -24,7 +24,7 @@ const ROMAN_MAPPING = ['I', 'IV', 'V', 'IX', 'X', 'XL', 'L', 'XC', 'C', 'CD', 'D
  */
 const roman = (input) => {
     const inputNumber = Number(input);
-    if (!(Number.isInteger(input) || (typeof input === 'string' || input instanceof String))) {
+    if (!(Number.isInteger(input) || typeof input === 'string' || input instanceof String)) {
         throw TypeError('Incorrect input data. Expected integer or string.');
     }
 
