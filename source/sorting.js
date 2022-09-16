@@ -5,7 +5,7 @@
  * 
  * @param {array} dataArray - input array of data.
  * @param {function} compare - compare function.
- * @returns sorted array.
+ * @returns {array} sorted array.
  */
 function quickSort(dataArray, compare = (left, right) => left > right) {
     if (dataArray.length < 2) {
