@@ -11,7 +11,7 @@ function quickSort(dataArray, compare = (left, right) => left > right) {
     if (dataArray.length < 2) {
         return dataArray;
     }
-    let pivot = dataArray[0];
+    const pivot = dataArray[0];
 
     const leftArray = [];
     const rightArray = [];
@@ -46,10 +46,7 @@ function sorting(dataArray, keyArray) {
     if (!Array.isArray(dataArray) || !Array.isArray(keyArray)) {
         throw new TypeError('invalid input');
     }
-    if (dataArray.length == 0 || keyArray.length == 0) {
-        return dataArray;
-    }
-    if ((dataArray === []) || (keyArray === [])) {
+    if (dataArray.length === 0 || keyArray.length === 0) {
         return dataArray;
     }
 
